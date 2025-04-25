@@ -12,4 +12,15 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
 }
 
+class LoanController extends Controller
+{
+    /**
+     * Display a listing of the loans.
+     */
+    public function index()
+    {
+        return view('menu.loans'); // Adjust the view path as necessary
+    }
 
+
+}

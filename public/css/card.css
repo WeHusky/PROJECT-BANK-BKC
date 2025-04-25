@@ -1,0 +1,172 @@
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card-counter {
+    background: linear-gradient(50deg, #4f52ba 0%, #6f86e0 100%);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    transition: transform 0.2s;
+    position: relative;
+    overflow: hidden;
+    min-height: 140px; /* This can be changed to a fixed height */
+    height: 180px; /* Set a fixed height for consistency */
+    cursor: pointer;
+}
+
+.card-counter:hover {
+    transform: translateY(-10px);
+}
+
+.icon-wrapper {
+    position: absolute; /* Absolute positioning for the icon */
+    top: 50%; /* Center vertically */
+    left: 10px; /* Adjust distance from the left */
+    transform: translateY(-50%); /* Center the icon vertically */
+    width: 60px; /* Adjust size */
+    height: 60px; /* Adjust size */
+    border-radius: 12px; /* Match existing styling */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; /* Ensure it is on top */
+}
+
+.icon-wrapper-chart {
+    position: absolute; /* Absolute positioning for the icon */
+    top: 50%; /* Center vertically */
+    left: 5px; /* Adjust distance from the left */
+    transform: translateY(-50%); /* Center the icon vertically */
+    width: 120px; /* Adjust size */
+    height: 120px; /* Adjust size */
+    border-radius: 12px; /* Match existing styling */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1; /* Ensure it is on top */
+}
+
+.card-counter canvas {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    font-size: 125px;
+    z-index: 1;
+}
+
+.card-counter i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    font-size: 100px;
+    z-index: 1;
+    color: #4f52ba;
+}
+
+.count-numbers {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 2;
+    text-align: right;
+}
+
+.count-name, .count-details {
+    font-size: 16px;
+    position: relative;
+    z-index: 2;
+    text-align: right;
+    font-style: italic;
+    opacity: 0.8;
+    bottom: 15px;
+}
+
+.toggle-table {
+    display: none;
+}
+
+.toggle-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.toggle-table tr td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: normal;
+}
+
+.toggle-table tr th {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.action-buttons {
+    bottom: 10px; /* Position at the bottom */
+    right: 10px; /* Position at the right */
+    display: flex;
+    z-index: 3; /* Higher z-index to ensure visibility */
+}
+
+.action-buttons button {
+    margin-left: 2px; /* Mengurangi margin untuk jarak yang lebih dekat */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; /* Ukuran tombol tetap sama */
+    height: 30px; /* Ukuran tombol tetap sama */
+}
+
+.action-buttons button i {
+    position: static; /* Reset the position */
+    font-size: 14px; /* Smaller size for icons */
+    transform: none; /* Reset transform */
+    color: white; /* Make sure icon is visible on button */
+}
+
+/* Jika ingin menambahkan sedikit padding ke tombol */
+.action-buttons button {
+    margin: 0; /* Menghapus padding agar ukuran tombol tetap 30x30 */
+}
+
+.region-wrapper {
+    padding: 10px;
+    border: 1px solid #4f52ba;
+    border-radius: 8px;
+    margin-bottom: 15px; /* Biar ada gap antar elemen */
+}
+.region-wrapper:last-child {
+    margin-bottom: 0; /* Biar elemen terakhir gak ada gap bawah */
+}
+
+.region-header {
+    display: flex;
+    justify-content: space-between; /* Menjadikan teks dan tombol berada di ujung kanan dan kiri */
+    align-items: center; /* Agar teks dan tombol sejajar secara vertikal */
+    width: 100%; /* Memastikan elemen memenuhi lebar parent */
+    padding: 5px 0; /* Opsional: Memberikan sedikit padding */
+}
+
+.region-title {
+    font-size: 16px;
+    color: #4f52ba;
+    font-weight: 600;
+}
