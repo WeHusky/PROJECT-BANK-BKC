@@ -45,11 +45,12 @@ body {
   justify-content: space-between;
 }
 .sidebar-header .header-logo img {
-  width: 46px;
-  height: 46px;
+  width: 160px;
+  height: 70px;
+  transition: all 0.4s ease;
   display: block;
   object-fit: contain;
-  border-radius: 50%;
+
 }
 .sidebar-header .sidebar-toggler,
 .sidebar-menu-button {
@@ -237,8 +238,17 @@ body {
 }
 
 .sidebar ~ .main {
-            margin-left: 270px; /* Menyesuaikan dengan lebar baru .sidebar */
-        }
+  margin-left: 270px; /* Menyesuaikan dengan lebar baru .sidebar */
+}
+
+.sidebar.collapsed .sidebar-header .header-logo img {
+  width: 50px;
+  height: auto;
+  transition: all 0.4s ease;
+  width: 50px;
+  height: 50px;
+}
+
 
 
   </style>
@@ -251,7 +261,7 @@ body {
       <!-- Sidebar Header -->
       <header class="sidebar-header">
         <a href="#" class="header-logo">
-          <img src="images/logo.png" alt="CodingNepal" />
+          <img src="images/logo.png" alt="bkc" />
         </a>
         <button id="sidebar-toggler" class="sidebar-toggler">
           <span class="material-symbols-rounded">chevron_left</span>
@@ -295,7 +305,7 @@ body {
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <span class="material-symbols-rounded">settings</span>
+              <span class="material-symbols-rounded">manage_accounts</span>
               <span class="nav-label">Accounts</span>
             </a>
             <ul class="dropdown-menu">
