@@ -19,7 +19,14 @@ class LoanController extends Controller
      */
     public function index()
     {
-        return view('menu.loans'); // Adjust the view path as necessary
+        return view('perbankan.loan_site.loans'); // Adjust the view path as necessary
+    }
+      /**
+     * Display the specified loan details.
+     */
+    public function show($id)
+    {
+        return view('perbankan.loan_site.customer_details'); // Adjust the view path as necessary
     }
 
 

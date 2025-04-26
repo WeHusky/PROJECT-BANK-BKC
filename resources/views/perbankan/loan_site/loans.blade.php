@@ -10,7 +10,6 @@
   <style>
     body {
       font-family: 'Roboto', sans-serif;
-      background-color: #dbe3ff;
       padding: 40px;
     }
 
@@ -135,7 +134,7 @@
             <span class="label">Loan Amount</span>
             <span class="value">20.000.000</span>
         </td>
-        <td><a href="#" class="view-button">View Details</a></td>
+        <td><a href="{{ route('loans.show', ['id' => 1]) }}" class="view-button">View Details</a></td>
         </tr>
 
         <!-- Row 2 -->
