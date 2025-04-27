@@ -119,7 +119,7 @@ body {
 }
 .sidebar-nav .nav-item:is(:hover, .open)>.nav-link:not(.dropdown-title) {
   color: #151A2D;
-  background: #FFEEF2;
+  background: #EFF1F5;
 }
 .sidebar .nav-link .nav-label {
   transition: opacity 0.3s ease;
