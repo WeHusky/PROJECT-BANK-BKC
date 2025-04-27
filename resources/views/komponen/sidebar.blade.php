@@ -261,7 +261,7 @@ body {
       <!-- Sidebar Header -->
       <header class="sidebar-header">
         <a href="#" class="header-logo">
-          <img src="images/logo.png" alt="bkc" />
+          <img src="{{ asset('images/logo.png') }}" alt="bkc" />
         </a>
         <button id="sidebar-toggler" class="sidebar-toggler">
           <span class="material-symbols-rounded">chevron_left</span>

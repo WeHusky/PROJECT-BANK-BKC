@@ -10,4 +10,10 @@ class DashboardController extends Controller
     {
         return view('menu.dashboard'); // Mengembalikan view dashboard
     }
+
+    public function regions()
+    {
+        // Logic to retrieve regions or any other data
+        return view('regions.index'); // Adjust the view as necessary
+    }
 }

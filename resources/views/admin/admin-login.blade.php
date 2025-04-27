@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin Login Page</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
     @vite('resources/css/app.css')
 </head>
     <body>
@@ -31,6 +32,6 @@
             </div>
         </section>
     </body>
-</html> 
+</html>
 
 <div class="w-"></div>

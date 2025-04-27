@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Details</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
     <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -32,6 +34,7 @@
       border-bottom: 2px solid #eee;
       margin-bottom: 60px;
       gap:40px;
+      position: relative;
     }
     .tab {
       margin-right: 20px;
@@ -39,11 +42,53 @@
       cursor: pointer;
       font-weight: bold;
       color: #888;
+      position: relative;
     }
-    .tab.active {
-      border-bottom: 2px solid blue;
-      color: blue;
-    }
+    .tab {
+    position: relative;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #333;
+
+}
+
+.tab:not(.active):hover {
+    color: blue;
+}
+
+/* Garis bawah */
+.tab:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #0000ff;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    border-radius: 6px;
+}
+
+/* Muncul dari bawah ke atas saat hover */
+.tab:not(.active):hover:before {
+    transform: scaleY(1);
+    transition: transform 0.6s ease;
+
+}
+
+/* Aktif tab */
+.tab.active {
+    color: blue;
+    border-bottom: 3px solid blue;
+    border-radius: 6px;
+}
+
+/* Aktif: garis hover mati */
+.tab.active:before {
+    transform: scaleY(0);
+}
+
     .form-group {
       display: flex;
       gap: 20px;
@@ -122,7 +167,6 @@
 
     /* Modal Styles */
     .modal {
-      display: none;
       position: fixed;
       z-index: 999;
       padding-top: 100px;
@@ -131,6 +175,7 @@
       width: 100%;
       height: 100%;
       background-color: rgba(0,0,0,0.5);
+      display:      none;
     }
     .modal-content {
       background-color: #fff;
@@ -163,140 +208,319 @@
     .modal-buttons .cancel {
       background-color: #ccc;
     }
+
+    .bi-check-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 350px;
+  text-align: center;
+}
+
+.profile img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.profile h2 {
+  margin: 1rem 0 0.5rem;
+}
+
+.role {
+  background: #eef2f7;
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 1.5rem 0;
+}
+
+.stats div {
+  text-align: center;
+}
+
+.icon {
+  margin-bottom: 0.5rem;
+}
+
+.stats div h3 {
+  margin: 0.3rem 0;
+  color: #333;
+}
+
+.stats div p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.bi-check-details {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.bi-check-details p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.actions .edit, .actions .suspend {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.actions .edit {
+  background: #6c63ff;
+  color: white;
+}
+
+.actions .suspend {
+  background: #ff6b6b;
+  color: white;
+}
     </style>
 </head>
 <body>
-    <div class="main">
-    <h2>Customer Details</h2>
-    <div class="container">
+    <div class="main" style="gap: 20px; flex-direction: column;">
+        <!-- Button to open BI Check Report Modal -->
+        <!-- Removed the top BI Check Report button as requested -->
+        <!-- <button id="openBiCheckModal" style="margin-bottom: 20px; padding: 10px 20px; background-color: #6c63ff; color: white; border: none; border-radius: 8px; cursor: pointer;">BI Check Report</button> -->
 
-    <div class="tabs">
-        <div class="tab active" data-tab="profil">Profil</div>
-        <div class="tab" data-tab="detail">Detail Pinjaman</div>
-        <div class="tab" data-tab="survey">Survey</div>
-    </div>
+        <!-- BI Check Report Modal -->
+        <div id="biCheckModal" class="modal" style="display: none;">
+            <div class="modal-content" style="width: 450px; max-width: 90%;">
+                <h2>BI Checking Report</h2>
 
-    <!-- Konten Profil -->
-    <div id="profil" class="tab-content active">
-        <!-- isi form Profil di sini -->
-        <div class="form-group">
-            <div class="form-control">
-                <label>Nama</label>
-                <input type="text" value="Wahyu" disabled>
-            </div>
-            <div class="form-control">
-                <label>NIK</label>
-                <input type="text" value="1738456132048560183" disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-control">
-                <label>Tanggal Lahir</label>
-                <input type="text" value="25 January 1990" disabled>
-            </div>
-            <div class="form-control">
-                <label>No HP</label>
-                <input type="text" value="09845098132" disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-control">
-                <label>Pekerjaan</label>
-                <input type="text" value="Petani Bitcoin" disabled>
-            </div>
-            <div class="form-control">
-                <label>Penghasilan</label>
-                <input type="text" value="300.000.000" disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-control">
-                <label>Tanggungan</label>
-                <select disabled>
-                    <option selected>7</option>
-                </select>
-            </div>
-            <div class="form-control">
-                <label>Status Kawin</label>
-                <input type="text" value="09845098132" disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-control full-width">
-                <label>Alamat</label>
-                <input type="text" value="Tambakbayan" disabled>
-            </div>
-        </div>
-    </div>
+                <div class="form-group">
+                    <label>ID BI Check</label>
+                    <input type="text" value="#N1994" disabled>
+                </div>
 
-    <!-- Konten Detail Pinjaman -->
-    <div id="detail" class="tab-content">
-        <!-- isi form Detail Pinjaman di sini -->
-        <div class="form-group">
-            <div class="form-control">
-                <label>ID Kredit</label>
-                <input type="text" value="#N1994" disabled>
-            </div>
-            <div class="form-control">
-                <label>ID Nasabah</label>
-                <input type="text" value="#01" disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-control">
-                <label>Nominal</label>
-                <input type="text" value="20.000.000" disabled>
-            </div>
-            <div class="form-control">
-                <label>Kategori</label>
-                <select>
-                    <option value="Cabang" selected>Cabang</option>
-                    <option value="Pusat">Pusat</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-control">
-                <label>Tanggal Pinjaman</label>
-                <input type="text" value="25 January 1990" disabled>
-            </div>
-            <div class="form-control">
-                <label>Alamat</label>
-                <input type="text" value="Tambakbayan" disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-control">
-                <label>Status</label>
-                <select>
-                    <option value="Pengecekan" selected>Pengecekan</option>
-                    <option value="Disetujui">Disetujui</option>
-                    <option value="Ditolak">Ditolak</option>
-                </select>
-            </div>
-            <div class="form-control">
-                <label>Konfirmasi</label>
-                <input type="text" value="Zero" disabled>
-            </div>
-        </div>
-    </div>
+                <div class="form-group">
+                    <label>Skor Kredit</label>
+                    <input type="text" value="5" disabled style="border-color: lightgreen;">
+                </div>
 
-    <!-- Konten Survey -->
-    <div id="survey" class="tab-content">
-        <!-- isi form Survey di sini -->
-    </div>
+                <div class="form-group">
+                    <label>History</label>
+                    <input type="text" value="Lunas" disabled>
+                </div>
 
-    </div>
-    <div class="button-group" style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <div class="form-group">
+                    <label>Status Kelayakan</label>
+                    <input type="text" value="Layak" disabled>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <button id="closeBiCheckModal" class="cancel" style="background-color: #ccc; color: black; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="flex: 1;">
+            <div class="tabs">
+                <div class="tab active" data-tab="profil">Profil</div>
+                <div class="tab" data-tab="detail">Detail Pinjaman</div>
+                <div class="tab" data-tab="survey">Survey</div>
+            </div>
+
+            <!-- Konten Profil -->
+            <div id="profil" class="tab-content active">
+                <!-- isi form Profil di sini -->
+                <div class="form-group">
+                    <div class="form-control">
+                        <label>Nama</label>
+                        <input type="text" value="Wahyu" disabled>
+                    </div>
+                    <div class="form-control">
+                        <label>NIK</label>
+                        <input type="text" value="1738456132048560183" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control">
+                        <label>Tanggal Lahir</label>
+                        <input type="text" value="25 January 1990" disabled>
+                    </div>
+                    <div class="form-control">
+                        <label>No HP</label>
+                        <input type="text" value="09845098132" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control">
+                        <label>Pekerjaan</label>
+                        <input type="text" value="Petani Bitcoin" disabled>
+                    </div>
+                    <div class="form-control">
+                        <label>Penghasilan</label>
+                        <input type="text" value="300.000.000" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control">
+                        <label>Tanggungan</label>
+                        <select disabled>
+                            <option selected>7</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label>Status Kawin</label>
+                        <input type="text" value="09845098132" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control full-width">
+                        <label>Alamat</label>
+                        <input type="text" value="Tambakbayan" disabled>
+                    </div>
+                </div>
+                <div class="button" style="margin-top: 0px;">
+                    <button id="openModal" style="background-color: #6c63ff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">BI-Check</button>
+                </div>
+            </div>
+
+            <!-- Konten Detail Pinjaman -->
+            <div id="detail" class="tab-content">
+                <!-- isi form Detail Pinjaman di sini -->
+                <div class="form-group">
+                    <div class="form-control">
+                        <label>ID Kredit</label>
+                        <input type="text" value="#N1994" disabled>
+                    </div>
+                    <div class="form-control">
+                        <label>ID Nasabah</label>
+                        <input type="text" value="#01" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control">
+                        <label>Nominal</label>
+                        <input type="text" value="20.000.000" disabled>
+                    </div>
+                    <div class="form-control">
+                        <label>Kategori</label>
+                        <select>
+                            <option value="Cabang" selected>Cabang</option>
+                            <option value="Pusat">Pusat</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control">
+                        <label>Tanggal Pinjaman</label>
+                        <input type="text" value="25 January 1990" disabled>
+                    </div>
+                    <div class="form-control">
+                        <label>Alamat</label>
+                        <input type="text" value="Tambakbayan" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control">
+                        <label>Status</label>
+                        <select>
+                            <option value="Pengecekan" selected>Pengecekan</option>
+                            <option value="Disetujui">Disetujui</option>
+                            <option value="Ditolak">Ditolak</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label>Konfirmasi</label>
+                        <input type="text" value="Zero" disabled>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Konten Survey -->
+            <div id="survey" class="tab-content">
+                <!-- isi form Survey di sini -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+  <!-- ID Survey -->
+  <div class="flex flex-col">
+    <label class="text-sm font-medium text-gray-700 mb-1">ID Survey</label>
+    <input type="text" value="#N1993R" disabled
+      class="bg-gray-100 text-blue-500 font-medium rounded-lg px-4 py-3 focus:outline-none"/>
+  </div>
+
+  <!-- ID Nasabah -->
+  <div class="flex flex-col">
+    <label class="text-sm font-medium text-gray-700 mb-1">ID Nasabah</label>
+    <input type="text" value="#01" disabled
+      class="bg-gray-100 text-blue-500 font-medium rounded-lg px-4 py-3 focus:outline-none"/>
+  </div>
+
+  <!-- Kondisi Rumah -->
+  <div class="flex flex-col">
+    <label class="text-sm font-medium text-gray-700 mb-1">Kondisi Rumah</label>
+    <button type="button"
+      class="flex items-center justify-between bg-gray-100 text-blue-500 font-medium rounded-lg px-4 py-3 focus:outline-none">
+      Pilih File
+      <span class="material-icons text-gray-400">chevron_right</span>
+    </button>
+  </div>
+
+  <!-- Kondisi Ekonomi -->
+  <div class="flex flex-col">
+    <label class="text-sm font-medium text-gray-700 mb-1">Kondisi Ekonomi</label>
+    <select
+      class="bg-gray-100 text-blue-500 font-medium rounded-lg px-4 py-3 focus:outline-none">
+      <option selected>Mampu</option>
+      <option>Tidak Mampu</option>
+    </select>
+  </div>
+
+  <!-- Alasan Peminjaman (textarea) -->
+  <div class="flex flex-col col-span-1 md:col-span-2">
+    <label class="text-sm font-medium text-gray-700 mb-1">Alasan Peminjaman</label>
+    <textarea rows="4"
+      class="bg-gray-100 text-blue-500 font-medium rounded-lg px-4 py-3 focus:outline-none">Pengen beli rumah di Jakarta Selatan</textarea>
+  </div>
+
+</div>
+            </div>
+        </div>
+
+        <!-- Loan Approval Card -->
+        <div class="loan-approval-card" style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 20px;">
+            <h3>Loan Approval</h3>
+            <p style="background-color: #ffeb3b; padding: 10px; border-radius: 5px;">
+                Are you sure you want to approve this loan? Once approved, the loan will be processed and cannot be undone. Please confirm your decision.
+            </p>
+            <div style="margin-top: 10px;">
+                <input type="checkbox" id="confirmApproval">
+                <label for="confirmApproval">I confirm the loan approval</label>
+            </div>
+            <div style="margin-top: 20px;">
+                <button class="confirm" id="confirmLoanApproval" style="background-color: #6c63ff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Approve Loan</button>
+                <button class="cancel" id="cancelLoanApproval" style="background-color: #ccc; color: black; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Cancel</button>
+            </div>
+        </div>
+        <div class="button-group" style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
         <a href="{{ route('loans') }}" class="back-button">
             <i class="material-icons">arrow_back</i> Kembali
         </a>
-        <div class="button" style="margin-top: 0px;">
-            <button id="openModal">Setujui</button>
-        </div>
+    </div>
     </div>
     <!-- Modal -->
-    <div id="confirmationModal" class="modal">
+    <!-- <div id="confirmationModal" class="modal">
         <div class="modal-content">
             <h3>Apakah Anda yakin ingin menyetujui?</h3>
             <div class="modal-buttons">
@@ -304,32 +528,24 @@
                 <button class="cancel" id="cancelModal">Batal</button>
             </div>
         </div>
-    </div>
-
-    </div>
+    </div> -->
 
     <script>
-        const modal = document.getElementById('confirmationModal');
-        const openModalBtn = document.getElementById('openModal');
-        const cancelBtn = document.getElementById('cancelModal');
-        const confirmBtn = document.getElementById('confirmApprove');
+        const reportModal = document.getElementById('biCheckModal');
+        const openReportModalBtn = document.getElementById('openModal');
+        const closeModalBtn = document.getElementById('closeBiCheckModal');
 
-        openModalBtn.onclick = function() {
-            modal.style.display = 'block';
+        openReportModalBtn.onclick = function() {
+            reportModal.style.display = 'block';
         }
 
-        cancelBtn.onclick = function() {
-            modal.style.display = 'none';
-        }
-
-        confirmBtn.onclick = function() {
-            modal.style.display = 'none';
-            alert('Disetujui!');
+        closeModalBtn.onclick = function() {
+            reportModal.style.display = 'none';
         }
 
         window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
+            if (event.target == reportModal) {
+                reportModal.style.display = 'none';
             }
         }
 

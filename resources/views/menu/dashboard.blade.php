@@ -88,10 +88,9 @@
 
 
         <div class="card-grid">
-            <div class="card-counter device-icon">
-                <i class="fa-solid fa-city"></i>
-
-                <div class="count-name">Region</div>
+            <div class="card-counter device-icon" style="cursor: pointer;" onclick="window.location='{{ route('loans') }}'">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+                <div class="count-name">Loans</div>
             </div>
             <div class="card-counter pop-icon">
                 <i class="fa-solid fa-building"></i>

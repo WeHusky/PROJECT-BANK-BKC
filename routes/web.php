@@ -25,6 +25,9 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
+Route::get('/regions', [DashboardController::class, 'regions'])->name('regions.index');
+
+
 use App\Http\Controllers\LoanController;
 
 // Loan Routes
