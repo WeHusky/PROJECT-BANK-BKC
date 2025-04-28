@@ -19,10 +19,9 @@
     .container {
       background: #fff;
       border-radius: 10px;
-      padding: 30px;
+      padding: 40px;
       max-width: 100%;
       margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       min-height: auto;
     }
     h2 {
@@ -499,7 +498,7 @@
         </div>
 
         <!-- Loan Approval Card -->
-        <div class="loan-approval-card" style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 20px;">
+        <div class="loan-approval-card" style="background: #fff; padding: 20px; border-radius: 10px; margin-top: 20px;">
             <h3>Loan Approval</h3>
             <p style="background-color: #ffeb3b; padding: 10px; border-radius: 5px;">
                 Are you sure you want to approve this loan? Once approved, the loan will be processed and cannot be undone. Please confirm your decision.

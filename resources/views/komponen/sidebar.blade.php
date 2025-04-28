@@ -20,7 +20,7 @@
 }
 body {
   min-height: 100vh;
-  background: linear-gradient(#F1F3FF, #CBD4FF);
+  background: #EFF1F5;
   font-size: 16px;
 }
 .sidebar {
@@ -58,7 +58,7 @@ body {
   right: 20px;
   height: 35px;
   width: 35px;
-  color: #151A2D;
+  color: #29BBCF;
   border: none;
   cursor: pointer;
   display: flex;
@@ -119,7 +119,7 @@ body {
 }
 .sidebar-nav .nav-item:is(:hover, .open)>.nav-link:not(.dropdown-title) {
   color: #151A2D;
-  background: #EFF1F5;
+  background: #d9e1fd;
 }
 .sidebar .nav-link .nav-label {
   transition: opacity 0.3s ease;
@@ -289,9 +289,9 @@ body {
             <!-- Dropdown Menu -->
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-title" style="font-size: 15px">Services</a></li>
-              <li class="nav-item"><a href="#" class="nav-link dropdown-link"><span class="material-symbols-rounded">money</span> Transaction</a></li>
+              <li class="nav-item"><a href="#" class="nav-link dropdown-link"><span class="material-symbols-rounded">money</span> Transactions</a></li>
               <li class="nav-item"><a href="{{ route('loans') }}" class="nav-link dropdown-link"><span class="material-symbols-rounded">payments</span> Loans</a></li>
-              <li class="nav-item"><a href="#" class="nav-link dropdown-link"><span class="material-symbols-rounded">monitoring</span> Invesment</a></li>
+              <li class="nav-item"><a href="#" class="nav-link dropdown-link"><span class="material-symbols-rounded">monitoring</span> Investments</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -306,7 +306,7 @@ body {
           <li class="nav-item">
             <a href="#" class="nav-link">
               <span class="material-symbols-rounded">manage_accounts</span>
-              <span class="nav-label">Accounts</span>
+              <span class="nav-label">Account</span>
             </a>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-title">Resources</a></li>
