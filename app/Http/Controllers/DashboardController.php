@@ -8,7 +8,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('menu.dashboard'); // Mengembalikan view dashboard
+        return view('dashboard');
     }
 
     public function regions()
