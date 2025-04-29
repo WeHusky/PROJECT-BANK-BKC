@@ -270,7 +270,6 @@ body {
       <nav class="sidebar-nav">
         <!-- Primary Top Nav -->
         <ul class="nav-list primary-nav">
-          @auth
           <li class="nav-item">
             <a href="{{ route('dashboard') }}" class="nav-link">
               <span class="material-symbols-rounded">home</span>
@@ -313,6 +312,30 @@ body {
               <li class="nav-item"><a class="nav-link dropdown-title">Resources</a></li>
             </ul>
           </li>
+          <!-- Dropdown -->
+          <!-- <li class="nav-item dropdown-container">
+            <a href="#" class="nav-link dropdown-toggle">
+              <span class="material-symbols-rounded">star</span>
+              <span class="nav-label">Bookmarks</span>
+              <span class="dropdown-icon material-symbols-rounded">keyboard_arrow_down</span>
+            </a>
+            <!-- Dropdown Menu -->
+            <!-- <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-title">Bookmarks</a></li>
+              <li class="nav-item"><a href="#" class="nav-link dropdown-link">Saved Tutorials</a></li>
+              <li class="nav-item"><a href="#" class="nav-link dropdown-link">Favorite Blogs</a></li>
+              <li class="nav-item"><a href="#" class="nav-link dropdown-link">Resource Guides</a></li>
+            </ul>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a href="#" class="nav-link">
+              <span class="material-symbols-rounded">extension</span>
+              <span class="nav-label">Extensions</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link dropdown-title">Extensions</a></li>
+            </ul>
+          </li> -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <span class="material-symbols-rounded">settings</span>
@@ -322,7 +345,6 @@ body {
               <li class="nav-item"><a class="nav-link dropdown-title">Settings</a></li>
             </ul>
           </li>
-          @endauth
         </ul>
         <!-- Secondary Bottom Nav -->
         <ul class="nav-list secondary-nav">
@@ -335,20 +357,15 @@ body {
               <li class="nav-item"><a class="nav-link dropdown-title">Support</a></li>
             </ul>
           </li>
-          @auth
           <li class="nav-item">
-            <form method="POST" action="{{ route('logout') }}" class="nav-link" style="cursor: pointer; margin: 0; padding: 0;">
-              @csrf
-              <button type="submit" class="nav-link" style="background: none; border: none; width: 100%; text-align: left; display: flex; align-items: center; gap: 12px; padding: 11px 15px;">
-                <span class="material-symbols-rounded">logout</span>
-                <span class="nav-label" style="font-size: 16px;">Sign Out</span>
-              </button>
-            </form>
+            <a href="#" class="nav-link">
+              <span class="material-symbols-rounded">logout</span>
+              <span class="nav-label">Sign Out</span>
+            </a>
             <ul class="dropdown-menu">
               <li class="nav-item"><a class="nav-link dropdown-title">Sign Out</a></li>
             </ul>
           </li>
-          @endauth
         </ul>
       </nav>
     </aside>
