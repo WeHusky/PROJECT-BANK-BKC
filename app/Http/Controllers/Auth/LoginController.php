@@ -13,9 +13,13 @@ class LoginController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function showLoginForm()
+    public function showAdminLoginForm()
     {
-        return view('auth.login');
+        return view('auth.admin-login');
+    }
+    public function showNasabahLoginForm()
+    {
+        return view('auth.nasabah-login');
     }
 
     /**

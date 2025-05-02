@@ -2,8 +2,8 @@
 
 @section('content')
 <section class="bg-[#EFF1F5] min-h-screen flex items-center justify-center">
-    <div class="bg-white flex w-[1000px] h-[500px] rounded-2xl shadow-lg">
-        <div class="w-1/2 px-12 flex flex-col justify-center">
+    <div class="bg-white flex p-12 sm:p-0 sm:w-[1000px] sm:h-[550px]">
+        <div class="sm:w-1/2 w-full px-12 flex flex-col justify-center">
             <div class="logo w-full flex items-center justify-center mb-8">
                 <img src="{{ asset('images/logo.png') }}" alt="" class="w-32">
             </div>
@@ -11,7 +11,7 @@
             <p class="text-sm mt-2 text-[#13545C]">Please enter your valid credentials.</p>
             <hr class="mt-2 opacity-10">
 
-            <form method="POST" action="{{ route('login') }}" class="flex flex-col gap-4 mt-4">
+            <form method="POST" action="{{ route('admin.login') }}" class="flex flex-col gap-4 mt-4">
                 @csrf
                 <input class="p-2 rounded-xl border border-[#D4D6D9] @error('email') is-invalid @enderror" 
                     type="email" 
@@ -52,23 +52,14 @@
                             {{ __('Remember Me') }}
                         </label>
                     </div>
-                    <a href="{{ route('register') }}" class="text-sm text-[#29BCCF] hover:text-[#70d6ff]">
-                        {{ __('Register') }}
-                    </a>
                 </div>
 
                 <button type="submit" class="bg-[#29BCCF] hover:bg-[#70d6ff] transition rounded-xl py-2 text-white font-semibold cursor-pointer">
                     {{ __('Login') }}
                 </button>
-
-                @if (Route::has('password.request'))
-                    <a class="text-sm text-[#13545C] text-center" href="{{ route('password.request') }}">
-                        {{ __('Forgot Your Password?') }}
-                    </a>
-                @endif
             </form>
         </div>
-        <div class="w-1/2 overflow-hidden">
+        <div class="w-1/2 sm:block hidden overflow-hidden">
             <img class="h-full w-full object-cover" src="{{ asset('images/adminwelcomepage-02-02.png') }}" alt="">
         </div>
     </div>

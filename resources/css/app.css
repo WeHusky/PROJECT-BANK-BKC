@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@source "../views";
+@theme {
+  --font-sans: InterVariable, sans-serif;
+};
