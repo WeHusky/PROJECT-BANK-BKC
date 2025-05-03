@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'admin@bkcbank.com',
-            'password' => Hash::make('bkcbankcom'), // Ganti dengan password yang diinginkan
+            'password' => Hash::make('bkcbankcom'), // jangan sembarangan passworddigan
         ]);
     }
 }

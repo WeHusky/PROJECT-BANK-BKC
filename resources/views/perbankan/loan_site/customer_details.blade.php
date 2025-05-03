@@ -1,5 +1,5 @@
 @section('content')
-@include('komponen.sidebar')
+@include('layouts.sidebar')
 
 <html lang="en">
 <head>

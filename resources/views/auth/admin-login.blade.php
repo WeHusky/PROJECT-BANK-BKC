@@ -13,13 +13,13 @@
 
             <form method="POST" action="{{ route('admin.login') }}" class="flex flex-col gap-4 mt-4">
                 @csrf
-                <input class="p-2 rounded-xl border border-[#D4D6D9] @error('email') is-invalid @enderror" 
-                    type="email" 
-                    name="email" 
+                <input class="p-2 rounded-xl border border-[#D4D6D9] @error('email') is-invalid @enderror"
+                    type="email"
+                    name="email"
                     value="{{ old('email') }}"
                     placeholder="youremail@bkcbank.com"
-                    required 
-                    autocomplete="email" 
+                    required
+                    autocomplete="email"
                     autofocus>
 
                 @error('email')
@@ -28,11 +28,11 @@
                     </span>
                 @enderror
 
-                <input class="p-2 rounded-xl border border-[#D4D6D9] @error('password') is-invalid @enderror" 
-                    type="password" 
-                    name="password" 
+                <input class="p-2 rounded-xl border border-[#D4D6D9] @error('password') is-invalid @enderror"
+                    type="password"
+                    name="password"
                     placeholder="Password"
-                    required 
+                    required
                     autocomplete="current-password">
 
                 @error('password')
@@ -43,9 +43,9 @@
 
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        <input type="checkbox" 
-                            name="remember" 
-                            id="remember" 
+                        <input type="checkbox"
+                            name="remember"
+                            id="remember"
                             {{ old('remember') ? 'checked' : '' }}
                             class="mr-2">
                         <label for="remember" class="text-sm text-[#13545C]">

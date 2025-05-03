@@ -1,11 +1,15 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerLoanController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\HomepageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +47,12 @@ Route::get('admin/regions', [DashboardController::class, 'regions'])->name('regi
 Route::get('admin/loans', [LoanController::class, 'index'])->name('loans');
 Route::get('admin/loans/{id}', [LoanController::class, 'show'])->name('loans.show');
 
+Route::get('/homepage', [HomepageController::class, 'index'])->name('homepage');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/loan/customer', [CustomerLoanController::class, 'index'])->name('loan.customer');
