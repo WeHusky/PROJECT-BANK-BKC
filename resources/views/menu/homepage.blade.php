@@ -23,7 +23,7 @@
 
   <!-- Card -->
   <div class="px-4">
-    <div class="bg-white p-4 rounded-2xl shadow-md">
+    <div class="bg-white p-4 rounded-2xl shadow-md max-w-sm mx-auto">
       <p class="text-gray-500 mb-2 font-semibold">My Card</p>
       <div class="relative bg-black p-4 rounded-xl overflow-hidden" style="background: linear-gradient(120deg, #181818 60%, #232323 100%);">
         <!-- Wave effect -->
@@ -38,7 +38,7 @@
         <!-- Card Number -->
         <div class="mt-8 z-10 relative">
           <p class="text-xs text-gray-300 mb-1">Card Number</p>
-          <p class="tracking-widest text-xl  text-gray-300 font-mono">8050 5040 2030 3020</p>
+          <p class="tracking-widest text-xl text-gray-300 font-mono">8050 5040 2030 3020</p>
         </div>
         <!-- Name & Valid Thru -->
         <div class="flex justify-between items-end mt-8 z-10 relative">
@@ -47,7 +47,7 @@
           </div>
           <div class="text-right">
             <p class="text-xs text-gray-300">Valid Thru</p>
-            <p class="text-base  text-gray-300 ">05/28</p>
+            <p class="text-base text-gray-300">05/28</p>
           </div>
         </div>
       </div>

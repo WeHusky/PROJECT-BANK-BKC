@@ -45,12 +45,12 @@
     </div>
 
     <!-- Home -->
-    <div class="navbar-item {{ request()->is('/') ? 'active' : '' }}">
+    <a href="{{ route('homepage') }}" class="navbar-item">
       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 3l8 6v12h-5v-7H9v7H4V9l8-6z" />
       </svg>
       <span class="mt-1">Home</span>
-    </div>
+    </a>
 
     <!-- Account -->
     <div class="navbar-item {{ request()->is('account') ? 'active' : '' }}">
