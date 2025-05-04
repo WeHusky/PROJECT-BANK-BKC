@@ -40,7 +40,7 @@
         <!-- Card Number -->
         <div class="mt-8 z-10 relative">
           <p class="text-xs text-gray-300 mb-1">Card Number</p>
-          <p class="tracking-widest text-xl  text-gray-300 font-mono">8050 5040 2030 3020</p>
+          <p class="tracking-widest text-xl text-gray-300 font-mono">8050 5040 2030 3020</p>
         </div>
         <!-- Name & Valid Thru -->
         <div class="flex justify-between items-end mt-8 z-10 relative">
@@ -49,7 +49,7 @@
           </div>
           <div class="text-right">
             <p class="text-xs text-gray-300">Valid Thru</p>
-            <p class="text-base  text-gray-300 ">05/28</p>
+            <p class="text-base text-gray-300">05/28</p>
           </div>
         </div>
       </div>

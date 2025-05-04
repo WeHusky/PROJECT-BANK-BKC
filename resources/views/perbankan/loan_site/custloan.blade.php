@@ -19,14 +19,13 @@
     </a>
     <h1 class="text-2xl font-bold text-gray-800">Loan</h1>
   </div>
-
   <!-- Menu Cards -->
   <div class="space-y-4">
     <!-- Loan Application -->
     <a href="/loan/application" class="flex items-center bg-white rounded-2xl px-4 py-3 shadow-sm hover:shadow-md transition">
       <img src="/images/loan-application.png" alt="Loan App" class="w-12 h-12 mr-4">
       <span class="text-gray-800 font-semibold flex-1">Loan Application</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
       </svg>
     </a>
@@ -35,7 +34,7 @@
     <a href="/loan/my" class="flex items-center bg-white rounded-2xl px-4 py-3 shadow-sm hover:shadow-md transition">
       <img src="/images/my-loans.png" alt="My Loans" class="w-12 h-12 mr-4">
       <span class="text-gray-800 font-semibold flex-1">My Loans</span>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
       </svg>
     </a>
