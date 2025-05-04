@@ -47,7 +47,9 @@ Route::get('admin/regions', [DashboardController::class, 'regions'])->name('regi
 Route::get('admin/loans', [LoanController::class, 'index'])->name('loans');
 Route::get('admin/loans/{id}', [LoanController::class, 'show'])->name('loans.show');
 
-Route::get('/homepage', [HomepageController::class, 'index'])->name('homepage');
+// Nasabah Routes
+Route::get('/homepage', [NasabahController::class, 'showHomePage'])->name('nasabah.homepage');
+Route::get('/notifications', [NasabahController::class, 'showNotificationsPage'])->name('nasabah.notifications');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

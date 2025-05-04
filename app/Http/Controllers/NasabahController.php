@@ -6,5 +6,13 @@ class NasabahController extends Controller{
     {
         return view('auth.landing');
     }
+    public function showHomePage()
+    {
+        return view('menu.homepage');
+    }
+    public function showNotificationsPage()
+    {
+        return view('menu.notification');
+    }
 }
 ?>
