@@ -2,7 +2,7 @@
 
 @section('content')
 <section class="bg-[#EFF1F5] min-h-screen flex items-center justify-center">
-    <div class="bg-white flex p-12 sm:p-0 sm:w-[1000px] sm:h-[550px]">
+    <div class="bg-white flex p-12 rounded-2xl sm:p-0 sm:w-[1000px] sm:h-[570px]">
         <div class="sm:w-1/2 w-full px-12 flex flex-col justify-center">
             <div class="logo w-full flex items-center justify-center mb-8">
                 <img src="{{ asset('images/logo.png') }}" alt="" class="w-32">
@@ -59,7 +59,7 @@
                 </button>
             </form>
         </div>
-        <div class="w-1/2 sm:block hidden overflow-hidden">
+        <div class="w-1/2 sm:block hidden overflow-hidden rounded-r-2xl">
             <img class="h-full w-full object-cover" src="{{ asset('images/adminwelcomepage-02-02.png') }}" alt="">
         </div>
     </div>

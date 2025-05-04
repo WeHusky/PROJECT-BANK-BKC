@@ -11,13 +11,11 @@
 
 <div class="bg-gray-100 min-h-screen pt-4 px-4 pb-28">
   <!-- Header -->
-  <div class="flex items-center space-x-2 mb-6">
-  <a href="{{ route('nasabah.homepage') }}" class="text-cyan-600">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-      </svg>
+  <div class="flex px-7 py-8 bg-white mb-5 items-center">
+  <a class="ml-3" href="{{ route('nasabah.homepage') }}">
+        <img src="{{ asset('images/arrowblue.png') }}" alt="">
     </a>
-    <h1 class="text-2xl font-bold text-gray-800">Loan</h1>
+    <h1 class="font-extrabold text-3xl text-[#13545C]">Loan</h1>
   </div>
   <!-- Menu Cards -->
   <div class="space-y-4">
