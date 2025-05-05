@@ -45,7 +45,7 @@
     </div>
 
     <!-- Home -->
-    <a href="{{ route('homepage') }}" class="navbar-item">
+    <a href="{{ route('nasabah.homepage') }}" class="navbar-item">
       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 3l8 6v12h-5v-7H9v7H4V9l8-6z" />
       </svg>
