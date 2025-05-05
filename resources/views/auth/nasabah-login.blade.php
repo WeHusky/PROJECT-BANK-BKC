@@ -31,7 +31,7 @@
                 <label for="remember" class="ms-2 text-sm font-normal text-[#13545C]">Remember me</label>
             </div>
             <a class="text-[#13545C] underline text-sm text-normal" href=""><p>Forgot Password?</p></a>
-            <button type="submit" class="mt-3 text-white bg-[#29BBCF] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[13px] text-sm w-full sm:w-auto px-5 py-2.5 text-center">Sign In</button>
+            <button type="submit" class="mt-3 text-white bg-[#29BBCF] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[13px] text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Sign in') }}</button>
             </form>
 
         </div>
