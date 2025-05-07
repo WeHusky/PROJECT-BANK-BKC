@@ -7,6 +7,8 @@
     <title>BANK BKC | EMIR AZZAM</title>
     <link rel="stylesheet" href="style.css" />
     <!-- Linking Google Fonts for Icons -->
+
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
   </head>
   <style>
@@ -355,42 +357,50 @@ body {
     <!-- Script -->
     <script src="script.js"></script>
   </body>
-  <script>// Toggle the visibility of a dropdown menu
+  <script>
+  // Ambil elemen sidebar
+  const sidebar = document.querySelector(".sidebar");
 
+  // Load state dari localStorage saat halaman dimuat
+  const sidebarState = localStorage.getItem("sidebar-collapsed");
 
-const toggleDropdown = (dropdown, menu, isOpen) => {
-  dropdown.classList.toggle("open", isOpen);
-  menu.style.height = isOpen ? `${menu.scrollHeight}px` : 0;
-};
-// Close all open dropdowns
-const closeAllDropdowns = () => {
-  document.querySelectorAll(".dropdown-container.open").forEach((openDropdown) => {
-    toggleDropdown(openDropdown, openDropdown.querySelector(".dropdown-menu"), false);
+  if (sidebarState === null || sidebarState === "true") {
+    sidebar.classList.add("collapsed"); // Default tertutup
+  } else {
+    sidebar.classList.remove("collapsed");
+  }
+
+  // Fungsi untuk menutup semua dropdown (opsional, sesuai kebutuhanmu)
+  const closeAllDropdowns = () => {
+    document.querySelectorAll(".dropdown-container.open").forEach((dropdown) => {
+      dropdown.classList.remove("open");
+      const menu = dropdown.querySelector(".dropdown-menu");
+      if (menu) menu.style.height = 0;
+    });
+  };
+
+  // Tombol toggle sidebar
+  document.querySelectorAll(".sidebar-toggler, .sidebar-menu-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      closeAllDropdowns();
+      sidebar.classList.toggle("collapsed");
+      localStorage.setItem("sidebar-collapsed", sidebar.classList.contains("collapsed"));
+    });
   });
-};
-// Attach click event to all dropdown toggles
-document.querySelectorAll(".dropdown-toggle").forEach((dropdownToggle) => {
-  dropdownToggle.addEventListener("click", (e) => {
-    e.preventDefault();
-    const dropdown = dropdownToggle.closest(".dropdown-container");
-    const menu = dropdown.querySelector(".dropdown-menu");
-    const isOpen = dropdown.classList.contains("open");
-    closeAllDropdowns(); // Close all open dropdowns
-    toggleDropdown(dropdown, menu, !isOpen); // Toggle current dropdown visibility
-  });
-});
-// Attach click event to sidebar toggle buttons
-document.querySelectorAll(".sidebar-toggler, .sidebar-menu-button").forEach((button) => {
-  button.addEventListener("click", () => {
-    closeAllDropdowns(); // Close all open dropdowns
-    document.querySelector(".sidebar").classList.toggle("collapsed"); // Toggle collapsed class on sidebar
-  });
-});
-// Collapse sidebar by default on small screens
-if (window.innerWidth <= 1024) document.querySelector(".sidebar").classList.add("collapsed");
-const sidebar = document.querySelector(".sidebar");
-const main = document.querySelector(".main");
 
+  // Toggle dropdown
+  document.querySelectorAll(".dropdown-toggle").forEach((toggle) => {
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      const container = toggle.closest(".dropdown-container");
+      const menu = container.querySelector(".dropdown-menu");
+      const isOpen = container.classList.contains("open");
 
+      closeAllDropdowns(); // Tutup semua dulu
+      container.classList.toggle("open", !isOpen);
+      if (menu) menu.style.height = !isOpen ? `${menu.scrollHeight}px` : 0;
+    });
+  });
 </script>
+
 </html>
