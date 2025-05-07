@@ -72,7 +72,7 @@
   <div class="flex justify-between items-center px-7 py-8 bg-white mb-5">
     <h1 class="font-extrabold text-3xl text-[#13545C]">Home Page</h1>
     <div class="relative">
-      <a href="{{ route('nasabah.loanapp') }}">
+      <a href="{{ route('nasabah.notifications') }}">
         <img class="w-6" src="{{ asset('images/bell.png') }}" alt="">
         <span class="absolute -bottom-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">1</span>
       </a>
