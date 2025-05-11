@@ -80,7 +80,7 @@
   </div>
 
   <!-- Card -->
-  <div class="px-3 w-full md:max-w-sm mx-auto">
+  <div class="px-7 w-full md:max-w-sm mx-auto">
     <div class="bg-white p-4 rounded-[17px] ">
       <p class="text-[#13545C] mb-2 font-semibold">My Card</p>
       <div class="creditcard-container">
@@ -117,7 +117,7 @@
   </div>
 
   <!-- Actions as Buttons -->
-<div class="grid grid-cols-4 gap-2 px-3 py-6 text-center text-sm w-full md:max-w-sm mx-auto">
+<div class="grid grid-cols-4 gap-2 px-7 py-6 text-center text-sm w-full md:max-w-sm mx-auto">
   <button type="button" class="flex flex-col items-center focus:outline-none">
     <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
       <img src="{{ asset('images/balance.png') }}" alt="">
@@ -139,7 +139,7 @@
     <span class="mt-2 text-[#13545C] font-light">Pay</span>
   </button>
 
-  <button type="button" class="action-btn" onclick="window.location.href='{{ route('loan.customer') }}'" class="flex flex-col items-center focus:outline-none">
+  <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.loan') }}'" class="flex flex-col items-center focus:outline-none">
     <div class="icon-hover" class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
       <img src="{{ asset('images/loan.png') }}" alt="">
     </div>
@@ -153,6 +153,5 @@
     <span class="mt-2 text-[#13545C] font-light">Transactions</span>
   </button>
 </div>
-
 </body>
 </html>
