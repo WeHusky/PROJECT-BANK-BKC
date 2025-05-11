@@ -9,8 +9,17 @@ class CustomerLoanController extends Controller
     /**
      * Display the customer loan page.
      */
-    public function index()
+    public function showCustomerLoan()
     {
         return view('perbankan.loan_site.custloan');
     }
+    public function showCustomerLoanApplication()
+    {
+        return view('perbankan.loan_site.custloan-app');
+    }
+    public function showCustomerLoanApplication2()
+    {
+        return view('perbankan.loan_site.custloan-app2');
+    }
 }
+

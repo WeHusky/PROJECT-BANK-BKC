@@ -18,7 +18,7 @@
  <!-- Menu List -->
  <div class="menu px-6">
   <!-- Notification 1 -->
-  <a href="">
+  <a href="{{ route('nasabah.loan.application') }}">
     <div class="bg-white rounded-[27px] w-full flex items-center py-2 px-6 mb-5">
       <div class="w-20 h-20 flex items-center mr-6">
           <img src="{{ asset('images/myloans.png') }}" class="w-full" alt="loanapp">

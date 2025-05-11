@@ -50,6 +50,9 @@ Route::get('admin/loans/{id}', [LoanController::class, 'show'])->name('loans.sho
 // Nasabah Routes
 Route::get('/homepage', [NasabahController::class, 'showHomePage'])->name('nasabah.homepage');
 Route::get('/notifications', [NasabahController::class, 'showNotificationsPage'])->name('nasabah.notifications');
+Route::get('/loan', [CustomerLoanController::class, 'showCustomerLoan'])->name('nasabah.loan');
+Route::get('/loan/application', [CustomerLoanController::class, 'showCustomerLoanApplication'])->name('nasabah.loan.application');
+Route::get('/loan/application/2', [CustomerLoanController::class, 'showCustomerLoanApplication2'])->name('nasabah.loan.application2');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -57,4 +60,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/loan/customer', [CustomerLoanController::class, 'index'])->name('loan.customer');
+
