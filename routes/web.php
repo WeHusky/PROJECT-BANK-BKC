@@ -53,6 +53,7 @@ Route::get('/notifications', [NasabahController::class, 'showNotificationsPage']
 Route::get('/loan', [CustomerLoanController::class, 'showCustomerLoan'])->name('nasabah.loan');
 Route::get('/loan/application', [CustomerLoanController::class, 'showCustomerLoanApplication'])->name('nasabah.loan.application');
 Route::get('/loan/application/2', [CustomerLoanController::class, 'showCustomerLoanApplication2'])->name('nasabah.loan.application2');
+Route::get('/loan/sukses', [CustomerLoanController::class, 'showCustomerLoanSuccess'])->name('nasabah.custloan-sukses');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

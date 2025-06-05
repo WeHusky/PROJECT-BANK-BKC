@@ -21,5 +21,9 @@ class CustomerLoanController extends Controller
     {
         return view('perbankan.loan_site.custloan-app2');
     }
+    public function showCustomerLoanSuccess()
+    {
+        return view('perbankan.loan_site.custloan-sukses');
+    }
 }
 
