@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('akun', function (Blueprint $table) {
-            $table->Increments('id_akun');
-            $table->string('email_akun');
-            $table->string('username_akun');
-            $table->string('password_akun');
-            $table->string('jenis_akun()');
-        });
+        Schema::create('Komite', function (Blueprint $table) {
+            $table->increments('id_komite');
+            $table->unsignedInteger('id_akun');
+            $table->string('nama_komite');
+
+            $table->foreign('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
+        });//
     }
 
     /**
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('akun');
+        Schema::dropIfExists('Komite');
     }
 };
