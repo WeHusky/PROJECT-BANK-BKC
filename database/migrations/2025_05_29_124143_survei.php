@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('id_nasabah');
             $table->text('alasan_peminjaman');
             $table->string('kondisi_rumah');
-            $table->text('kondisi_ekonomi');
+            $table->string('kondisi_ekonomi');
 
             $table->foreign('id_komite')->references('id_komite')->on('Komite')->onDelete('cascade');
             $table->foreign('id_nasabah')->references('id_nasabah')->on('Nasabah')->onDelete('cascade');

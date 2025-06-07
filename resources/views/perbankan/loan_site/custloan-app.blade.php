@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank BKC - Loan Application</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="{{ asset('css/loanappbar.css') }}">
+    @vite('resources/css/app.css')
     <style>
         /* Custom range slider styles */
         input[type=range] {
@@ -56,13 +57,11 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 font-sans min-h-screen pb-20">
+<body class="bg-gray-200 font-sans min-h-screen pb-20">
     <!-- Header -->
     <div class="flex px-7 py-8 bg-white mb-5 items-center sticky top-0 z-10 shadow-sm">
-        <button id="backButton" class="mr-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#13545C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
+        <button class="mr-3" id="backButton">
+            <img src="{{ asset('images/arrowblue.png') }}" alt="">
         </button>
         <h1 class="font-extrabold text-3xl text-[#13545C]">Loan Application</h1>
     </div>
@@ -71,7 +70,7 @@
     <div class="flex flex-col justify-center items-center px-7">
         <p id="stepText" class="text-[#13545C] font-medium">Step 1 of 2</p>
         <div class="w-full flex gap-2 mt-5">
-            <div id="step1Indicator" class="bg-[#5FEE8F] w-1/2 h-3 rounded-lg step-indicator"></div>
+            <div id="step1Indicator" class="loader w-1/2 h-3 rounded-lg step-indicator"></div>
             <div id="step2Indicator" class="bg-white w-1/2 h-3 rounded-lg step-indicator"></div>
         </div>
     </div>
@@ -165,6 +164,7 @@
 
     <script>
         // Navigation between steps
+        let step = 1
         const step1Form = document.getElementById('step1Form');
         const step2Form = document.getElementById('step2Form');
         const nextButton = document.getElementById('nextButton');
@@ -174,16 +174,18 @@
         const step2Indicator = document.getElementById('step2Indicator');
 
         nextButton.addEventListener('click', () => {
+            step = 2
             step1Form.classList.remove('active');
             step2Form.classList.add('active');
             stepText.textContent = 'Step 2 of 2';
-            step1Indicator.classList.remove('bg-[#5FEE8F]');
-            step1Indicator.classList.add('bg-white');
+            step1Indicator.classList.remove('loader');
+            step1Indicator.classList.add('bg-[#5FEE8F]');
             step2Indicator.classList.remove('bg-white');
-            step2Indicator.classList.add('bg-[#5FEE8F]');
+            step2Indicator.classList.add('loader');
         });
 
         backButton.addEventListener('click', () => {
+            step = 1
             if (step2Form.classList.contains('active')) {
                 step2Form.classList.remove('active');
                 step1Form.classList.add('active');
@@ -194,9 +196,11 @@
                 step2Indicator.classList.add('bg-white');
             } else {
                 // If on step 1, back button would go to previous page
-                window.history.back();
+                window.location.href = '{{  route('nasabah.loans') }}';
             }
         });
+
+        
 
         // Range slider functionality for loan amount
         const loanSlider = document.getElementById("loanrange");

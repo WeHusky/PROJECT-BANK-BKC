@@ -15,7 +15,7 @@
     right: 0;
     z-index: 50;
     background-color: white;
-    border-top: 1px solid #22d3ee;
+    border-top: 1px solid #29BBCF;
     border-top-left-radius: 2.5rem;
     border-top-right-radius: 2.5rem;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
@@ -52,16 +52,16 @@
         </div>
 
         <!-- Home -->
-        <a href="{{ route('nasabah.homepage') }}" class="navbar-item">
+        <a href="{{ route('nasabah.homepage') }}" class="navbar-item {{ request()->is('homepage') ? 'active' : '' }}">
         <span class="material-symbols-rounded text-xl">home</span>
         <span class="mt-1">Home</span>
         </a>
 
         <!-- Account -->
-        <div class="navbar-item {{ request()->is('account') ? 'active' : '' }}">
+        <a href="{{ route('nasabah.account') }}" class="navbar-item {{ request()->is('account') ? 'active' : '' }}">
         <span class="material-symbols-rounded text-xl">account_circle</span>
         <span class="mt-1">Account</span>
-        </div>
+        </a>
     </div>
   </div>
 </div>

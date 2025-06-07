@@ -6,8 +6,17 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     @vite('resources/css/app.css')
+    <style>
+      .menu{
+        animation: fadeIn 0.5s ease;
+      }
+      @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+      }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans mb-20">
+<body class="bg-gray-200 font-sans mb-20">
   <!-- Header -->
   <div class="flex px-7 py-8 bg-white mb-5 items-center">
     <a class="mr-3" href="{{ route('nasabah.homepage') }}">
@@ -29,7 +38,7 @@
       </div>
     </div>
   </a>
-  <a href="">
+  <a href="{{ route('nasabah.myloans') }}">
     <div class="bg-white rounded-[27px] w-full flex items-center py-2 px-6 mb-5">
       <div class="w-20 h-20 flex items-center mr-6">
           <img src="{{ asset('images/loanapp.png') }}" class="w-full" alt="loanapp">
@@ -38,7 +47,6 @@
         <h1 class="text-black font-semibold">My Loans</h1>
         <img src="{{ asset('images/arrowblue.png') }}" class="w-5 h-5 transform scale-x-[-1]" alt="arrow">
       </div>
-
     </div>
   </a>
 </body>
