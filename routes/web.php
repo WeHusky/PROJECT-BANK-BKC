@@ -50,6 +50,7 @@ Route::get('admin/loans/{id}', [LoanController::class, 'show'])->name('loans.sho
 // Nasabah Routes
 Route::get('/homepage', [NasabahController::class, 'showHomePage'])->name('nasabah.homepage');
 Route::get('/account', [NasabahController::class, 'showAccountPage'])->name('nasabah.account');
+Route::get('/account/settings', [NasabahController::class, 'showAccountSettingsPage'])->name('nasabah.accountsettings');
 Route::get('/notifications', [NasabahController::class, 'showNotificationsPage'])->name('nasabah.notifications');
 Route::get('/loans', [CustomerLoanController::class, 'showCustomerLoansMenu'])->name('nasabah.loans');
 Route::get('/loans/application', [CustomerLoanController::class, 'showCustomerLoanApplication'])->name('nasabah.loan.application');

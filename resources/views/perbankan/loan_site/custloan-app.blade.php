@@ -96,8 +96,8 @@
             </select>
         </div>
         <div class="mb-5">
-            <label for="jobs" class="block mb-2 text-sm font-normal text-[#13545C]">Jobs</label>
-            <select name="jobs" id="jobs" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled>
+            <label for="job" class="block mb-2 text-sm font-normal text-[#13545C]">Job</label>
+            <select name="job" id="job" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled>
                 <option value="Unemployed" selected>Job</option>
             </select>
         </div>

@@ -65,21 +65,25 @@
         }
     </style>
 </head>
-<body class="bg-gray-200 font-sans mb-20 px-7 py-8 shadow-sm">
-    <h1 class="text-center mb-5 font-extrabold text-[#13545C] text-xl">Account</h1>
-    <div class="h-auto rounded-xl overflow-hidden flex flex-col">
-        <a class="bg-white h-auto px-4 py-4 flex" href="">
-            <img src="{{ asset('images/settings-svgrepo-com.svg')}}" alt="" class="w-5 mr-5">
-            <p class="text-bold">
-                Account Settings
-            </p>
-        </a>
-        <hr>
-        <a class="bg-white h-auto px-4 py-4 flex" href="">
-            <img src="{{ asset('images/log-out-svgrepo-com.svg') }}" alt="" class="w-5 mr-5 red">
-            <p class="text-bold">Log Out</p>
-        </a>
+<body class="bg-gray-200 font-sans mb-20 shadow-sm">
+      <!-- Header -->
+  <div class="flex justify-between items-center px-7 py-8 bg-white mb-5">
+    <h1 class="font-extrabold text-3xl text-[#13545C]">Account</h1>
+  </div>
+    <div class="px-7">
+        <div class="h-auto rounded-xl overflow-hidden flex flex-col">
+            <a class="bg-white h-auto px-4 py-4 flex" href="{{ route('nasabah.accountsettings') }}">
+                <img src="{{ asset('images/settings-svgrepo-com.svg')}}" alt="" class="w-5 mr-5">
+                <p>Account Settings</p>
+            </a>
+            <hr>
+            <a class="bg-white h-auto px-4 py-4 flex" href="">
+                <img src="{{ asset('images/log-out-svgrepo-com.svg') }}" alt="" class="w-5 mr-5 red">
+                <p>Log Out</p>
+            </a>
+            </div>
     </div>
+   
 
 </body>
 </html>
