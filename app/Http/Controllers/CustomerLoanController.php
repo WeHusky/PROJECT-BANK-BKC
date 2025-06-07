@@ -9,7 +9,7 @@ class CustomerLoanController extends Controller
     /**
      * Display the customer loan page.
      */
-    public function showCustomerLoan()
+    public function showCustomerLoansMenu()
     {
         return view('perbankan.loan_site.custloan');
     }
@@ -25,5 +25,32 @@ class CustomerLoanController extends Controller
     {
         return view('perbankan.loan_site.custloan-sukses');
     }
+    public function showCustomerLoans()
+    {
+        return view('perbankan.loan_site.myloans');
+    }
+    public function showCustomerLoan()
+    {
+        return view('perbankan.loan_site.loan');
+    }
+    #ntar apus aja ini cuman buat template ntar kalo backendnya dah jadi
+    public function showCustomerLoan2()
+    {
+        return view('perbankan.loan_site.loan2');
+    }
+    public function showCustomerLoan3()
+    {
+        return view('perbankan.loan_site.loan3');
+    }
+    public function showCustomerLoan4()
+    {
+        return view('perbankan.loan_site.loan4');
+    }
+    public function showCustomerSurveyResult()
+    {
+        return view('perbankan.loan_site.surveyresult');
+    }
+    #end
+
 }
 

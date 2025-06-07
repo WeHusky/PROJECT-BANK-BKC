@@ -1,0 +1,12 @@
+.gradient{
+    background-image: url('/images/gradient.png');
+}
+.gradient.dateconfirmation{
+    filter: hue-rotate(25deg);
+}
+.gradient.surveyreview{
+    filter: hue-rotate(37deg);
+}
+.gradient.approved{
+    filter: hue-rotate(70deg);
+}

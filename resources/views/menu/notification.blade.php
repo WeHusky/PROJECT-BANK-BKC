@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   @vite('resources/css/app.css')
 </head>
-<body class="bg-gray-100 font-sans mb-20">
+<body class="bg-gray-200 font-sans mb-20">
   <!-- Header -->
   <div class="flex px-7 py-8 bg-white mb-5 items-center">
     <a class="mr-3" href="{{ route('nasabah.homepage') }}">
