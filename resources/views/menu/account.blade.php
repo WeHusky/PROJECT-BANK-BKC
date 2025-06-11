@@ -1,5 +1,5 @@
 @section('content')
-@include('layouts.navbar') 
+@include('layouts.navbar')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,13 +77,16 @@
                 <p>Account Settings</p>
             </a>
             <hr>
-            <a class="bg-white h-auto px-4 py-4 flex" href="">
-                <img src="{{ asset('images/log-out-svgrepo-com.svg') }}" alt="" class="w-5 mr-5 red">
-                <p>Log Out</p>
-            </a>
+            <form action="{{ route('logout') }}" method="POST" class="w-full">
+                @csrf
+                <button type="submit" class="bg-white h-auto px-4 py-4 flex w-full items-center">
+                    <img src="{{ asset('images/log-out-svgrepo-com.svg') }}" alt="" class="w-5 mr-5 red">
+                    <p>Log Out</p>
+                </button>
+            </form>
             </div>
     </div>
-   
+
 
 </body>
 </html>
