@@ -270,9 +270,20 @@
 
             <form method="POST" action="{{ route('admin.login') }}" class="flex flex-col gap-4 mt-4">
                 @csrf
+                @if ($errors->any())
+                  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                      <strong class="font-bold">Oops!</strong>
+                      <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
+                      <ul class="mt-3 list-disc list-inside text-sm">
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+                @endif            
                 <input class="p-2 rounded-xl border border-[#D4D6D9] @error('email') is-invalid @enderror"
                     type="email"
-                    name="email"
+                    name="email_akun"
                     value="{{ old('email') }}"
                     placeholder="youremail@bkcbank.com"
                     required
@@ -287,7 +298,7 @@
 
                 <input class="p-2 rounded-xl border border-[#D4D6D9] @error('password') is-invalid @enderror"
                     type="password"
-                    name="password"
+                    name="password_akun"
                     placeholder="Password"
                     required
                     autocomplete="current-password">

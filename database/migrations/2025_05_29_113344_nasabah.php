@@ -14,14 +14,15 @@ return new class extends Migration
         Schema::create('Nasabah', function (Blueprint $table) {
             $table->increments('id_nasabah');
             $table->unsignedInteger('id_akun');
-            $table->string('nik_nasabah');
+            $table->string('nik_nasabah')->unique();
             $table->string('nama_nasabah');
-            $table->string('nohp_nasabah');
+            $table->string('nohp_nasabah')->unique();
+            $table->string('gender_nasabah');
             $table->date('tanggallahir_nasabah');
             $table->text('alamat_nasabah');
             $table->string('pekerjaan_nasabah');
-            $table->integer('penghasilan_nasabah');
-            $table->string('tanggungan_nasabah');
+            $table->string('penghasilan_nasabah');
+            $table->integer('tanggungan_nasabah');
             $table->string('statuskawin_nasabah');
 
             $table->foreign('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Nasabah');
+        Schema::dropIfExists('nasabah');
     }
 };
