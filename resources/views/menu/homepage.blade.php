@@ -99,7 +99,7 @@
           <!-- Name & Valid Thru -->
           <div class="flex justify-between items-end mt-8 z-10 relative">
             <div>
-              <p class="text-xs text-gray-300 mb-1">Jokowi</p>
+              <p class="text-xs text-gray-300 mb-1">{{ $nasabah->nama_nasabah }}</p>
             </div>
             <div class="text-right">
               <p class="text-xs text-gray-300">Valid Thru</p>
@@ -108,7 +108,6 @@
           </div>
         </div>
         <button class="mt-4 w-full bg-[#29BBCF] hover:bg-cyan-600 text-white font-semibold py-2 rounded-full transition duration-200">View Card Details</button>
-      </>
       </div>
     </div>
   </div>

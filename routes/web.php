@@ -37,6 +37,7 @@ Route::get('/login', [LoginController::class, 'showNasabahLoginForm'])->name('na
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('nasabah.register');
 Route::post('/register', [RegisteredUserController::class, 'store']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('nasabah.logout');
 
 Route::get('admin/dashboard', function () {
     return view('dashboard');
@@ -63,6 +64,8 @@ Route::get('admin/loans/{id}', [LoanController::class, 'show'])->name('loans.sho
     Route::get('/loans/myloans/3', [CustomerLoanController::class, 'showCustomerLoan3'])->name('nasabah.loan3');
     Route::get('/loans/myloans/4', [CustomerLoanController::class, 'showCustomerLoan4'])->name('nasabah.loan4');
     Route::get('/loans/myloans/3/surveyresult/', [CustomerLoanController::class, 'showCustomerSurveyResult'])->name('nasabah.viewsurveyresult');
+    Route::put('/nasabah/{id}', [NasabahController::class, 'update'])->name('nasabah.update');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

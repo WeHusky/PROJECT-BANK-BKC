@@ -16,4 +16,7 @@ class DashboardController extends Controller
         // Logic to retrieve regions or any other data
         return view('regions.index'); // Adjust the view as necessary
     }
+
 }
+
+

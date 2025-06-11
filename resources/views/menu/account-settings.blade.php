@@ -73,40 +73,40 @@
     <img class="w-screen" src="{{ asset('images/city.jpg') }}" alt="">
     <div class="bg-gray-200 px-7 w-full h-auto">
         <!-- Identity Section -->
-        <div class="bg-white rounded-[69px] w-full shadow-sm py-10 transform -translate-y-12 px-7 mb-5">
-            <form action="POST">
+        <div class="bg-white rounded-[20px] w-full shadow-sm py-10 transform -translate-y-12 px-7 mb-5">
+            <form action="{{ route('nasabah.update', $nasabah->id_nasabah) }}" method="POST">
+                @csrf
+                @method('PUT')
                 <div class="mb-4">
-                    <h1 class="text-center text-xl text-[#13545C] mb-4 font-bold">Identity <button id="identityeditbutton"><img src="{{ asset('images/pencil-svgrepo-com.svg') }}" alt="" class="w-4"></button></h1>
+                    <h1 class="text-center text-xl text-[#13545C] mb-4 font-bold">Identity</h1>
                     <hr class="rounded bg-gray-400">
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="NIK">NIK</label>
-                    <input name="NIK" id="NIK" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" type="text" value="" required disabled>
-                </div>                
-                <div class="mb-3">
-                    <label class="block mb-2 text-sm font-normal text-[#13545C]" for="fullname">Full Name</label>
-                    <input name="fullname" id="fullname" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" type="text" value="" required disabled>
+                    <input name="nik_nasabah" id="NIK" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" type="text" value="{{ $nasabah->nik_nasabah }}" readonly disabled>
                 </div>
                 <div class="mb-3">
-                    <label class="block mb-2 text-sm font-normal text-[#13545C]" for="ttl">Birth Date</label>
-                    <input name="ttl" id="ttl" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" type="date" value="" required disabled>
+                    <label class="block mb-2 text-sm font-normal text-[#13545C]" for="fullname">Full Name</label>
+                    <input name="nama_nasabah" id="fullname" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" type="text" value="{{ $nasabah->nama_nasabah }}" required disabled>
+                </div>
+                <div class="mb-3">
+                    <label class="block mb-2 text-sm font-normal text-[#13545C]">Birth Date</label>
+                    <span class="block bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full px-3 py-2">
+                        {{ $nasabah->tanggallahir_nasabah ? $nasabah->tanggallahir_nasabah->format('d F Y') : '' }}
+                    </span>
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="address">Address</label>
-                    <input name="address" id="address" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" type="text" value="" required disabled>
+                    <input name="alamat_nasabah" id="address" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" type="text" value="{{ $nasabah->alamat_nasabah }}" required disabled>
                 </div>
                 <div class="mb-3">
                     <label for="gender" class="block mb-2 text-sm font-normal text-[#13545C]">Gender</label>
-                    <select name="gender" id="gender" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" disabled>
-                        <option value="" selected>Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                    <input name="gender_nasabah" id="gender" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" type="text" value="{{ $nasabah->gender_nasabah }}" required disabled>
                 </div>
                 <div class="mb-3">
                     <label for="marriage" class="block mb-2 text-sm font-normal text-[#13545C]">Marriage</label>
-                    <select name="marriage" id="marriage" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" disabled>
-                        <option value="single" selected>Single</option>
+                    <select name="statuskawin_nasabah" id="marriage" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" required disabled>
+                        <option value="{{ $nasabah->statuskawin_nasabah }}">Single</option>
                         <option value="married">Married</option>
                         <option value="divorced">Divorced</option>
                         <option value="widowed">Widowed</option>
@@ -116,33 +116,29 @@
                         <option value="domestic-partnership">Domestic Partnership</option>
                     </select>
                 </div>
-            </form>
-            <form action="POST" class="mt-10">
-                <div class="mb-4">
-                    <h1 class="text-center text-xl text-[#13545C] mb-4 font-bold">Security <button id="securityeditbutton"><img src="{{ asset('images/pencil-svgrepo-com.svg') }}" alt="" class="w-4"></button></h1>
+                <div class="mb-4 mt-10">
+                    <h1 class="text-center text-xl text-[#13545C] mb-4 font-bold">Security</h1>
                     <hr class="rounded bg-gray-400">
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="Email">Email Address</label>
-                    <input id="email" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full security" type="email" value="" required disabled>
+                    <input id="email" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full security" type="email" value="{{ $nasabah->akun->email_akun }}"readonly disabled>
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="number">Phone Number</label>
-                    <input id="number" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full security" type="text" value="" required disabled>
+                    <input name="nohp_nasabah" id="number" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full security" type="text" value="{{ $nasabah->nohp_nasabah }}" required disabled>
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="password">Password</label>
-                    <input id="password" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full security" type="password" value="" required disabled>
+                    <input id="password" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full security" type="password" value="********" readonly disabled>
                 </div>
-            </form>            
-            <form action="POST" class="mt-10">
-                <div class="mb-4">
-                    <h1 class="text-center text-xl text-[#13545C] mb-4 font-bold">Financial <button id="financialeditbutton"><img src="{{ asset('images/pencil-svgrepo-com.svg') }}" alt="" class="w-4"></button></h1>
+                <div class="mb-4 mt-10">
+                    <h1 class="text-center text-xl text-[#13545C] mb-4 font-bold">Financial</h1>
                     <hr class="rounded bg-gray-400">
                 </div>
                 <div class="mb-3">
                     <label for="job" class="block mb-2 text-sm font-normal text-[#13545C]">Job</label>
-                    <select name="job" name="job" id="job" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full financial" disabled>
+                    <select name="pekerjaan_nasabah" id="job" value="{{ $nasabah->pekerjaan_nasabah }}" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full financial" required disabled>
                         <option value="Software Engineer">Software Engineer</option>
                         <option value="Doctor">Doctor</option>
                         <option value="Teacher">Teacher</option>
@@ -162,12 +158,13 @@
                         <option value="Pharmacist">Pharmacist</option>
                         <option value="Pilot">Pilot</option>
                         <option value="Scientist">Scientist</option>
-                        <option value="Unemployed" selected>Unemployed</option>
+                        <option value="Unemployed">Unemployed</option>
+                        <span>{{ $nasabah->pekerjaan_nasabah }}</span>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="income" class="block mb-2 text-sm font-normal text-[#13545C]">Income Range</label>
-                    <select name="income" name="income" id="income" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full financial" disabled>
+                    <select name="penghasilan_nasabah" value="{{ $nasabah->penghasilan_nasabah }}" id="income" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full financial" required disabled>
                         <option value="<1jt">Less than Rp1 million</option>
                         <option value="1-3jt">Rp1 million - Rp3 million</option>
                         <option value="3-5jt">Rp3 million - Rp5 million</option>
@@ -175,51 +172,45 @@
                         <option value="10-20jt">Rp10 million - Rp20 million</option>
                         <option value="20-50jt">Rp20 million - Rp50 million</option>
                         <option value=">50jt">More than Rp50 million</option>
-                        <option value="no-income" selected>No income</option>
+                        <option value="no-income">No income</option>
+                        <span>{{ $nasabah->penghasilan_nasabah }}</span>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="financialdependents" class="block mb-2 text-sm font-normal text-[#13545C]">Financial Dependents</label>
-                    <input type="number" id="financialdependents" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full financial" min="0" value="1" required disabled/>
+                    <input type="number" name="tanggungan_nasabah" value="{{ $nasabah->tanggungan_nasabah }}" id="financialdependents" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full financial" min="0" value="1" required disabled
+                </div>
+                <div class="flex justify-center mt-8 gap-4">
+                    <button type="button" id="editAllBtn" class="bg-[#29BCCF] hover:bg-[#70d6ff] text-white font-semibold py-2 px-6 rounded-xl transition">Edit</button>
+                    <button type="submit" id="saveBtn" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-xl transition hidden">Save</button>
                 </div>
             </form>
         </div>
     </div> <!-- END Main Container -->
     <script>
-        const identity = document.querySelectorAll("input.identity");
-        const security = document.querySelectorAll("input.security");
-        const financial = document.querySelectorAll("input.financial");
-        const identityeditbutton = document.getElementById("identityeditbutton");
-        const securityeditbutton = document.getElementById("securityeditbutton");
-        const financialeditbutton = document.getElementById("financialeditbutton");
+        function toggleAllEdit() {
+    const allInputs = document.querySelectorAll('input, select, textarea');
+    allInputs.forEach(el => {
+        el.removeAttribute('readonly');
+        el.removeAttribute('disabled');
+    });
+}
 
-        function toggleDisabledByClass(className) {
-            // Pilih input, select, textarea yang punya class tersebut
-            const elements = document.querySelectorAll(`input.${className}, select.${className}, textarea.${className}`);
-            elements.forEach(el => {
-            el.disabled = !el.disabled;
+
+        function toggleAllEdit() {
+            const allInputs = document.querySelectorAll('input, select, textarea');
+            allInputs.forEach(el => {
+                el.disabled = false;
             });
-
-            // Cek status disabled salah satu elemen (anggap semua elemen statusnya sama)
-            const isEnabled = !elements[0].disabled;
-
-            // Tambahkan atau hapus class 'red' pada tombol sesuai status enable/disable
-            if(isEnabled) {
-                button.classList.add('red');
-            } else {
-                button.classList.remove('red');
         }
-        identityeditbutton.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleDisabledByClass('identity');
-        });
-        securityeditbutton.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleDisabledByClass('security');
-        });
-        financialeditbutton.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleDisabledByClass('financial');
+
+        const editBtn = document.getElementById('editAllBtn');
+        const saveBtn = document.getElementById('saveBtn');
+
+        editBtn.addEventListener('click', function() {
+            toggleAllEdit();
+            saveBtn.classList.remove('hidden');
+            editBtn.classList.add('hidden');
         });
     </script>
 </body>
