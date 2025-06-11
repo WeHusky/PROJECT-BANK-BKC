@@ -40,6 +40,15 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'nasabah' => [
+            'driver' => 'session',
+            'provider' => 'akuns',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'akuns',
+        ],
+
     ],
 
     /*
@@ -64,6 +73,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'akuns' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Akun::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
@@ -97,6 +110,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        'akuns' => [ // <-- Ubah dari 'akun' menjadi 'akuns'
+        'provider' => 'akuns', // <-- Ubah dari 'akun' menjadi 'akuns'
+        'table' => 'password_reset_tokens',
+        'expire' => 60,
+        'throttle' => 60,
+    ],
     ],
 
     /*

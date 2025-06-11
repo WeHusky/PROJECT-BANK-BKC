@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
+use App\Models\Nasabah;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
+use App\Models\Akun; // <-- GANTI DARI App\Models\User KE App\Models\Akun
 
 class RegisteredUserController extends Controller
 {
@@ -31,21 +32,51 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            //tabel akun
+            'username_akun' => ['required', 'string', 'max:255', 'unique:'.Akun::class.',username_akun'],
+            'email_akun' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.Akun::class.',email_akun'], 
+            'password_akun' => ['required', 'confirmed', Rules\Password::defaults()],
+            'tanggal_survei' => ['nullable', 'date'],
+
+            //tabel nasabah
+            'nik_nasabah' => ['required', 'string', 'max:20', 'unique:nasabah,nik_nasabah'], 
+            'tanggallahir_nasabah' => ['required', 'date'],
+            'gender_nasabah' => ['required', 'string', 'in:male,female'],
+            'pekerjaan_nasabah' => ['required', 'string', 'max:255'],
+            'penghasilan_nasabah' => ['required', 'string', 'max:50'], 
+            'statuskawin_nasabah' => ['required', 'string', 'max:50'],
+            'tanggungan_nasabah' => ['required', 'integer', 'min:0'], 
+            'alamat_nasabah' => ['required', 'string', 'max:500'],
+            'nohp_nasabah' => ['required', 'string', 'max:20', 'unique:nasabah,nohp_nasabah'], 
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+        // buat record akun
+        $akun = Akun::create([ 
+            'username_akun' => $request->username_akun, 
+            'email_akun' => $request->email_akun,       
+            'password_akun' => Hash::make($request->password_akun), 
+            'jenis_akun' => 'Nasabah', 
         ]);
 
-        event(new Registered($user));
+        // buat record nasabah
+        $nasabah = Nasabah::create([
+            'id_akun' => $akun->id_akun,
+            'nik_nasabah' => $request->nik_nasabah,
+            'nama_nasabah' => $request->nama_nasabah,
+            'tanggallahir_nasabah' => $request->tanggallahir_nasabah,
+            'gender_nasabah' => $request->gender_nasabah,
+            'pekerjaan_nasabah' => $request->pekerjaan_nasabah,
+            'penghasilan_nasabah' => $request->penghasilan_nasabah, 
+            'statuskawin_nasabah' => $request->statuskawin_nasabah,
+            'tanggungan_nasabah' => $request->tanggungan_nasabah,
+            'alamat_nasabah' => $request->alamat_nasabah,
+            'nohp_nasabah' => $request->nohp_nasabah,
+        ]);
 
-        Auth::login($user);
+        event(new Registered($akun));
 
-        return redirect(RouteServiceProvider::HOME);
+        Auth::guard('nasabah')->login($akun); 
+
+        return redirect()->route('nasabah.homepage');
     }
 }

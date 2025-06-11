@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('akun', function (Blueprint $table) {
             $table->Increments('id_akun');
-            $table->string('email_akun');
-            $table->string('username_akun');
+            $table->string('email_akun')->unique();
+            $table->string('username_akun')->unique();
             $table->string('password_akun');
-            $table->string('jenis_akun()');
+            $table->string('jenis_akun');
         });
     }
 

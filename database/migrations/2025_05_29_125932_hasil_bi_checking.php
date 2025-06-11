@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id_bichecking');
             $table->unsignedInteger('id_nasabah');
             $table->date('check_date');
-            $table->text('catatan_histori');
+            $table->text('catatan_history');
             $table->integer('credit_score');
 
             $table->foreign('id_nasabah')->references('id_nasabah')->on('Nasabah')->onDelete('cascade');

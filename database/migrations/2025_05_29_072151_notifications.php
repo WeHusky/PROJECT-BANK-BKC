@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('link_notifikasi');
             $table->unsignedInteger('id_akun');
             $table->foreign('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
+            $table->timestamps();
         });//
     }
 

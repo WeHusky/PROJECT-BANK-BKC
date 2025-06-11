@@ -34,6 +34,7 @@ Route::post('admin/logout', [LoginController::class, 'logout'])->name('logout');
 //Nasabah Auth Routes
 Route::get('/', [NasabahController::class, 'showLandingPage'])->name('nasabah.landingpage');
 Route::get('/login', [LoginController::class, 'showNasabahLoginForm'])->name('nasabah.login');
+Route::post('/login', [LoginController::class, 'login']);
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('nasabah.register');
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
@@ -48,12 +49,14 @@ Route::get('admin/loans', [LoanController::class, 'index'])->name('loans');
 Route::get('admin/loans/{id}', [LoanController::class, 'show'])->name('loans.show');
 
 // Nasabah Routes
-Route::get('/homepage', [NasabahController::class, 'showHomePage'])->name('nasabah.homepage');
-Route::get('/notifications', [NasabahController::class, 'showNotificationsPage'])->name('nasabah.notifications');
-Route::get('/loan', [CustomerLoanController::class, 'showCustomerLoan'])->name('nasabah.loan');
-Route::get('/loan/application', [CustomerLoanController::class, 'showCustomerLoanApplication'])->name('nasabah.loan.application');
-Route::get('/loan/application/2', [CustomerLoanController::class, 'showCustomerLoanApplication2'])->name('nasabah.loan.application2');
-Route::get('/loan/sukses', [CustomerLoanController::class, 'showCustomerLoanSuccess'])->name('nasabah.custloan-sukses');
+Route::middleware(['auth:nasabah'])->group(function () {
+    Route::get('/homepage', [NasabahController::class, 'showHomePage'])->name('nasabah.homepage');
+    Route::get('/notifications', [NasabahController::class, 'showNotificationsPage'])->name('nasabah.notifications');
+    Route::get('/loan', [CustomerLoanController::class, 'showCustomerLoan'])->name('nasabah.loan');
+    Route::get('/loan/application', [CustomerLoanController::class, 'showCustomerLoanApplication'])->name('nasabah.loan.application');
+    Route::get('/loan/application/2', [CustomerLoanController::class, 'showCustomerLoanApplication2'])->name('nasabah.loan.application2');
+    Route::get('/loan/sukses', [CustomerLoanController::class, 'showCustomerLoanSuccess'])->name('nasabah.custloan-sukses');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

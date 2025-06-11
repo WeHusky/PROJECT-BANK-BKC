@@ -272,7 +272,7 @@
                 @csrf
                 <input class="p-2 rounded-xl border border-[#D4D6D9] @error('email') is-invalid @enderror"
                     type="email"
-                    name="email"
+                    name="email_akun"
                     value="{{ old('email') }}"
                     placeholder="youremail@bkcbank.com"
                     required
@@ -287,7 +287,7 @@
 
                 <input class="p-2 rounded-xl border border-[#D4D6D9] @error('password') is-invalid @enderror"
                     type="password"
-                    name="password"
+                    name="password_akun"
                     placeholder="Password"
                     required
                     autocomplete="current-password">
