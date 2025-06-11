@@ -6,56 +6,8 @@
     <title>Bank BKC - Loan Application</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="{{ asset('css/loanappbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custloanapp.css') }}">
     @vite('resources/css/app.css')
-    <style>
-        /* Custom range slider styles */
-        input[type=range] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 8px;
-            border-radius: 9999px;
-            background: linear-gradient(to right, #06b6d4 0%, #e5e7eb 0%);
-        }
-
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: #06b6d4;
-            cursor: pointer;
-            border: 4px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        input[type=range]::-moz-range-thumb {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: #06b6d4;
-            cursor: pointer;
-            border: 4px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .step-indicator {
-            transition: all 0.3s ease;
-        }
-
-        .form-step {
-            display: none;
-        }
-
-        .form-step.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
 </head>
 <body class="bg-gray-200 font-sans min-h-screen pb-20">
     <!-- Header -->
@@ -78,38 +30,35 @@
     <!-- Step 1 Form - Personal Information -->
     <form id="step1Form" class="form-step active w-full px-7 mt-5">
         <div class="mb-5">
-            <label for="email" class="block mb-2 text-sm font-normal text-[#13545C]">NIK</label>
-            <input type="email" id="email" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled/>
+            <label for="NIK" class="block mb-2 text-sm font-normal text-[#13545C]">NIK</label>
+            <input name="nik_nasabah" type="text" id="NIK" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->nik_nasabah ?? '' }}" disabled/>
         </div>
         <div class="mb-5">
             <label for="fullname" class="block mb-2 text-sm font-normal text-[#13545C]">Full Name</label>
-            <input type="text" id="fullname" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled/>
+            <input name="nama_nasabah" type="text" id="fullname" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->nama_nasabah ?? '' }}" disabled/>
         </div>
         <div class="mb-5">
             <label for="ttl" class="block mb-2 text-sm font-normal text-[#13545C]">Birthdate</label>
-            <input type="date" id="ttl" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled />
+            <input name="tanggallahir_nasabah" type="date" id="ttl" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->tanggallahir_nasabah->format('Y-m-d') ?? '' }}" disabled />
         </div>
         <div class="mb-5">
             <label for="gender" class="block mb-2 text-sm font-normal text-[#13545C]">Gender</label>
-            <select name="gender" id="gender" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled>
-                <option value="" selected>Gender</option>
+            <select name="gender_nasabah" id="gender" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled>
+                <option value="Male" {{ ($nasabahData->gender_nasabah ?? '') == 'Male' ? 'selected' : '' }}>Male</option>
+                <option value="Female" {{ ($nasabahData->gender_nasabah ?? '') == 'Female' ? 'selected' : '' }}>Female</option>
             </select>
         </div>
         <div class="mb-5">
             <label for="job" class="block mb-2 text-sm font-normal text-[#13545C]">Job</label>
-            <select name="job" id="job" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled>
-                <option value="Unemployed" selected>Job</option>
-            </select>
+            <input name="pekerjaan_nasabah" type="job" id="job" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->pekerjaan_nasabah ?? '' }}" disabled />
         </div>
         <div class="mb-5">
             <label for="income" class="block mb-2 text-sm font-normal text-[#13545C]">Income Range</label>
-            <select name="income" id="income" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled>
-                <option value="no-income" selected>Income Range</option>
-            </select>
+            <input name="penghasilan_nasabah" type="income" id="income" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->penghasilan_nasabah ?? '' }}" disabled />
         </div>
         <div class="mb-5">
             <label for="marriage" class="block mb-2 text-sm font-normal text-[#13545C]">Marriage Status</label>
-            <select name="marriage" id="marriage" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled>
+            <select name="statuskawin_nasabah" id="marriage" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled>
                 <option value="single" selected>Single</option>
                 <option value="married">Married</option>
                 <option value="divorced">Divorced</option>
@@ -122,21 +71,22 @@
         </div>
         <div class="mb-5">
             <label for="financialdependents" class="block mb-2 text-sm font-normal text-[#13545C]">Financial Dependents</label>
-            <input type="number" id="financialdependents" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" disabled/>
+            <input name="tanggungan_nasabah" type="number" id="financialdependents" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="{{ $nasabahData->tanggungan_nasabah ?? '' }}" disabled/>
         </div>
         <div class="mb-5">
             <label for="address" class="block mb-2 text-sm font-normal text-[#13545C]">Address</label>
-            <input type="text" id="address" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled/>
+            <input name="alamat_nasabah" type="text" id="address" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->alamat_nasabah ?? ''}}" disabled/>
         </div>
         <div class="mb-5">
             <label for="number" class="block mb-2 text-sm font-normal text-[#13545C]">Phone Number</label>
-            <input type="tel" id="number" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled/>
+            <input name="nohp_nasabah" type="tel" id="number" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->nohp_nasabah ?? ''}}" disabled/>
         </div>
         <button type="button" id="nextButton" class="mt-3 text-white bg-[#29BBCF] hover:bg-[#1f9cb4] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[13px] text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-colors duration-300">Confirm</button>
     </form>
 
     <!-- Step 2 Form - Loan Details -->
-    <form id="step2Form" class="form-step w-full px-7 mt-5">
+    <form id="step2Form" class="form-step w-full px-7 mt-5" method="POST" action="{{ route('nasabah.loan.application') }}">
+        @csrf
         <div class="bg-white rounded-md outline outline-1 outline-[#29BBCF] w-full h-auto flex flex-col items-center justify-center p-3 mb-5">
             <p class="text-[#555555] font-medium mb-3">Loan Limit</p>
             <h1 class="text-[#3F455D] font-semibold text-3xl">Rp 250.000.000</h1>
@@ -144,7 +94,7 @@
         <div class="bg-white rounded-md outline outline-1 outline-[#29BBCF] w-full h-auto flex flex-col p-3 mb-5">
             <p class="text-[#555555] font-medium mb-1">Loan Amount</p>
             <h1 id="loanamount" class="text-[#3F455D] font-semibold text-xl mb-6">Rp 120.000.000</h1>
-            <input id="loanrange" type="range" min="1000000" max="250000000" step="1000000" value="120000000" class="w-full h-2">
+            <input name="nominal_pengajuankredit" id="loanrange" type="range" min="1000000" max="250000000" step="1000000" value="120000000" class="w-full h-2">
             <div class="flex justify-between mt-2">
                 <p class="text-[#9299B5] text-xs">1.000.000</p>
                 <p class="text-[#9299B5] text-xs">250.000.000</p>
@@ -153,13 +103,13 @@
         <div class="bg-white rounded-md outline outline-1 outline-[#29BBCF] w-full h-auto flex flex-col p-3 mb-5">
             <p class="text-[#555555] font-medium mb-1">Loan Period</p>
             <h1 id="loanperiod" class="text-[#3F455D] font-semibold text-xl mb-6">12 Months</h1>
-            <input id="loanperiodrange" type="range" min="2" max="18" value="12" class="w-full h-2">
+            <input name="tenor" id="loanperiodrange" type="range" min="2" max="18" value="12" class="w-full h-2">
             <div class="flex justify-between mt-2">
                 <p class="text-[#9299B5] text-xs">2 Months</p>
                 <p class="text-[#9299B5] text-xs">18 Months</p>
             </div>
         </div>
-        <button type="submit" onclick="window.location.href='{{ route('nasabah.custloan-sukses') }}'" class="mt-3 text-white bg-[#29BBCF] hover:bg-[#1f9cb4] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[13px] text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-colors duration-300">Apply Loan</button>
+        <button type="submit" class="mt-3 text-white bg-[#29BBCF] hover:bg-[#1f9cb4] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[13px] text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-colors duration-300">Apply Loan</button>
     </form>
 
     <script>
@@ -191,8 +141,8 @@
                 step1Form.classList.add('active');
                 stepText.textContent = 'Step 1 of 2';
                 step1Indicator.classList.remove('bg-white');
-                step1Indicator.classList.add('bg-[#5FEE8F]');
-                step2Indicator.classList.remove('bg-[#5FEE8F]');
+                step1Indicator.classList.add('loader');
+                step2Indicator.classList.remove('loader');
                 step2Indicator.classList.add('bg-white');
             } else {
                 // If on step 1, back button would go to previous page
@@ -243,39 +193,6 @@
 
         periodSlider.addEventListener("input", updatePeriodSliderStyle);
         updatePeriodSliderStyle();
-
-        // Form submission
-        document.getElementById('step2Form').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Here you would typically send the data to your backend
-        });
-
-        // Simulate loading user data (in a real app, this would come from your backend)
-        window.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('email').value = '1234567890123456';
-            document.getElementById('fullname').value = 'John Doe';
-            document.getElementById('ttl').value = '1990-01-01';
-            document.getElementById('gender').innerHTML = `
-                <option value="male" selected>Male</option>
-                <option value="female">Female</option>
-            `;
-            document.getElementById('jobs').innerHTML = `
-                <option value="employee">Employee</option>
-                <option value="entrepreneur">Entrepreneur</option>
-                <option value="freelancer">Freelancer</option>
-                <option value="unemployed" selected>Unemployed</option>
-            `;
-            document.getElementById('income').innerHTML = `
-                <option value="0-5m">0 - 5 Million</option>
-                <option value="5-10m" selected>5 - 10 Million</option>
-                <option value="10-20m">10 - 20 Million</option>
-                <option value="20m+">20 Million+</option>
-            `;
-            document.getElementById('financialdependents').value = '2';
-            document.getElementById('address').value = '123 Main St, Jakarta';
-            document.getElementById('number').value = '081234567890';
-        });
     </script>
 </body>
 </html>

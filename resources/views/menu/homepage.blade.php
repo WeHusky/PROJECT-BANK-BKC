@@ -81,7 +81,7 @@
     <div class="bg-white p-4 rounded-[17px] ">
       <p class="text-[#13545C] mb-2 font-semibold">My Card</p>
       <div class="creditcard-container">
-        <div class="relative bg-black p-4 rounded-[12px] overflow-hidden w-78" style="background: radial-gradient(circle at center, #0f172a 8%, pink 57%, #3b0764 90%);">
+        <div class="relative bg-black p-4 rounded-[12px] overflow-hidden w-78" style="background: radial-gradient(circle at center, #0f172a 8%, rgb(80, 80, 80) 57%, #000000 90%);">
           <!-- Wave effect -->
           <div class="absolute inset-0 z-0" style="background: url('{{ asset('images/wave.png') }}') repeat; opacity: 1.15;"></div>
           <!-- MasterCard Logo -->

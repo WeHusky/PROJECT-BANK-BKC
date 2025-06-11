@@ -15,6 +15,16 @@
             <h2 class="font-extrabold text-[#13545C] text-[24px] text-center w-full">Sign Up</h2>
         </div>
         <div class="body bg-white rounded-tl-[45px] rounded-tr-[45px] w-screen h-auto px-7 mb-10">
+            @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-5" role="alert">
+                    <strong class="font-bold">Oops! Ada kesalahan:</strong>
+                    <ul class="mt-2 list-disc list-inside">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form class="w-full max-w-full mx-auto pt-10" method="POST" action="{{ route('nasabah.register') }}">
                 @csrf
                 @if ($errors->any())
@@ -44,8 +54,8 @@
                     <label for="gender" class="block mb-2 text-sm font-normal text-[#13545C]">Gender</label>
                     <select name="gender_nasabah" id="gender" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
                         <option value="" selected>Pick your gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                     </select>
                 </div>
                 <div class="mb-5">
@@ -83,7 +93,7 @@
                         <option value="10-20jt">Rp10 million - Rp20 million</option>
                         <option value="20-50jt">Rp20 million - Rp50 million</option>
                         <option value=">50jt">More than Rp50 million</option>
-                        <option value="no-income" selected>No income</option>
+                        <option value="No Income" selected>No income</option>
                     </select>
                 </div>
                 <div class="mb-5">

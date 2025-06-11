@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Pengajuan_Kredit extends Model
+{
+    use HasFactory;
+
+    protected $table = 'pengajuan_kredit';
+    protected $primaryKey = 'id_pengajuan_kredit';
+    public $timestamps = false;
+
+    protected $fillable = [
+        'id_pengajuan_kredit',
+        'id_komite',
+        'id_nasabah',
+        'tanggal_pengajuan',
+        'nominal_pengajuan',
+        'kategori_pengajuan',
+        'status_pengajuan',
+        'konfirmasi_pengajuankredit',
+        'tenor',
+        'status_kelayakan',
+    ];
+
+    protected $casts = [
+        'tanggal_pengajuan' => 'date',
+    ];
+}
