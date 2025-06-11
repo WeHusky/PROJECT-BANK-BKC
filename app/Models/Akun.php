@@ -71,4 +71,8 @@ class Akun extends Authenticatable
     {
         return $this->password_akun;
     }
+
+    public function nasabah(){
+        return $this->hasOne(Nasabah::class, 'id_akun', 'id_akun');
+    }
 }

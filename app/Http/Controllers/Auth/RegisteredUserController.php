@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
             //tabel nasabah
             'nik_nasabah' => ['required', 'string', 'max:20', 'unique:nasabah,nik_nasabah'], 
             'tanggallahir_nasabah' => ['required', 'date'],
-            'gender_nasabah' => ['required', 'string', 'in:male,female'],
+            'gender_nasabah' => ['required', 'string', 'in:Male,Female'],
             'pekerjaan_nasabah' => ['required', 'string', 'max:255'],
             'penghasilan_nasabah' => ['required', 'string', 'max:50'], 
             'statuskawin_nasabah' => ['required', 'string', 'max:50'],

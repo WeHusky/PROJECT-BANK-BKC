@@ -35,4 +35,13 @@ class Nasabah extends Model
     {
         return $this->belongsTo(Akun::class, 'id_akun', 'id_akun');
     }
+
+    public function pengajuan_kredit() // <-- Ini adalah fungsi baru untuk relasi Pinjaman
+    {
+        // Parameter:
+        // 1. App\Models\Pinjaman::class: Model target relasi
+        // 2. 'id_nasabah': Foreign key di tabel 'pinjaman' yang menunjuk ke 'nasabah'
+        // 3. 'id_nasabah': Local key (primary key) di tabel 'nasabah' itu sendiri
+        return $this->hasMany(Pengajuan_Kredit::class, 'id_nasabah', 'id_nasabah');
+    }
 }

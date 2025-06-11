@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('Pengajuan_Kredit', function (Blueprint $table) {
             $table->increments('id_pengajuankredit');
-            $table->unsignedInteger('id_komite');
+            $table->unsignedInteger('id_komite')->nullable();
             $table->unsignedInteger('id_nasabah');
             $table->date('tanggal_pengajuankredit');
             $table->integer('nominal_pengajuankredit');

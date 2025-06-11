@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Nasabah;
+use App\Models\Pengajuan_Kredit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CustomerLoanController extends Controller
 {
@@ -15,11 +18,34 @@ class CustomerLoanController extends Controller
     }
     public function showCustomerLoanApplication()
     {
-        return view('perbankan.loan_site.custloan-app');
+        $nasabahData = null;
+        $loggedInAkun = Auth::guard('nasabah')->user();
+        $nasabahData = Nasabah::where('id_akun', $loggedInAkun->id_akun)->first();
+
+        return view('perbankan.loan_site.custloan-app', compact('nasabahData'));
     }
-    public function showCustomerLoanApplication2()
-    {
-        return view('perbankan.loan_site.custloan-app2');
+    public function submitLoan(Request $request){
+        $request->validate([
+            'nominal_pengajuan' => ['required', 'numeric', 'min:1000000', 'max:250000000'],
+            'tenor' => ['required', 'integer', 'min:2', 'max:18'],
+        ]);
+        if($request->nominal_pengajuan < 250000000){
+            $kategori_pengajuankredit = 'Kewenangan Peminjaman Cabang';
+        } else {
+            $kategori_pengajuankredit = 'Kewenangan Peminjaman Pusat';
+        }
+
+        $pengajuan_kredit = Pengajuan_Kredit::create([
+            'nominal_pengajuankredit' => $request->nominal_pengajuankredit,
+            'tenor' => $request->tenor,
+            'id_nasabah' => Auth::guard('nasabah')->user()->nasabah->id_nasabah,
+            'tanggal_pengajuankredit' => now(),
+            'kategori_pengajuankredit' => $kategori_pengajuankredit,
+            'status_pengajuankredit' => 'Menunggu Konfirmasi',
+            'konfirmasi_pengajuankredit' => '0'
+        ]);
+
+        return redirect()->route('nasabah.custloan-sukses');
     }
     public function showCustomerLoanSuccess()
     {

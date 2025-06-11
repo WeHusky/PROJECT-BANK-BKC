@@ -1,14 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CustomerLoanController;
-use App\Http\Controllers\LoanController;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminLoanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\CustomerLoanController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\HomepageController;
 
 
 /*
@@ -45,8 +44,8 @@ Route::get('admin/dashboard', function () {
 Route::get('admin/regions', [DashboardController::class, 'regions'])->name('regions.index');
 
 // Loan Routes
-Route::get('admin/loans', [LoanController::class, 'index'])->name('loans');
-Route::get('admin/loans/{id}', [LoanController::class, 'show'])->name('loans.show');
+Route::get('admin/loans', [AdminLoanController::class, 'index'])->name('loans');
+Route::get('admin/loans/{id}', [AdminLoanController::class, 'show'])->name('loans.show');
 
 // Nasabah Routes
     Route::get('/homepage', [NasabahController::class, 'showHomePage'])->name('nasabah.homepage');
@@ -55,7 +54,7 @@ Route::get('admin/loans/{id}', [LoanController::class, 'show'])->name('loans.sho
     Route::get('/notifications', [NasabahController::class, 'showNotificationsPage'])->name('nasabah.notifications');
     Route::get('/loan', [CustomerLoanController::class, 'showCustomerLoansMenu'])->name('nasabah.loans');
     Route::get('/loan/application', [CustomerLoanController::class, 'showCustomerLoanApplication'])->name('nasabah.loan.application');
-    Route::get('/loan/application/2', [CustomerLoanController::class, 'showCustomerLoanApplication2'])->name('nasabah.loan.application2');
+    Route::post('/loan/application', [CustomerLoanController::class, 'submitLoan']);
     Route::get('/loan/sukses', [CustomerLoanController::class, 'showCustomerLoanSuccess'])->name('nasabah.custloan-sukses');
     Route::get('/loans/myloans', [CustomerLoanController::class, 'showCustomerLoans'])->name('nasabah.myloans');
     Route::get('/loans/myloans/1', [CustomerLoanController::class, 'showCustomerLoan'])->name('nasabah.loan');

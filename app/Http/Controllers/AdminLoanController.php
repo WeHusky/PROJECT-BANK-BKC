@@ -12,7 +12,7 @@ class Controller extends BaseController
     use AuthorizesRequests, ValidatesRequests;
 }
 
-class LoanController extends Controller
+class AdminLoanController extends Controller
 {
     /**
      * Display a listing of the loans.
