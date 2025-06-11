@@ -49,12 +49,11 @@ Route::get('admin/loans', [LoanController::class, 'index'])->name('loans');
 Route::get('admin/loans/{id}', [LoanController::class, 'show'])->name('loans.show');
 
 // Nasabah Routes
-Route::middleware(['auth:nasabah'])->group(function () {
     Route::get('/homepage', [NasabahController::class, 'showHomePage'])->name('nasabah.homepage');
     Route::get('/account', [NasabahController::class, 'showAccountPage'])->name('nasabah.account');
     Route::get('/account/settings', [NasabahController::class, 'showAccountSettingsPage'])->name('nasabah.accountsettings');
     Route::get('/notifications', [NasabahController::class, 'showNotificationsPage'])->name('nasabah.notifications');
-    Route::get('/loan', [CustomerLoanController::class, 'showCustomerLoan'])->name('nasabah.loan');
+    Route::get('/loan', [CustomerLoanController::class, 'showCustomerLoansMenu'])->name('nasabah.loans');
     Route::get('/loan/application', [CustomerLoanController::class, 'showCustomerLoanApplication'])->name('nasabah.loan.application');
     Route::get('/loan/application/2', [CustomerLoanController::class, 'showCustomerLoanApplication2'])->name('nasabah.loan.application2');
     Route::get('/loan/sukses', [CustomerLoanController::class, 'showCustomerLoanSuccess'])->name('nasabah.custloan-sukses');
@@ -64,7 +63,6 @@ Route::middleware(['auth:nasabah'])->group(function () {
     Route::get('/loans/myloans/3', [CustomerLoanController::class, 'showCustomerLoan3'])->name('nasabah.loan3');
     Route::get('/loans/myloans/4', [CustomerLoanController::class, 'showCustomerLoan4'])->name('nasabah.loan4');
     Route::get('/loans/myloans/3/surveyresult/', [CustomerLoanController::class, 'showCustomerSurveyResult'])->name('nasabah.viewsurveyresult');
-});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

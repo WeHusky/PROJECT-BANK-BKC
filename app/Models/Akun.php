@@ -66,4 +66,9 @@ class Akun extends Authenticatable
         // Contoh: 'email_akun_verified_at' => 'datetime',
         // 'is_active' => 'boolean',
     ];
+
+    public function getAuthPassword()
+    {
+        return $this->password_akun;
+    }
 }
