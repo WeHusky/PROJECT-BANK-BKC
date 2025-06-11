@@ -11,60 +11,57 @@
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   @vite('resources/css/app.css')
   <style>
+    .action-btn {
+      z-index: 1;
+      position: relative;
+      font-size: inherit;
+      font-family: inherit;
+      color: white;
+      outline: none;
+      border: none;
+      background: none; /* remove background if hover is only for icon */
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
 
-.action-btn {
-  z-index: 1;
-  position: relative;
-  font-size: inherit;
-  font-family: inherit;
-  color: white;
-  outline: none;
-  border: none;
-  background: none; /* remove background if hover is only for icon */
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
+    /* Style for icon container */
+    .icon-hover {
+      background-color: white;
+      padding: 1em;
+      border-radius: 0.75rem;
+      width: 75px;
+      height: 75px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-/* Style for icon container */
-.icon-hover {
-  background-color: white;
-  padding: 1em;
-  border-radius: 0.75rem;
-  width: 75px;
-  height: 75px;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    /* Hover effect only inside the icon */
+    .icon-hover::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      bottom: -50%;
+      width: 1.25em;
+      background-color: hsla(0, 100%, 100%, 9.2);
+      transform: translate3d(-525%, 0, 0) rotate(35deg);
+      z-index: 1;
+    }
 
-/* Hover effect only inside the icon */
-.icon-hover::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  bottom: -50%;
-  width: 1.25em;
-  background-color: hsla(0, 100%, 100%, 9.2);
-  transform: translate3d(-525%, 0, 0) rotate(35deg);
-  z-index: 1;
-}
+    .icon-hover:hover::after {
+      transition: transform 0.45s ease-in-out;
+      transform: translate3d(200%, 0, 0) rotate(35deg);
+    }
 
-.icon-hover:hover::after {
-  transition: transform 0.45s ease-in-out;
-  transform: translate3d(200%, 0, 0) rotate(35deg);
-}
-
-.icon-hover img {
-  position: relative;
-  z-index: 1;
-}
-
-
+    .icon-hover img {
+      position: relative;
+      z-index: 1;
+    }
   </style>
 </head>
 <body class="bg-gray-200 font-sans mb-20">
@@ -139,8 +136,8 @@
     <span class="mt-2 text-[#13545C] font-light">Pay</span>
   </button>
 
-  <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.loan') }}'" class="flex flex-col items-center focus:outline-none">
-    <div class="icon-hover" class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
+  <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.loans') }}'" class="flex flex-col items-center focus:outline-none">
+    <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
       <img src="{{ asset('images/loan.png') }}" alt="">
     </div>
     <span class="mt-2 text-[#13545C] font-light">Loan</span>

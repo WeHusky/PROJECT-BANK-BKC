@@ -1,0 +1,20 @@
+.loader {
+    background: repeating-linear-gradient(
+      45deg,
+      #5FEE8F,
+      #5FEE8F 10px,
+      #abffc7 10px,
+      #abffc7 20px
+    );
+    background-size: 24px 24px;
+    animation: moveStripe 1s linear infinite;
+  }
+
+@keyframes moveStripe {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: 24px 0;
+    }
+}
