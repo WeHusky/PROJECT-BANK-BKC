@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedInteger('id_akun');
             $table->string('nik_nasabah')->unique();
             $table->string('nama_nasabah');
+            $table->string('rekening_nasabah')->unique();
+            $table->string('card_type')->nullable(); // classic, gold, red
             $table->string('nohp_nasabah')->unique();
             $table->string('gender_nasabah');
             $table->date('tanggallahir_nasabah');

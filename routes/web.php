@@ -50,6 +50,8 @@ Route::get('admin/loans/{id}', [AdminLoanController::class, 'show'])->name('loan
 
 // Nasabah Routes
     Route::get('/homepage', [NasabahController::class, 'showHomePage'])->name('nasabah.homepage');
+    Route::get('/introduction', [NasabahController::class, 'showIntroductionPage'])->name('nasabah.introduction');
+    Route::post('/introduction/select-card', [NasabahController::class, 'selectCard'])->name('nasabah.select-card');
     Route::get('/account', [NasabahController::class, 'showAccountPage'])->name('nasabah.account');
     Route::get('/account/settings', [NasabahController::class, 'showAccountSettingsPage'])->name('nasabah.accountsettings');
     Route::get('/notifications', [NasabahController::class, 'showNotificationsPage'])->name('nasabah.notifications');
@@ -65,6 +67,10 @@ Route::get('admin/loans/{id}', [AdminLoanController::class, 'show'])->name('loan
     Route::get('/loans/myloans/3/surveyresult/', [CustomerLoanController::class, 'showCustomerSurveyResult'])->name('nasabah.viewsurveyresult');
     Route::put('/nasabah/{id}', [NasabahController::class, 'update'])->name('nasabah.update');
 
+// Email verification routes
+Route::get('/verify-email', [RegisteredUserController::class, 'showVerificationForm'])
+    ->name('nasabah.verify-email');
+Route::post('/verify-email', [RegisteredUserController::class, 'verifyEmail']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

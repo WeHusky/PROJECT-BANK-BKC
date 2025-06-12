@@ -60,5 +60,34 @@ class NasabahController extends Controller{
 
 }
 
+    public function showIntroductionPage()
+    {
+        $user = Auth::guard('nasabah')->user();
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
+        }
+        $nasabah = Nasabah::where('id_akun', $user->id_akun)->first();
+        return view('menu.introduction', compact('nasabah'));
+    }
+
+    public function selectCard(Request $request)
+    {
+        $validated = $request->validate([
+            'card_type' => 'required|in:classic,gold,red'
+        ]);
+
+        $user = Auth::guard('nasabah')->user();
+        \Log::info('User: ' . ($user ? $user->id_akun : 'null') . ', Card: ' . $request->card_type);
+        $nasabah = Nasabah::where('id_akun', $user->id_akun)->first();
+        \Log::info('Nasabah: ' . ($nasabah ? $nasabah->id_akun : 'not found'));
+        if (!$nasabah) {
+            return redirect()->back()->with('error', 'Nasabah not found');
+        }
+
+        $nasabah->update(['card_type' => $request->card_type]);
+
+        return redirect()->route('nasabah.homepage')->with('success', 'Card selected successfully');
+    }
+
 }
 ?>
