@@ -75,37 +75,61 @@
     </div>
   </div>
 
-  <!-- Card -->
-  <div class="px-7 w-full md:max-w-sm mx-auto">
-    <div class="bg-white p-4 rounded-[17px] border border-gray-300 shadow-sm">
-      <p class="text-[#13545C] mb-2 font-semibold">My Card</p>
-      <div class="creditcard-container">
-        <div class="relative bg-black p-4 rounded-[12px] overflow-hidden w-full" style="background: radial-gradient(circle at center, #0f172a 8%, rgb(80, 80, 80) 57%, #000000 90%);">
-          <!-- Wave effect -->
-          <div class="absolute inset-0 z-0" style="background: url('{{ asset('images/wave.png') }}') repeat; opacity: 1.15;"></div>
-          <!-- MasterCard Logo -->
-          <div class="flex items-center z-10 relative">
-            <span class="inline-block w-7 h-7 rounded-full bg-red-600 mr-1" style="box-shadow: 18px 0 0 0 #fbbf24;"></span>
-            <span class="ml-8 text-white font-semibold text-base">Master Card</span>
-            <!-- Chip -->
-            <img src="{{ asset('images/chip.png') }}" alt="chip" class="absolute right-0 top-0 h-12 w-16 object-contain mt-2 mr-2" />
-          </div>
-          <!-- Card Number -->
-          <div class="mt-8 z-10 relative">
-            <p class="text-xs text-gray-300 mb-1">Card Number</p>
-            <p class="tracking-widest text-xl text-gray-300 font-mono">8050 5040 2030 3020</p>
-          </div>
-          <!-- Name & Valid Thru -->
-          <div class="flex justify-between items-end mt-8 z-10 relative">
-            <div>
-              <p class="text-xs text-gray-300 mb-1">{{ $nasabah->nama_nasabah }}</p>
+    <!-- Card -->
+    <div class="px-7 w-full md:max-w-sm mx-auto">
+        <div class="bg-white p-4 rounded-[17px] ">
+        <p class="text-[#13545C] mb-2 font-semibold">My Card</p>
+        <div class="creditcard-container">
+        <div class="relative rounded-[12px] overflow-hidden w-[270px] h-[170px] text-white font-sans shadow-lg"
+            @if($nasabah->card_type == 'classic')
+                style="background: radial-gradient(circle at center, #0f172a 8%, rgb(80, 80, 80) 57%, #000000 90%);"
+            @elseif($nasabah->card_type == 'gold')
+                style="background: radial-gradient(circle at center, rgb(212, 151, 20) 8%, rgb(14, 117, 65) 57%, rgb(11, 81, 187) 90%);"
+            @elseif($nasabah->card_type == 'red')
+                style="background: radial-gradient(circle at center, #0f172a 8%, rgb(187, 28, 28) 57%, #000000 90%);"
+            @else
+                style="background: radial-gradient(circle at center, #0f172a 8%, rgb(80, 80, 80) 57%, #000000 90%);"
+            @endif
+        >
+            <!-- Background wave -->
+            <div class="absolute inset-0 z-0 opacity-100"
+                style="background-image: url('{{ asset('images/wave.png') }}'); background-size: 200%; background-position: center;">
             </div>
-            <div class="text-right">
-              <p class="text-xs text-gray-300">Valid Thru</p>
-              <p class="text-base text-gray-300">05/28</p>
+
+            <!-- Konten utama kartu -->
+            <div class="relative z-10 p-4 flex flex-col justify-between h-full">
+                <!-- Baris atas: Logo + Chip -->
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center">
+                        <span class="inline-block w-6 h-6 rounded-full bg-red-600 mr-1" style="box-shadow: 14px 0 0 0 #fbbf24;"></span>
+                        <span class="ml-6 text-white font-semibold text-sm">Master Card</span>
+                    </div>
+                    <img src="{{ asset('images/chip.png') }}" alt="chip" class="h-6 w-10 object-contain" />
+                </div>
+
+                <!-- Nomor kartu -->
+                <div class="mt-4">
+                    <p class="text-xs text-gray-300 mb-1">Card Number</p>
+                    <p class="tracking-widest text-base text-gray-100 font-mono break-words">
+                        {{ $nasabah->rekening_nasabah }}
+                    </p>
+                </div>
+
+                <!-- Baris bawah: Nama & Exp -->
+                <div class="flex justify-between items-end">
+                    <div>
+                        <p class="text-sm text-gray-100 font-medium">{{ $nasabah->nama_nasabah }}</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-xs text-gray-300 mb-1">Valid Thru</p>
+                        <p class="text-sm text-gray-100 font-semibold">05/28</p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
+    </div>
+
+        
         <button class="mt-4 w-full bg-[#29BBCF] hover:bg-cyan-600 text-white font-semibold py-2 rounded-full transition duration-200">View Card Details</button>
       </div>
     </div>

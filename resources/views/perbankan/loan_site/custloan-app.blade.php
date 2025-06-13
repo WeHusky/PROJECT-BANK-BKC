@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="{{ asset('css/loanappbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custloanapp.css') }}">
+    <script src="//unpkg.com/alpinejs" defer></script>
     @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-200 font-sans min-h-screen pb-20">
@@ -121,6 +122,30 @@
                 <p class="text-[#9299B5] text-xs">18 Months</p>
             </div>
         </div>
+        <div x-data="{ open: false, selected: null }" class="relative w-full">
+    <!-- Tombol dropdown -->
+    <div @click="open = !open" class="cursor-pointer bg-white rounded-md outline outline-1 outline-[#29BBCF] w-full h-auto flex items-center justify-between p-4 mb-2">
+        <div class="flex items-center space-x-3">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" class="w-10 h-6 object-contain" />
+            <p class="text-[#2A2A2A] font-semibold text-[16px]">
+                <span x-text="selected ?? 'Pilih Rekening'"></span>
+            </p>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" :class="{ 'rotate-90': open }" class="h-5 w-5 text-gray-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </div>
+
+    <!-- Dropdown isi -->
+    <div x-show="open" x-transition class="absolute z-10 bg-white border border-[#29BBCF] rounded-md w-full mt-1 shadow-md max-h-60 overflow-y-auto">
+        <label class="flex items-center px-4 py-2 cursor-pointer hover:bg-[#e6f7fa]">
+            <input type="radio" name="rekening_nasabah" value="{{ $nasabahData->rekening_nasabah }}" x-model="selected" class="form-radio text-[#29BBCF] mr-2">
+            <span class="text-sm text-gray-800">{{ $nasabahData->rekening_nasabah }}</span>
+        </label>
+    </div>
+</div>
+
+
         <button type="submit" class="mt-3 text-white bg-[#29BBCF] hover:bg-[#1f9cb4] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[13px] text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-colors duration-300">Apply Loan</button>
     </form>
 
@@ -162,7 +187,7 @@
             }
         });
 
-        
+
 
         // Range slider functionality for loan amount
         const loanSlider = document.getElementById("loanrange");

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException; // <-- Pastikan ini di-import
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -44,48 +44,30 @@ class LoginController extends Controller
         ]);
 
         $remember = $request->filled('remember');
+        $isAdminLogin = $request->is('admin/login');
+        $guard = $isAdminLogin ? 'admin' : 'nasabah';
+        $redirectRouteName = $isAdminLogin ? 'dashboard' : 'nasabah.homepage';
+        $error_message = $isAdminLogin ?
+            'Email atau password Admin yang Anda masukkan salah, atau akun Anda bukan Admin.' :
+            'Email atau password Nasabah yang Anda masukkan salah, atau akun Anda bukan Nasabah.';
 
-        $guard = null;
-        $redirectRouteName = null;
-        $error_message = 'Email atau password yang Anda masukkan salah.';
-        $credentials = []; // Inisialisasi array credentials di sini
+        // 2. Siapkan Credentials
+        $credentials = [
+            'email_akun' => $validatedData['email_akun'],
+            'password' => $validatedData['password_akun'],
+            'jenis_akun' => $isAdminLogin ? 'Admin' : 'Nasabah',
+        ];
 
-        // 2. Tentukan Guard dan Siapkan Credentials berdasarkan URL yang diakses
-        if ($request->is('admin/login')) {
-            $guard = 'admin';
-            $redirectRouteName = 'dashboard';
-            $credentials = [
-                'email_akun' => $validatedData['email_akun'],
-                'password' => $validatedData['password_akun'],
-                'jenis_akun' => 'Admin',
-            ];
-            $error_message = 'Email atau password Admin yang Anda masukkan salah, atau akun Anda bukan Admin.';
-        } elseif ($request->is('login')) { // Ini adalah route untuk nasabah login
-            $guard = 'nasabah';
-            $redirectRouteName = 'nasabah.homepage';
-            $credentials = [
-                'email_akun' => $validatedData['email_akun'],
-                'password' => $validatedData['password_akun'],
-                'jenis_akun' => 'Nasabah',
-            ];
-            $error_message = 'Email atau password Nasabah yang Anda masukkan salah, atau akun Anda bukan Nasabah.';
-        } else {
-            // Jika request URL tidak cocok dengan rute login yang diharapkan
-            throw ValidationException::withMessages([
-                'email_akun' => 'Permintaan login tidak valid. Silakan coba lagi.',
-            ]); // <-- Hapus .onlyInput('email_akun')
-        }
-
-        // 3. Lakukan Panggilan Auth::attempt() SATU KALI SAJA
+        // 3. Attempt Login
         if (Auth::guard($guard)->attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->intended(route($redirectRouteName));
         }
 
-        // 4. Jika login gagal (Auth::attempt mengembalikan false)
+        // 4. If login fails
         throw ValidationException::withMessages([
             'email_akun' => $error_message,
-        ]); // <-- Hapus .onlyInput('email_akun')
+        ]);
     }
 
     /**
@@ -96,9 +78,8 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        // Tentukan guard mana yang sedang login dan perlu di-logout
-        $guardToLogout = 'web'; // Default fallback guard
-        $redirectRouteName = '/'; // Default redirect fallback
+        $guardToLogout = null;
+        $redirectRouteName = '/';
 
         if (Auth::guard('admin')->check()) {
             $guardToLogout = 'admin';
@@ -106,15 +87,13 @@ class LoginController extends Controller
         } elseif (Auth::guard('nasabah')->check()) {
             $guardToLogout = 'nasabah';
             $redirectRouteName = 'nasabah.landingpage';
-        } else {
-            $guardToLogout = 'web';
-            $redirectRouteName = '/';
         }
 
-        Auth::guard($guardToLogout)->logout();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        if ($guardToLogout) {
+            Auth::guard($guardToLogout)->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
 
         return redirect()->route($redirectRouteName)->with('logged_out', true);
     }

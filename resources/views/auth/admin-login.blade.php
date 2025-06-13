@@ -264,46 +264,46 @@
             <div class="logo w-full flex items-center justify-center mb-8">
                 <img src="{{ asset('images/logo.png') }}" alt="" class="w-32">
             </div>
-            <h2 class="font-bold text-2xl text-[#29BCCF]">Login</h2>
+            <h2 class="font-bold text-2xl text-[#29BCCF]">Admin Login</h2>
             <p class="text-sm mt-2 text-[#13545C]">Please enter your valid credentials.</p>
             <hr class="mt-2 opacity-10">
 
             <form method="POST" action="{{ route('admin.login') }}" class="flex flex-col gap-4 mt-4">
                 @csrf
                 @if ($errors->any())
-                  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
-                      <strong class="font-bold">Oops!</strong>
-                      <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
-                      <ul class="mt-3 list-disc list-inside text-sm">
-                          @foreach ($errors->all() as $error)
-                              <li>{{ $error }}</li>
-                          @endforeach
-                      </ul>
-                  </div>
-                @endif            
-                <input class="p-2 rounded-xl border border-[#D4D6D9] @error('email') is-invalid @enderror"
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                        <strong class="font-bold">Oops!</strong>
+                        <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
+                        <ul class="mt-3 list-disc list-inside text-sm">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <input class="p-2 rounded-xl border border-[#D4D6D9] @error('email_akun') border-red-500 @enderror"
                     type="email"
                     name="email_akun"
-                    value="{{ old('email') }}"
+                    value="{{ old('email_akun') }}"
                     placeholder="youremail@bkcbank.com"
                     required
                     autocomplete="email"
                     autofocus>
 
-                @error('email')
+                @error('email_akun')
                     <span class="text-red-500 text-sm" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
 
-                <input class="p-2 rounded-xl border border-[#D4D6D9] @error('password') is-invalid @enderror"
+                <input class="p-2 rounded-xl border border-[#D4D6D9] @error('password_akun') border-red-500 @enderror"
                     type="password"
                     name="password_akun"
                     placeholder="Password"
                     required
                     autocomplete="current-password">
 
-                @error('password')
+                @error('password_akun')
                     <span class="text-red-500 text-sm" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -322,38 +322,16 @@
                     </div>
                 </div>
 
-                <button
-  class="relative group border-none bg-transparent p-0 outline-none cursor-pointer font-mono font-light uppercase text-base"
->
-  <span
-    class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-25 rounded-lg transform translate-y-0.5 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:translate-y-1 group-hover:duration-[250ms] group-active:translate-y-px"
-  ></span>
-
-  <span
-    class="absolute top-0 left-0 w-full h-full rounded-lg bg-gradient-to-l from-[hsl(217,33%,16%)] via-[hsl(217,33%,32%)] to-[hsl(217,33%,16%)]"
-  ></span>
-
-  <div
-    class="relative flex items-center justify-between py-2.5 px-6 text-lg text-white rounded-lg transform -translate-y-1 bg-gradient-to-r from-[#f27121] via-[#e94057] bg-[#29BCCF] gap-3 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:-translate-y-1.5 group-hover:duration-[250ms] group-active:-translate-y-0.5 brightness-100 group-hover:brightness-110"
-  >
-    <span class="select-none">{{ __('Login') }}</span>
-
-    <svg
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      class="w-5 h-5 ml-2 -mr-1 transition duration-250 group-hover:translate-x-1"
-    >
-      <path
-        clip-rule="evenodd"
-        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-        fill-rule="evenodd"
-      ></path>
-    </svg>
-  </div>
-</button>
-
-
-
+                <button type="submit" class="relative group border-none bg-transparent p-0 outline-none cursor-pointer font-mono font-light uppercase text-base">
+                    <span class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-25 rounded-lg transform translate-y-0.5 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:translate-y-1 group-hover:duration-[250ms] group-active:translate-y-px"></span>
+                    <span class="absolute top-0 left-0 w-full h-full rounded-lg bg-gradient-to-l from-[hsl(217,33%,16%)] via-[hsl(217,33%,32%)] to-[hsl(217,33%,16%)]"></span>
+                    <div class="relative flex items-center justify-between py-2.5 px-6 text-lg text-white rounded-lg transform -translate-y-1 bg-gradient-to-r from-[#f27121] via-[#e94057] bg-[#29BCCF] gap-3 transition duration-[600ms] ease-[cubic-bezier(0.3,0.7,0.4,1)] group-hover:-translate-y-1.5 group-hover:duration-[250ms] group-active:-translate-y-0.5 brightness-100 group-hover:brightness-110">
+                        <span class="select-none">{{ __('Login') }}</span>
+                        <svg viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 ml-2 -mr-1 transition duration-250 group-hover:translate-x-1">
+                            <path clip-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" fill-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                </button>
             </form>
         </div>
         <div class="w-1/2 sm:block hidden overflow-hidden rounded-r-2xl">
@@ -391,12 +369,10 @@
 @endif
 
 <script>
-    <script>
     setTimeout(() => {
         const modal = document.getElementById('logoutModal');
         if (modal) modal.style.display = 'none';
-    }, 4000); // hilang setelah 4 detik
-</script>
+    }, 4000);
 </script>
 </section>
 @endsection

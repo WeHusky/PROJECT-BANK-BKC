@@ -17,6 +17,7 @@ class Nasabah extends Model
         'id_akun',
         'nik_nasabah',
         'nama_nasabah',
+        'rekening_nasabah',
         'tanggallahir_nasabah',
         'gender_nasabah',
         'pekerjaan_nasabah',
@@ -25,6 +26,7 @@ class Nasabah extends Model
         'tanggungan_nasabah',
         'alamat_nasabah',
         'nohp_nasabah',
+        'card_type',
     ];
 
     protected $casts = [
