@@ -25,7 +25,7 @@ class NasabahController extends Controller{
     {
         $user = Auth::guard('nasabah')->user();
         $nasabah = Nasabah::where('id_akun', $user->id_akun)->first();
-        return view('menu.account', compact('nasabah','user'));
+        return view('menu.account', compact('nasabah'));
     }
     public function showAccountSettingsPage()
     {

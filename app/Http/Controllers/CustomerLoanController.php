@@ -26,7 +26,7 @@ class CustomerLoanController extends Controller
     }
     public function submitLoan(Request $request){
         $request->validate([
-            'nominal_pengajuankredit' => ['required', 'numeric', 'min:1000000', 'max:250000000'],
+            'nominal_pengajuan' => ['required', 'numeric', 'min:1000000', 'max:250000000'],
             'tenor' => ['required', 'integer', 'min:2', 'max:18'],
         ]);
         if($request->nominal_pengajuan < 250000000){
@@ -41,9 +41,8 @@ class CustomerLoanController extends Controller
             'id_nasabah' => Auth::guard('nasabah')->user()->nasabah->id_nasabah,
             'tanggal_pengajuankredit' => now(),
             'kategori_pengajuankredit' => $kategori_pengajuankredit,
-            'status_pengajuankredit' => 'Under Review',
-            'konfirmasi_pengajuankredit' => '0',
-            'status_kelayakan' => '0',
+            'status_pengajuankredit' => 'Menunggu Konfirmasi',
+            'konfirmasi_pengajuankredit' => '0'
         ]);
 
         return redirect()->route('nasabah.custloan-sukses');
@@ -54,14 +53,11 @@ class CustomerLoanController extends Controller
     }
     public function showCustomerLoans()
     {
-        $loggedInAkun = Auth::guard('nasabah')->user();
-        $pengajuan_kredit = Pengajuan_Kredit::where('id_nasabah', $loggedInAkun->nasabah->id_nasabah)->get();
-        return view('perbankan.loan_site.myloans', compact('pengajuan_kredit'));
+        return view('perbankan.loan_site.myloans');
     }
-    public function showCustomerLoan($id)
+    public function showCustomerLoan()
     {
-        $pengajuan_kredit = Pengajuan_Kredit::where('id_pengajuankredit', $id)->first();
-        return view('perbankan.loan_site.loan', compact('pengajuan_kredit'));
+        return view('perbankan.loan_site.loan');
     }
     #ntar apus aja ini cuman buat template ntar kalo backendnya dah jadi
     public function showCustomerLoan2()
