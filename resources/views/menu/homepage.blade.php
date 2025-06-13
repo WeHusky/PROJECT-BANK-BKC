@@ -7,7 +7,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bank BKC</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   @vite('resources/css/app.css')
   <style>
@@ -78,10 +77,10 @@
 
   <!-- Card -->
   <div class="px-7 w-full md:max-w-sm mx-auto">
-    <div class="bg-white p-4 rounded-[17px] ">
+    <div class="bg-white p-4 rounded-[17px] border border-gray-300 shadow-sm">
       <p class="text-[#13545C] mb-2 font-semibold">My Card</p>
       <div class="creditcard-container">
-        <div class="relative bg-black p-4 rounded-[12px] overflow-hidden w-78" style="background: radial-gradient(circle at center, #0f172a 8%, rgb(80, 80, 80) 57%, #000000 90%);">
+        <div class="relative bg-black p-4 rounded-[12px] overflow-hidden w-full" style="background: radial-gradient(circle at center, #0f172a 8%, rgb(80, 80, 80) 57%, #000000 90%);">
           <!-- Wave effect -->
           <div class="absolute inset-0 z-0" style="background: url('{{ asset('images/wave.png') }}') repeat; opacity: 1.15;"></div>
           <!-- MasterCard Logo -->
@@ -118,35 +117,13 @@
     <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
       <img src="{{ asset('images/balance.png') }}" alt="">
     </div>
-    <span class="mt-2 text-[#13545C] font-light">Balance</span>
+    <span class="mt-2 text-[#13545C] font-medium">Balance</span>
   </button>
-
-  <button type="button" class="flex flex-col items-center focus:outline-none">
-    <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
-      <img src="{{ asset('images/transfer.png') }}" alt="">
-    </div>
-    <span class="mt-2 text-[#13545C] font-light">Transfer</span>
-  </button>
-
-  <button type="button" class="flex flex-col items-center focus:outline-none">
-    <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
-      <img src="{{ asset('images/pay.png') }}" alt="">
-    </div>
-    <span class="mt-2 text-[#13545C] font-light">Pay</span>
-  </button>
-
   <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.loans') }}'" class="flex flex-col items-center focus:outline-none">
     <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
       <img src="{{ asset('images/loan.png') }}" alt="">
     </div>
-    <span class="mt-2 text-[#13545C] font-light">Loan</span>
-  </button>
-
-  <button type="button" class="flex flex-col items-center focus:outline-none">
-    <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
-      <img src="{{ asset('images/transaction.png') }}" alt="">
-    </div>
-    <span class="mt-2 text-[#13545C] font-light">Transactions</span>
+    <span class="mt-2 text-[#13545C] font-medium">Loan</span>
   </button>
 </div>
 </body>

@@ -67,6 +67,11 @@ class Akun extends Authenticatable
         // 'is_active' => 'boolean',
     ];
 
+    public function getAuthIdentifierName()
+    {
+        return $this->email_akun;
+    }
+
     public function getAuthPassword()
     {
         return $this->password_akun;

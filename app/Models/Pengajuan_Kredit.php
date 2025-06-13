@@ -17,16 +17,17 @@ class Pengajuan_Kredit extends Model
         'id_pengajuan_kredit',
         'id_komite',
         'id_nasabah',
-        'tanggal_pengajuan',
-        'nominal_pengajuan',
-        'kategori_pengajuan',
-        'status_pengajuan',
+        'tanggal_pengajuankredit',
+        'nominal_pengajuankredit',
+        'kategori_pengajuankredit',
+        'status_pengajuankredit',
         'konfirmasi_pengajuankredit',
         'tenor',
         'status_kelayakan',
+        'rekening_nasabah'
     ];
 
     protected $casts = [
-        'tanggal_pengajuan' => 'date',
+        'tanggal_pengajuankredit' => 'date',
     ];
 }

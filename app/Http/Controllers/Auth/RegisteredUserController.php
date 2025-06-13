@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
             'tanggal_survei' => ['nullable', 'date'],
 
             //tabel nasabah
-            'nik_nasabah' => ['required', 'string', 'max:20', 'unique:nasabah,nik_nasabah'], 
+            'nik_nasabah' => ['required', 'string', 'min:16', 'max:16', 'unique:nasabah,nik_nasabah'], 
             'tanggallahir_nasabah' => ['required', 'date'],
             'gender_nasabah' => ['required', 'string', 'in:Male,Female'],
             'pekerjaan_nasabah' => ['required', 'string', 'max:255'],
@@ -47,7 +47,7 @@ class RegisteredUserController extends Controller
             'statuskawin_nasabah' => ['required', 'string', 'max:50'],
             'tanggungan_nasabah' => ['required', 'integer', 'min:0'], 
             'alamat_nasabah' => ['required', 'string', 'max:500'],
-            'nohp_nasabah' => ['required', 'string', 'max:20', 'unique:nasabah,nohp_nasabah'], 
+            'nohp_nasabah' => ['required', 'string', 'min:10', 'max:13', 'unique:nasabah,nohp_nasabah'], 
         ]);
 
         // buat record akun
@@ -72,9 +72,8 @@ class RegisteredUserController extends Controller
             'alamat_nasabah' => $request->alamat_nasabah,
             'nohp_nasabah' => $request->nohp_nasabah,
         ]);
-
+        Auth::logout();
         event(new Registered($akun));
-
         Auth::guard('nasabah')->login($akun); 
 
         return redirect()->route('nasabah.homepage');

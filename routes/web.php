@@ -58,7 +58,7 @@ Route::get('admin/loans/{id}', [AdminLoanController::class, 'show'])->name('loan
     Route::post('/loan/application', [CustomerLoanController::class, 'submitLoan']);
     Route::get('/loan/sukses', [CustomerLoanController::class, 'showCustomerLoanSuccess'])->name('nasabah.custloan-sukses');
     Route::get('/loans/myloans', [CustomerLoanController::class, 'showCustomerLoans'])->name('nasabah.myloans');
-    Route::get('/loans/myloans/1', [CustomerLoanController::class, 'showCustomerLoan'])->name('nasabah.loan');
+    Route::get('/loans/myloans/{id}', [CustomerLoanController::class, 'showCustomerLoan'])->name('nasabah.loan');
     Route::get('/loans/myloans/2', [CustomerLoanController::class, 'showCustomerLoan2'])->name('nasabah.loan2');
     Route::get('/loans/myloans/3', [CustomerLoanController::class, 'showCustomerLoan3'])->name('nasabah.loan3');
     Route::get('/loans/myloans/4', [CustomerLoanController::class, 'showCustomerLoan4'])->name('nasabah.loan4');
