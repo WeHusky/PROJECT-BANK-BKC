@@ -20,7 +20,7 @@
     </div>
 
     <!-- Step Indicator -->
-    <div class="flex flex-col justify-center items-center px-5">
+    <div class="flex flex-col justify-center items-center px-7">
         <p id="stepText" class="text-[#13545C] font-medium">Step 1 of 2</p>
         <div class="w-full flex gap-2 mt-5">
             <div id="step1Indicator" class="loader w-1/2 h-3 rounded-lg step-indicator"></div>
@@ -29,77 +29,65 @@
     </div>
 
     <!-- Step 1 Form - Personal Information -->
-    <div class="px-4">
-        <form id="step1Form" class="form-step active w-full px-7 mt-5 bg-white py-8 rounded-xl">
-            <div class="mb-5">
-                <label for="NIK" class="block mb-2 text-sm font-normal text-[#13545C]">NIK</label>
-                <input name="nik_nasabah" type="text" id="NIK" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->nik_nasabah ?? '' }}" disabled/>
-            </div>
-            <div class="mb-5">
-                <label for="fullname" class="block mb-2 text-sm font-normal text-[#13545C]">Full Name</label>
-                <input name="nama_nasabah" type="text" id="fullname" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->nama_nasabah ?? '' }}" disabled/>
-            </div>
-            <div class="mb-5">
-                <label for="ttl" class="block mb-2 text-sm font-normal text-[#13545C]">Birthdate</label>
-                <input name="tanggallahir_nasabah" type="date" id="ttl" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->tanggallahir_nasabah->format('Y-m-d') ?? '' }}" disabled />
-            </div>
-            <div class="mb-5">
-                <label for="gender" class="block mb-2 text-sm font-normal text-[#13545C]">Gender</label>
-                <select name="gender_nasabah" id="gender" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled>
-                    <option value="Male" {{ ($nasabahData->gender_nasabah ?? '') == 'Male' ? 'selected' : '' }}>Male</option>
-                    <option value="Female" {{ ($nasabahData->gender_nasabah ?? '') == 'Female' ? 'selected' : '' }}>Female</option>
-                </select>
-            </div>
-            <div class="mb-5">
-                <label for="job" class="block mb-2 text-sm font-normal text-[#13545C]">Job</label>
-                <input name="pekerjaan_nasabah" type="job" id="job" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->pekerjaan_nasabah ?? '' }}" disabled />
-            </div>
-            <div class="mb-5">
-                <label for="income" class="block mb-2 text-sm font-normal text-[#13545C]">Income Range</label>
-                <input name="penghasilan_nasabah" type="income" id="income" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->penghasilan_nasabah ?? '' }}" disabled />
-            </div>
-            <div class="mb-5">
-                <label for="marriage" class="block mb-2 text-sm font-normal text-[#13545C]">Marriage Status</label>
-                <select name="statuskawin_nasabah" id="marriage" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled>
-                    <option value="single" selected>Single</option>
-                    <option value="married">Married</option>
-                    <option value="divorced">Divorced</option>
-                    <option value="widowed">Widowed</option>
-                    <option value="separated">Separated</option>
-                    <option value="in-a-relationship">In a Relationship</option>
-                    <option value="engaged">Engaged</option>
-                    <option value="domestic-partnership">Domestic Partnership</option>
-                </select>
-            </div>
-            <div class="mb-5">
-                <label for="financialdependents" class="block mb-2 text-sm font-normal text-[#13545C]">Financial Dependents</label>
-                <input name="tanggungan_nasabah" type="number" id="financialdependents" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="{{ $nasabahData->tanggungan_nasabah ?? '' }}" disabled/>
-            </div>
-            <div class="mb-5">
-                <label for="address" class="block mb-2 text-sm font-normal text-[#13545C]">Address</label>
-                <input name="alamat_nasabah" type="text" id="address" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->alamat_nasabah ?? ''}}" disabled/>
-            </div>
-            <div class="mb-5">
-                <label for="number" class="block mb-2 text-sm font-normal text-[#13545C]">Phone Number</label>
-                <input name="nohp_nasabah" type="tel" id="number" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->nohp_nasabah ?? ''}}" disabled/>
-            </div>
-            <button type="button" id="nextButton" class="mt-3 text-white bg-[#29BBCF] hover:bg-[#1f9cb4] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[13px] text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-colors duration-300">Confirm</button>
-        </form>
-    </div>
-    
+    <form id="step1Form" class="form-step active w-full px-7 mt-5">
+        <div class="mb-5">
+            <label for="NIK" class="block mb-2 text-sm font-normal text-[#13545C]">NIK</label>
+            <input name="nik_nasabah" type="text" id="NIK" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->nik_nasabah ?? '' }}" disabled/>
+        </div>
+        <div class="mb-5">
+            <label for="fullname" class="block mb-2 text-sm font-normal text-[#13545C]">Full Name</label>
+            <input name="nama_nasabah" type="text" id="fullname" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->nama_nasabah ?? '' }}" disabled/>
+        </div>
+        <div class="mb-5">
+            <label for="ttl" class="block mb-2 text-sm font-normal text-[#13545C]">Birthdate</label>
+            <input name="tanggallahir_nasabah" type="date" id="ttl" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->tanggallahir_nasabah->format('Y-m-d') ?? '' }}" disabled />
+        </div>
+        <div class="mb-5">
+            <label for="gender" class="block mb-2 text-sm font-normal text-[#13545C]">Gender</label>
+            <select name="gender_nasabah" id="gender" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled>
+                <option value="Male" {{ ($nasabahData->gender_nasabah ?? '') == 'Male' ? 'selected' : '' }}>Male</option>
+                <option value="Female" {{ ($nasabahData->gender_nasabah ?? '') == 'Female' ? 'selected' : '' }}>Female</option>
+            </select>
+        </div>
+        <div class="mb-5">
+            <label for="job" class="block mb-2 text-sm font-normal text-[#13545C]">Job</label>
+            <input name="pekerjaan_nasabah" type="job" id="job" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->pekerjaan_nasabah ?? '' }}" disabled />
+        </div>
+        <div class="mb-5">
+            <label for="income" class="block mb-2 text-sm font-normal text-[#13545C]">Income Range</label>
+            <input name="penghasilan_nasabah" type="income" id="income" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->penghasilan_nasabah ?? '' }}" disabled />
+        </div>
+        <div class="mb-5">
+            <label for="marriage" class="block mb-2 text-sm font-normal text-[#13545C]">Marriage Status</label>
+            <select name="statuskawin_nasabah" id="marriage" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" disabled>
+                <option value="single" selected>Single</option>
+                <option value="married">Married</option>
+                <option value="divorced">Divorced</option>
+                <option value="widowed">Widowed</option>
+                <option value="separated">Separated</option>
+                <option value="in-a-relationship">In a Relationship</option>
+                <option value="engaged">Engaged</option>
+                <option value="domestic-partnership">Domestic Partnership</option>
+            </select>
+        </div>
+        <div class="mb-5">
+            <label for="financialdependents" class="block mb-2 text-sm font-normal text-[#13545C]">Financial Dependents</label>
+            <input name="tanggungan_nasabah" type="number" id="financialdependents" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="{{ $nasabahData->tanggungan_nasabah ?? '' }}" disabled/>
+        </div>
+        <div class="mb-5">
+            <label for="address" class="block mb-2 text-sm font-normal text-[#13545C]">Address</label>
+            <input name="alamat_nasabah" type="text" id="address" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->alamat_nasabah ?? ''}}" disabled/>
+        </div>
+        <div class="mb-5">
+            <label for="number" class="block mb-2 text-sm font-normal text-[#13545C]">Phone Number</label>
+            <input name="nohp_nasabah" type="tel" id="number" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->nohp_nasabah ?? ''}}" disabled/>
+        </div>
+        <button type="button" id="nextButton" class="mt-3 text-white bg-[#29BBCF] hover:bg-[#1f9cb4] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[13px] text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-colors duration-300">Confirm</button>
+    </form>
 
     <!-- Step 2 Form - Loan Details -->
     <form id="step2Form" class="form-step w-full px-7 mt-5" method="POST" action="{{ route('nasabah.loan.application') }}">
         @csrf
-        @if ($errors->any())
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         <div class="bg-white rounded-md outline outline-1 outline-[#29BBCF] w-full h-auto flex flex-col items-center justify-center p-3 mb-5">
             <p class="text-[#555555] font-medium mb-3">Loan Limit</p>
             <h1 class="text-[#3F455D] font-semibold text-3xl">Rp 250.000.000</h1>

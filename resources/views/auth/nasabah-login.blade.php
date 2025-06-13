@@ -14,7 +14,7 @@
             <a class="absolute left-4 " href="{{ route('nasabah.landingpage') }}"><img class="w-[31px] h-[31px]" src="{{ asset('images/arrowblue.png') }}" alt=""></a>
             <h2 class="font-extrabold text-[#13545C] text-[24px] text-center w-full">Sign In</h2>
         </div>
-        <div class="body bg-white rounded-tl-[45px] rounded-tr-[45px] w-screen h-screen px-7 flex-grow">
+        <div class="body bg-white rounded-tl-[45px] rounded-tr-[45px] w-screen h-auto px-7 flex-grow">
             <form class="w-full max-w-full mx-auto pt-10" method="POST" action="{{ route('nasabah.login') }}">
                 @csrf
                     @if ($errors->any())
@@ -30,11 +30,11 @@
                 @endif            
                 <div class="mb-5">
                     <label for="email" class="block mb-2 text-sm font-normal text-[#13545C]">Email Address</label>
-                    <input name="email_akun" type="email" id="email" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="name@email.com" required />
+                    <input name="email_akun" type="email" id="email" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="name@email.com" required />
                 </div>
                 <div class="mb-5">
                     <label for="password" class="block mb-2 text-sm font-normal text-[#13545C]">Password</label>
-                    <input name="password_akun" type="password" id="password" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Password" required />
+                    <input name="password_akun" type="password" id="password" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Password" required />
                 </div>
                 <div class="flex items-start mb-5">
                     <div class="flex items-center h-5">

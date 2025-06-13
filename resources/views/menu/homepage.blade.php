@@ -7,6 +7,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bank BKC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   @vite('resources/css/app.css')
   <style>
@@ -141,13 +142,35 @@
     <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
       <img src="{{ asset('images/balance.png') }}" alt="">
     </div>
-    <span class="mt-2 text-[#13545C] font-medium">Balance</span>
+    <span class="mt-2 text-[#13545C] font-light">Balance</span>
   </button>
+
+  <button type="button" class="flex flex-col items-center focus:outline-none">
+    <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
+      <img src="{{ asset('images/transfer.png') }}" alt="">
+    </div>
+    <span class="mt-2 text-[#13545C] font-light">Transfer</span>
+  </button>
+
+  <button type="button" class="flex flex-col items-center focus:outline-none">
+    <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
+      <img src="{{ asset('images/pay.png') }}" alt="">
+    </div>
+    <span class="mt-2 text-[#13545C] font-light">Pay</span>
+  </button>
+
   <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.loans') }}'" class="flex flex-col items-center focus:outline-none">
     <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
       <img src="{{ asset('images/loan.png') }}" alt="">
     </div>
-    <span class="mt-2 text-[#13545C] font-medium">Loan</span>
+    <span class="mt-2 text-[#13545C] font-light">Loan</span>
+  </button>
+
+  <button type="button" class="flex flex-col items-center focus:outline-none">
+    <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
+      <img src="{{ asset('images/transaction.png') }}" alt="">
+    </div>
+    <span class="mt-2 text-[#13545C] font-light">Transactions</span>
   </button>
 </div>
 </body>

@@ -27,21 +27,32 @@
             @endif
             <form class="w-full max-w-full mx-auto pt-10" method="POST" action="{{ route('nasabah.register') }}">
                 @csrf
+                @if ($errors->any())
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                        <strong class="font-bold">Oops!</strong>
+                        <span class="block sm:inline">Ada beberapa masalah dengan input Anda.</span>
+                        <ul class="mt-3 list-disc list-inside text-sm">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="mb-5">
                         <label for="NIK" class="block mb-2 text-sm font-normal text-[#13545C]">NIK</label>
-                        <input name="nik_nasabah" type="text" id="NIK" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Enter as stated on your ID card" required />
+                        <input name="nik_nasabah" type="text" id="NIK" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Enter as stated on your ID card" required />
                 </div>
                 <div class="mb-5">
                     <label for="fullname" class="block mb-2 text-sm font-normal text-[#13545C]">Full Name</label>
-                    <input name="nama_nasabah" type="text" id="fullname" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="John Doe" required />
+                    <input name="nama_nasabah" type="text" id="fullname" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="John Doe" required />
                 </div>
                 <div class="mb-5">
                     <label for="ttl" class="block mb-2 text-sm font-normal text-[#13545C]">Birthdate</label>
-                    <input name="tanggallahir_nasabah" type="date" id="ttl" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" required />
+                    <input name="tanggallahir_nasabah" type="date" id="ttl" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" required />
                 </div>
                 <div class="mb-5">
                     <label for="gender" class="block mb-2 text-sm font-normal text-[#13545C]">Gender</label>
-                    <select name="gender_nasabah" id="gender" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
+                    <select name="gender_nasabah" id="gender" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
                         <option value="" selected>Pick your gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -49,7 +60,7 @@
                 </div>
                 <div class="mb-5">
                     <label for="job" class="block mb-2 text-sm font-normal text-[#13545C]">Job</label>
-                    <select name="pekerjaan_nasabah" id="job" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
+                    <select name="pekerjaan_nasabah" id="job" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
                         <option value="Software Engineer">Software Engineer</option>
                         <option value="Doctor">Doctor</option>
                         <option value="Teacher">Teacher</option>
@@ -74,7 +85,7 @@
                 </div>
                 <div class="mb-5">
                     <label for="income" class="block mb-2 text-sm font-normal text-[#13545C]">Income Range</label>
-                    <select name="penghasilan_nasabah" id="income" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
+                    <select name="penghasilan_nasabah" id="income" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
                         <option value="<1jt">Less than Rp1 million</option>
                         <option value="1-3jt">Rp1 million - Rp3 million</option>
                         <option value="3-5jt">Rp3 million - Rp5 million</option>
@@ -87,7 +98,7 @@
                 </div>
                 <div class="mb-5">
                     <label for="marriage" class="block mb-2 text-sm font-normal text-[#13545C]">Marriage Status</label>
-                    <select name="statuskawin_nasabah" id="marriage" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
+                    <select name="statuskawin_nasabah" id="marriage" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
                         <option value="single" selected>Single</option>
                         <option value="married">Married</option>
                         <option value="divorced">Divorced</option>
@@ -100,31 +111,31 @@
                 </div>
                 <div class="mb-5">
                     <label for="financialdependents" class="block mb-2 text-sm font-normal text-[#13545C]">Financial Dependents</label>
-                    <input name="tanggungan_nasabah" type="number" id="financialdependents" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" min="0" placeholder="Number of financial dependents" required />
+                    <input name="tanggungan_nasabah" type="number" id="financialdependents" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" min="0" placeholder="Number of financial dependents" required />
                 </div>
                 <div class="mb-5">
                     <label for="email" class="block mb-2 text-sm font-normal text-[#13545C]">Email Address</label>
-                    <input name="email_akun" type="email" id="email" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="name@email.com" required />
+                    <input name="email_akun" type="email" id="email" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="name@email.com" required />
                 </div>
                 <div class="mb-5">
                     <label for="username" class="block mb-2 text-sm font-normal text-[#13545C]">Username</label>
-                    <input name="username_akun" type="text" id="username" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Username" required />
+                    <input name="username_akun" type="text" id="username" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Username" required />
                 </div>
                 <div class="mb-5">
                     <label for="address" class="block mb-2 text-sm font-normal text-[#13545C]">Address</label>
-                    <input name="alamat_nasabah" type="text" id="address" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Enter as stated on your ID card" required />
+                    <input name="alamat_nasabah" type="text" id="address" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Enter as stated on your ID card" required />
                 </div>
                 <div class="mb-5">
                     <label for="number" class="block mb-2 text-sm font-normal text-[#13545C]">Phone Number</label>
-                    <input name="nohp_nasabah" type="tel" id="address" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="+62xxxxxxxxxxx" required />
+                    <input name="nohp_nasabah" type="tel" id="address" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="+62xxxxxxxxxxx" required />
                 </div>
                 <div class="mb-5">
                     <label for="password" class="block mb-2 text-sm font-normal text-[#13545C]">Password</label>
-                    <input name="password_akun" type="password" id="password" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Password" required />
+                    <input name="password_akun" type="password" id="password" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Password" required />
                 </div>
                 <div class="mb-5">
                     <label for="password" class="block mb-2 text-sm font-normal text-[#13545C]">Confirm Password</label>
-                    <input name="password_akun_confirmation" type="password" id="password" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Password" required />
+                    <input name="password_akun_confirmation" type="password" id="password" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Password" required />
                 </div>
                 <button type="submit" class="mt-3 text-white bg-[#29BBCF] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[13px] text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
             </form>

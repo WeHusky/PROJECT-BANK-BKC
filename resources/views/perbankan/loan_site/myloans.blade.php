@@ -27,20 +27,58 @@
   </div>
  <!-- Menu List -->
  <div class="menu px-6">
-  <!-- Loan -->
-  @foreach($pengajuan_kredit as $pengajuan_kredit)
-  <a href="{{ route('nasabah.loan', ['id' => $pengajuan_kredit->id_pengajuankredit]) }}">
-    <div class="bg-white rounded-[27px] w-full flex items-center py-2 px-6 mb-3 h-30">
+  <!-- Loan 1 -->
+  <a href="{{ route('nasabah.loan') }}">
+    <div class="gradient rounded-[27px] w-full flex items-center py-2 px-6 mb-5 h-30 bg-cover bg-center bg-no-repeat">
       <div class="mr-4">
         <img src="{{ asset('images/loan.png') }}" alt="">
       </div>
       <div class="flex flex-col justify-between w-full">
-        <p class="text-black font-bold">Loan Application</p>
-        <p class="text-black font-normal mb-3">{{ $pengajuan_kredit->tanggal_pengajuankredit->format('d/m/Y') }}</p>
-        <p class="text-black font-normal">{{ $pengajuan_kredit->status_pengajuankredit }}</p>
+        <p class="text-[#2e2506] font-black">Loan Application</p>
+        <p class="text-[#2e2506] font-normal mb-3">06/06/2025</p>
+        <p class="text-[#2e2506] font-normal">Under Review</p>
       </div>
     </div>
   </a>
-  @endforeach
+  <!-- Loan 2 -->
+  <a href="{{ route('nasabah.loan2') }}">
+    <div class="gradient dateconfirmation rounded-[27px] w-full flex items-center py-2 px-6 mb-5 h-30 bg-cover bg-center bg-no-repeat">
+      <div class="mr-4">
+        <img src="{{ asset('images/loan.png') }}" alt="">
+      </div>
+      <div class="flex flex-col justify-between w-full">
+        <p class="text-[#2e2506] font-black">Loan Application</p>
+        <p class="text-[#2e2506] font-normal mb-3">06/06/2025</p>
+        <p class="text-[#2e2506] font-normal">Awaiting Date Confirmation</p>
+      </div>
+    </div>
+  </a>
+    <!-- Loan 3 -->
+    <a href="{{ route('nasabah.loan3') }}">
+      <div class="gradient surveyreview rounded-[27px] w-full flex items-center py-2 px-6 mb-5 h-30 bg-cover bg-center bg-no-repeat">
+        <div class="mr-4">
+          <img src="{{ asset('images/loan.png') }}" alt="">
+        </div>
+        <div class="flex flex-col justify-between w-full">
+          <p class="text-[#2e2506] font-black">Loan Application</p>
+          <p class="text-[#2e2506] font-normal mb-3">06/06/2025</p>
+          <p class="text-[#2e2506] font-normal">Survey Under Review</p>
+        </div>
+      </div>
+    </a>
+    <!-- Loan 3 -->
+    <a href="{{ route('nasabah.loan4') }}">
+      <div class="gradient approved rounded-[27px] w-full flex items-center py-2 px-6 mb-5 h-30 bg-cover bg-center bg-no-repeat">
+        <div class="mr-4">
+          <img src="{{ asset('images/loan.png') }}" alt="">
+        </div>
+        <div class="flex flex-col justify-between w-full">
+          <p class="text-[#2e2506] font-black">Loan Application</p>
+          <p class="text-[#2e2506] font-normal mb-3">06/06/2025</p>
+          <p class="text-[#2e2506] font-normal">Loan Approved</p>
+        </div>
+      </div>
+    </a>
+  
 </body>
 </html>

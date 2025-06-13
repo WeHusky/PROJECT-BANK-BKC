@@ -65,40 +65,25 @@
         }
     </style>
 </head>
-<body class="bg-white font-sans mb-20 shadow-sm">
+<body class="bg-gray-200 font-sans mb-20 shadow-sm">
       <!-- Header -->
-  <div class="flex justify-between items-center px-7 py-8 bg-white shadow-sm">
+  <div class="flex justify-between items-center px-7 py-8 bg-white mb-5">
     <h1 class="font-extrabold text-3xl text-[#13545C]">Account</h1>
   </div>
-    <div class="">
-        <div class="h-auto flex flex-col">
-            <div class="py-8 px-7 flex">
-                <div class="bg-[#29BBCF] w-14 h-14 mr-5 rounded-full flex items-center justify-center">
-                    <p class="text-white font-medium text-xl">{{ $nasabah->nama_nasabah[0] }}</p>
-                </div>
-                <div>
-                    <p class="text-xl font-medium">{{ $nasabah->nama_nasabah }}</p>
-                    <p class="text-md font-light">{{'@'.$user->username_akun }}</p>
-                    <p class="text-md font-light">{{ $nasabah->nohp_nasabah }}</p>
-                </div>
-            </div>
-            <div class="rounded-xl">
-                <hr>
-                <a class="bg-white h-auto px-7 py-4 flex" href="{{ route('nasabah.accountsettings') }}">
-                    <img src="{{ asset('images/settings-svgrepo-com.svg')}}" alt="" class="w-5 mr-5">
-                    <p class="font-medium">Account Settings</p>
-                </a>
-                <hr>
-                <form action="{{ route('logout') }}" method="POST" class="mb-0">
-                    @csrf
-                    <button type="submit" class="bg-white h-auto px-7 py-4 flex w-full items-center">
-                        <img src="{{ asset('images/log-out-svgrepo-com.svg') }}" alt="" class="w-5 mr-5 red">
-                        <p class="font-medium">Log Out</p>
-                    </button>
-                </form>
-                <hr>
-            </div>
-            
+    <div class="px-7">
+        <div class="h-auto rounded-xl overflow-hidden flex flex-col">
+            <a class="bg-white h-auto px-4 py-4 flex" href="{{ route('nasabah.accountsettings') }}">
+                <img src="{{ asset('images/settings-svgrepo-com.svg')}}" alt="" class="w-5 mr-5">
+                <p>Account Settings</p>
+            </a>
+            <hr>
+            <form action="{{ route('logout') }}" method="POST" class="w-full">
+                @csrf
+                <button type="submit" class="bg-white h-auto px-4 py-4 flex w-full items-center">
+                    <img src="{{ asset('images/log-out-svgrepo-com.svg') }}" alt="" class="w-5 mr-5 red">
+                    <p>Log Out</p>
+                </button>
+            </form>
             </div>
     </div>
 
