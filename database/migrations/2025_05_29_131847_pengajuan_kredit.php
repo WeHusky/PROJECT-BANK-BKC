@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('konfirmasi_pengajuankredit');
             $table->integer('tenor');
             $table->string('status_kelayakan');
-            $table->string('rekening_nasabah');
+            $table->string('rekening_nasabah')->nullable();;
 
             $table->foreign('id_nasabah')->references('id_nasabah')->on('Nasabah')->onDelete('cascade');
             $table->foreign('id_komite')->references('id_komite')->on('Komite')->onDelete('cascade');
