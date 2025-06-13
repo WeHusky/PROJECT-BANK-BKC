@@ -30,7 +30,18 @@ Route::get('/', function () {
 Route::get('admin/login', [LoginController::class, 'showAdminLoginForm'])->name('admin.login');
 Route::post('admin/login', [LoginController::class, 'login']);
 Route::post('admin/logout', [LoginController::class, 'logout'])->name('logout');
-//Nasabah Auth Routes
+
+// Admin Protected Routes
+Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    Route::get('/regions', [DashboardController::class, 'regions'])->name('regions.index');
+    Route::get('/loans', [AdminLoanController::class, 'index'])->name('loans');
+    Route::get('/loans/{id}', [AdminLoanController::class, 'show'])->name('loans.show');
+});
+
+// Nasabah Auth Routes
 Route::get('/', [NasabahController::class, 'showLandingPage'])->name('nasabah.landingpage');
 Route::get('/login', [LoginController::class, 'showNasabahLoginForm'])->name('nasabah.login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -38,17 +49,8 @@ Route::get('/register', [RegisteredUserController::class, 'create'])->name('nasa
 Route::post('/register', [RegisteredUserController::class, 'store']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('nasabah.logout');
 
-Route::get('admin/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('admin/regions', [DashboardController::class, 'regions'])->name('regions.index');
-
-// Loan Routes
-Route::get('admin/loans', [AdminLoanController::class, 'index'])->name('loans');
-Route::get('admin/loans/{id}', [AdminLoanController::class, 'show'])->name('loans.show');
-
-// Nasabah Routes
+// Nasabah Protected Routes
+Route::middleware(['auth:nasabah'])->group(function () {
     Route::get('/homepage', [NasabahController::class, 'showHomePage'])->name('nasabah.homepage');
     Route::get('/introduction', [NasabahController::class, 'showIntroductionPage'])->name('nasabah.introduction');
     Route::post('/introduction/select-card', [NasabahController::class, 'selectCard'])->name('nasabah.select-card');
@@ -66,6 +68,7 @@ Route::get('admin/loans/{id}', [AdminLoanController::class, 'show'])->name('loan
     Route::get('/loans/myloans/4', [CustomerLoanController::class, 'showCustomerLoan4'])->name('nasabah.loan4');
     Route::get('/loans/myloans/3/surveyresult/', [CustomerLoanController::class, 'showCustomerSurveyResult'])->name('nasabah.viewsurveyresult');
     Route::put('/nasabah/{id}', [NasabahController::class, 'update'])->name('nasabah.update');
+});
 
 // Email verification routes
 Route::get('/verify-email', [RegisteredUserController::class, 'showVerificationForm'])
