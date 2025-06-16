@@ -29,10 +29,10 @@ class CustomerLoanController extends Controller
             'nominal_pengajuankredit' => ['required', 'numeric', 'min:1000000', 'max:250000000'],
             'tenor' => ['required', 'integer', 'min:2', 'max:18'],
         ]);
-        if($request->nominal_pengajuan < 250000000){
-            $kategori_pengajuankredit = 'Kewenangan Peminjaman Cabang';
-        } else {
+        if($request->nominal_pengajuankredit > 25000000){
             $kategori_pengajuankredit = 'Kewenangan Peminjaman Pusat';
+        } else {
+            $kategori_pengajuankredit = 'Kewenangan Peminjaman Cabang';
         }
 
         $pengajuan_kredit = Pengajuan_Kredit::create([

@@ -80,7 +80,7 @@
         <div class="bg-white p-4 rounded-[17px] ">
         <p class="text-[#13545C] mb-2 font-semibold">My Card</p>
         <div class="creditcard-container">
-        <div class="relative rounded-[12px] overflow-hidden w-[270px] h-[170px] text-white font-sans shadow-lg"
+        <div class="relative rounded-[12px] overflow-hidden w-full h-[170px] text-white font-sans shadow-lg"
             @if($nasabah->card_type == 'classic')
                 style="background: radial-gradient(circle at center, #0f172a 8%, rgb(80, 80, 80) 57%, #000000 90%);"
             @elseif($nasabah->card_type == 'gold')
@@ -129,7 +129,7 @@
         </div>
     </div>
 
-        
+
         <button class="mt-4 w-full bg-[#29BBCF] hover:bg-cyan-600 text-white font-semibold py-2 rounded-full transition duration-200">View Card Details</button>
       </div>
     </div>

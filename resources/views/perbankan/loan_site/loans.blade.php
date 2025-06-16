@@ -121,61 +121,34 @@
 </div>
 
     <h2 class="font-semibold text-[22px]" style="text-align: left; margin-bottom: 20px;">Active Loans Overview</h2>
-    <div class="loan-list">
-    <table>
-        <!-- Row 1 -->
-        <tr>
-        <td><img src="{{ asset('images/loanicon.png') }}" class="icon" alt="Icon"></td>
-        <td>
-            <span class="peminjaman-label font-medium" style="text-align: right;">Loan</span>
-        </td>
-        <td>
-            <span class="label font-medium">Name</span>
-            <span class="value font-normal">Lord Iron</span>
-        </td>
-        <td>
-            <span class="label font-medium">Loan Amount</span>
-            <span class="value font-normal">20.000.000</span>
-        </td>
-        <td><a href="{{ route('loans.show', ['id' => 1]) }}" class="view-button">View Details</a></td>
-        </tr>
+    <div class="loan-list space-y-4">
+    @foreach($loans as $loan)
+    <div class="bg-white rounded-2xl shadow-md p-4 flex items-center justify-between gap-4 hover:shadow-lg transition-shadow">
+        <div class="flex items-center gap-4">
+            <img src="{{ asset('images/loanicon.png') }}" class="w-10 h-10" alt="Icon">
 
-                <!-- Row 1 -->
-        <tr>
-        <td><img src="{{ asset('images/loanicon.png') }}" class="icon" alt="Icon"></td>
-        <td>
-            <span class="peminjaman-label font-medium" style="text-align: right;">Loan</span>
-        </td>
-        <td>
-            <span class="label font-medium">Name</span>
-            <span class="value font-normal">Lord Iron</span>
-        </td>
-        <td>
-            <span class="label font-medium">Loan Amount</span>
-            <span class="value font-normal">20.000.000</span>
-        </td>
-        <td><a href="{{ route('loans.show', ['id' => 1]) }}" class="view-button">View Details</a></td>
-        </tr>
+            <div>
+                <p class="text-sm text-gray-500 font-medium">Loan</p>
+                <p class="text-base font-semibold text-[#13545C]">{{ $loan->nasabah->nama_nasabah ?? '-' }}</p>
+            </div>
+        </div>
 
-                <!-- Row 1 -->
-        <tr>
-        <td><img src="{{ asset('images/loanicon.png') }}" class="icon" alt="Icon"></td>
-        <td>
-            <span class="peminjaman-label font-medium" style="text-align: right;">Loan</span>
-        </td>
-        <td>
-            <span class="label font-medium">Name</span>
-            <span class="value font-normal">Lord Iron</span>
-        </td>
-        <td>
-            <span class="label font-medium">Loan Amount</span>
-            <span class="value font-normal">20.000.000</span>
-        </td>
-        <td><a href="{{ route('loans.show', ['id' => 1]) }}" class="view-button">View Details</a></td>
-        </tr>
-    </table>
+        <div class="text-right">
+            <p class="text-sm text-gray-500 font-medium">Loan Amount</p>
+            <p class="text-lg font-bold text-[#29BBCF]">Rp {{ number_format($loan->nominal_pengajuankredit, 0, ',', '.') }}</p>
+        </div>
+
+        <div>
+            <a href="{{ route('loans.show', ['id' => $loan->id_pengajuankredit]) }}"
+               class="bg-[#29BBCF] hover:bg-[#218fa4] text-white text-sm font-medium py-2 px-4 rounded-full transition-colors">
+                View Details
+            </a>
+        </div>
     </div>
+    @endforeach
 </div>
+
+
 <script>
   function parseToNumber(str) {
     return parseInt(str.replace(/\./g, '')) || 0;
@@ -186,13 +159,12 @@
   }
 
   function updateTotalLoans() {
-    const amounts = document.querySelectorAll('.value');
+    const amounts = document.querySelectorAll('.text-lg.font-bold.text-\\[\\#29BBCF\\]');
     let total = 0;
 
     amounts.forEach((el) => {
-      if (el.previousElementSibling && el.previousElementSibling.textContent.trim() === 'Loan Amount') {
-        total += parseToNumber(el.textContent);
-      }
+      const amountText = el.textContent.replace('Rp ', '').replace(/\./g, '');
+      total += parseInt(amountText) || 0;
     });
 
     document.getElementById('totalLoans').textContent = formatRupiah(total);

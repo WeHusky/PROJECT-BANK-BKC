@@ -39,9 +39,9 @@
                         <p class="text-[#13545C] mb-2 font-semibold">Classic Black</p>
 
                         <div class="creditcard-container">
-                            <div class="relative rounded-[12px] overflow-hidden w-[270px] h-[170px] text-white font-sans shadow-lg"
+                            <div class="relative rounded-[12px] overflow-hidden w-full h-[170px] text-white font-sans shadow-lg"
                                 style="background: radial-gradient(circle at center, #0f172a 8%, rgb(80, 80, 80) 57%, #000000 90%);">
-                                
+
                                 <!-- Zoomed-in wave background -->
                                 <div class="absolute inset-0 z-0 opacity-100"
                                     style="background-image: url('{{ asset('images/wave.png') }}'); background-size: 200%; background-position: center;">
@@ -49,7 +49,7 @@
 
                                 <!-- Konten kartu -->
                                 <div class="relative z-10 p-4 flex flex-col justify-between h-full">
-                                    
+
                                     <!-- Baris atas: Logo dan Chip -->
                                     <div class="flex justify-between items-start">
                                         <div class="flex items-center">
@@ -90,9 +90,9 @@
                         <p class="text-[#13545C] mb-2 font-semibold">Gold Premium</p>
 
                         <div class="creditcard-container">
-                            <div class="relative rounded-[12px] overflow-hidden w-[270px] h-[170px] text-white font-sans shadow-lg"
+                            <div class="relative rounded-[12px] overflow-hidden w-full h-[170px] text-white font-sans shadow-lg"
                                 style="background: radial-gradient(circle at center, rgb(212, 151, 20) 8%, rgb(14, 117, 65) 57%, rgb(11, 81, 187) 90%);">
-                                
+
                                 <!-- Zoomed-in wave background -->
                                 <div class="absolute inset-0 z-0 opacity-1000"
                                     style="background-image: url('{{ asset('images/wave.png') }}'); background-size: 200%; background-position: center;">
@@ -100,7 +100,7 @@
 
                                 <!-- Konten kartu -->
                                 <div class="relative z-10 p-4 flex flex-col justify-between h-full">
-                                    
+
                                     <!-- Baris atas: Logo dan Chip -->
                                     <div class="flex justify-between items-start">
                                         <div class="flex items-center">
@@ -141,9 +141,9 @@
                         <p class="text-[#13545C] mb-2 font-semibold">Red Premium</p>
 
                         <div class="creditcard-container">
-                            <div class="relative rounded-[12px] overflow-hidden w-[270px] h-[170px] text-white font-sans shadow-lg"
+                            <div class="relative rounded-[12px] overflow-hidden w-full h-[170px] text-white font-sans shadow-lg"
                                 style="background: radial-gradient(circle at center, #0f172a 8%, rgb(187, 28, 28) 57%, #000000 90%);">
-                                
+
                                 <!-- Zoomed-in wave background -->
                                 <div class="absolute inset-0 z-0 opacity-100"
                                     style="background-image: url('{{ asset('images/wave.png') }}'); background-size: 200%; background-position: center;">
@@ -151,7 +151,7 @@
 
                                 <!-- Konten kartu -->
                                 <div class="relative z-10 p-4 flex flex-col justify-between h-full">
-                                    
+
                                     <!-- Baris atas: Logo dan Chip -->
                                     <div class="flex justify-between items-start">
                                         <div class="flex items-center">

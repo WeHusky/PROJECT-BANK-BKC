@@ -6,6 +6,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use App\Models\Pengajuan_Kredit;
+use App\Models\Nasabah;
 
 class Controller extends BaseController
 {
@@ -19,15 +21,19 @@ class AdminLoanController extends Controller
      */
     public function index()
     {
-        return view('perbankan.loan_site.loans'); // Adjust the view path as necessary
+        $loans = Pengajuan_Kredit::all();
+        return view('perbankan.loan_site.loans', compact('loans'));
     }
       /**
      * Display the specified loan details.
      */
     public function show($id)
     {
-        return view('perbankan.loan_site.customer_details'); // Adjust the view path as necessary
+        $loan = Pengajuan_Kredit::with('nasabah')->findOrFail($id);
+        $nasabah = $loan->nasabah;
+        return view('perbankan.loan_site.customer_details', compact('loan', 'nasabah'));
     }
+
 
 
 }

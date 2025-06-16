@@ -97,7 +97,57 @@
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="address">Address</label>
-                    <input name="alamat_nasabah" id="address" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" type="text" value="{{ $nasabah->alamat_nasabah }}" required disabled>
+                    <select name="alamat_nasabah" id="address" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" required disabled>
+                        <optgroup label="Cirebon Utara">
+                            <option value="Gunung Jati - Cirebon Utara" {{ $nasabah->alamat_nasabah == 'Gunung Jati - Cirebon Utara' ? 'selected' : '' }}>Gunung Jati</option>
+                            <option value="Kapetakan - Cirebon Utara" {{ $nasabah->alamat_nasabah == 'Kapetakan - Cirebon Utara' ? 'selected' : '' }}>Kapetakan</option>
+                            <option value="Suranenggala - Cirebon Utara" {{ $nasabah->alamat_nasabah == 'Suranenggala - Cirebon Utara' ? 'selected' : '' }}>Suranenggala</option>
+                            <option value="Plered - Cirebon Utara" {{ $nasabah->alamat_nasabah == 'Plered - Cirebon Utara' ? 'selected' : '' }}>Plered</option>
+                            <option value="Mundu - Cirebon Utara" {{ $nasabah->alamat_nasabah == 'Mundu - Cirebon Utara' ? 'selected' : '' }}>Mundu</option>
+                            <option value="Astanajapura - Cirebon Utara" {{ $nasabah->alamat_nasabah == 'Astanajapura - Cirebon Utara' ? 'selected' : '' }}>Astanajapura</option>
+                            <option value="Gebang - Cirebon Utara" {{ $nasabah->alamat_nasabah == 'Gebang - Cirebon Utara' ? 'selected' : '' }}>Gebang</option>
+                        </optgroup>
+
+                        <optgroup label="Cirebon Timur">
+                            <option value="Losari - Cirebon Timur" {{ $nasabah->alamat_nasabah == 'Losari - Cirebon Timur' ? 'selected' : '' }}>Losari</option>
+                            <option value="Pabedilan - Cirebon Timur" {{ $nasabah->alamat_nasabah == 'Pabedilan - Cirebon Timur' ? 'selected' : '' }}>Pabedilan</option>
+                            <option value="Babakan - Cirebon Timur" {{ $nasabah->alamat_nasabah == 'Babakan - Cirebon Timur' ? 'selected' : '' }}>Babakan</option>
+                            <option value="Waled - Cirebon Timur" {{ $nasabah->alamat_nasabah == 'Waled - Cirebon Timur' ? 'selected' : '' }}>Waled</option>
+                            <option value="Ciledug - Cirebon Timur" {{ $nasabah->alamat_nasabah == 'Ciledug - Cirebon Timur' ? 'selected' : '' }}>Ciledug</option>
+                            <option value="Pasaleman - Cirebon Timur" {{ $nasabah->alamat_nasabah == 'Pasaleman - Cirebon Timur' ? 'selected' : '' }}>Pasaleman</option>
+                            <option value="Pangenan - Cirebon Timur" {{ $nasabah->alamat_nasabah == 'Pangenan - Cirebon Timur' ? 'selected' : '' }}>Pangenan</option>
+                        </optgroup>
+
+                        <optgroup label="Cirebon Barat">
+                            <option value="Susukan - Cirebon Barat" {{ $nasabah->alamat_nasabah == 'Susukan - Cirebon Barat' ? 'selected' : '' }}>Susukan</option>
+                            <option value="Gegesik - Cirebon Barat" {{ $nasabah->alamat_nasabah == 'Gegesik - Cirebon Barat' ? 'selected' : '' }}>Gegesik</option>
+                            <option value="Kaliwedi - Cirebon Barat" {{ $nasabah->alamat_nasabah == 'Kaliwedi - Cirebon Barat' ? 'selected' : '' }}>Kaliwedi</option>
+                            <option value="Arjawinangun - Cirebon Barat" {{ $nasabah->alamat_nasabah == 'Arjawinangun - Cirebon Barat' ? 'selected' : '' }}>Arjawinangun</option>
+                        </optgroup>
+
+                        <optgroup label="Cirebon Selatan">
+                            <option value="Beber - Cirebon Selatan" {{ $nasabah->alamat_nasabah == 'Beber - Cirebon Selatan' ? 'selected' : '' }}>Beber</option>
+                            <option value="Greged - Cirebon Selatan" {{ $nasabah->alamat_nasabah == 'Greged - Cirebon Selatan' ? 'selected' : '' }}>Greged</option>
+                            <option value="Talun - Cirebon Selatan" {{ $nasabah->alamat_nasabah == 'Talun - Cirebon Selatan' ? 'selected' : '' }}>Talun</option>
+                            <option value="Sumber - Cirebon Selatan" {{ $nasabah->alamat_nasabah == 'Sumber - Cirebon Selatan' ? 'selected' : '' }}>Sumber</option>
+                            <option value="Dukupuntang - Cirebon Selatan" {{ $nasabah->alamat_nasabah == 'Dukupuntang - Cirebon Selatan' ? 'selected' : '' }}>Dukupuntang</option>
+                        </optgroup>
+
+                        <optgroup label="Cirebon Tengah / Sekitar Kota">
+                            <option value="Kedawung - Cirebon Tengah" {{ $nasabah->alamat_nasabah == 'Kedawung - Cirebon Tengah' ? 'selected' : '' }}>Kedawung</option>
+                            <option value="Weru - Cirebon Tengah" {{ $nasabah->alamat_nasabah == 'Weru - Cirebon Tengah' ? 'selected' : '' }}>Weru</option>
+                            <option value="Klangenan - Cirebon Tengah" {{ $nasabah->alamat_nasabah == 'Klangenan - Cirebon Tengah' ? 'selected' : '' }}>Klangenan</option>
+                            <option value="Jamblang - Cirebon Tengah" {{ $nasabah->alamat_nasabah == 'Jamblang - Cirebon Tengah' ? 'selected' : '' }}>Jamblang</option>
+                        </optgroup>
+
+                        <optgroup label="Kota Cirebon">
+                            <option value="Harjamukti - Kota Cirebon" {{ $nasabah->alamat_nasabah == 'Harjamukti - Kota Cirebon' ? 'selected' : '' }}>Harjamukti</option>
+                            <option value="Lemahwungkuk - Kota Cirebon" {{ $nasabah->alamat_nasabah == 'Lemahwungkuk - Kota Cirebon' ? 'selected' : '' }}>Lemahwungkuk</option>
+                            <option value="Kejaksan - Kota Cirebon" {{ $nasabah->alamat_nasabah == 'Kejaksan - Kota Cirebon' ? 'selected' : '' }}>Kejaksan</option>
+                            <option value="Pekalipan - Kota Cirebon" {{ $nasabah->alamat_nasabah == 'Pekalipan - Kota Cirebon' ? 'selected' : '' }}>Pekalipan</option>
+                            <option value="Kesambi - Kota Cirebon" {{ $nasabah->alamat_nasabah == 'Kesambi - Kota Cirebon' ? 'selected' : '' }}>Kesambi</option>
+                        </optgroup>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="gender" class="block mb-2 text-sm font-normal text-[#13545C]">Gender</label>

@@ -10,7 +10,7 @@ class Pengajuan_Kredit extends Model
     use HasFactory;
 
     protected $table = 'pengajuan_kredit';
-    protected $primaryKey = 'id_pengajuan_kredit';
+    protected $primaryKey = 'id_pengajuankredit';
     public $timestamps = false;
 
     protected $fillable = [
@@ -30,4 +30,9 @@ class Pengajuan_Kredit extends Model
     protected $casts = [
         'tanggal_pengajuankredit' => 'date',
     ];
+
+    public function nasabah()
+    {
+        return $this->belongsTo(Nasabah::class, 'id_nasabah', 'id_nasabah');
+    }
 }

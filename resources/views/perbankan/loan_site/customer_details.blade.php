@@ -345,104 +345,107 @@
                 <div class="form-group">
                     <div class="form-control">
                         <label>Nama</label>
-                        <input type="text" value="Wahyu" disabled>
+                        <input type="text" value="{{ $nasabah->nama_nasabah }}" disabled>
                     </div>
                     <div class="form-control">
                         <label>NIK</label>
-                        <input type="text" value="1738456132048560183" disabled>
+                        <input type="text" value="{{ $nasabah->nik_nasabah }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-control">
                         <label>Tanggal Lahir</label>
-                        <input type="text" value="25 January 1990" disabled>
+                        <input type="text" value="{{ \Carbon\Carbon::parse($nasabah->tanggallahir_nasabah)->translatedFormat('d F Y') }}" disabled>
                     </div>
                     <div class="form-control">
                         <label>No HP</label>
-                        <input type="text" value="09845098132" disabled>
+                        <input type="text" value="{{$nasabah->nohp_nasabah}}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-control">
                         <label>Pekerjaan</label>
-                        <input type="text" value="Petani Bitcoin" disabled>
+                        <input type="text" value="{{$nasabah->pekerjaan_nasabah}}" disabled>
                     </div>
                     <div class="form-control">
                         <label>Penghasilan</label>
-                        <input type="text" value="300.000.000" disabled>
+                        <input type="text" value="{{$nasabah->penghasilan_nasabah}}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-control">
                         <label>Tanggungan</label>
                         <select disabled>
-                            <option selected>7</option>
+                            <option selected>{{$nasabah->tanggungan_nasabah}}</option>
                         </select>
                     </div>
                     <div class="form-control">
                         <label>Status Kawin</label>
-                        <input type="text" value="09845098132" disabled>
+                        <input type="text" value="{{$nasabah->statuskawin_nasabah}}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-control full-width">
                         <label>Alamat</label>
-                        <input type="text" value="Tambakbayan" disabled>
+                        <input type="text" value="{{$nasabah->alamat_nasabah}}" disabled>
                     </div>
                 </div>
                 <div class="button" style="margin-top: 0px;">
                     <button id="openModal" style="background-color: #6c63ff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">BI-Check</button>
                 </div>
+
             </div>
 
             <!-- Konten Detail Pinjaman -->
             <div id="detail" class="tab-content">
-                <!-- isi form Detail Pinjaman di sini -->
                 <div class="form-group">
                     <div class="form-control">
                         <label>ID Kredit</label>
-                        <input type="text" value="#N1994" disabled>
+                        <input type="text" value="{{ $loan->id_pengajuankredit }}" disabled>
                     </div>
                     <div class="form-control">
                         <label>ID Nasabah</label>
-                        <input type="text" value="#01" disabled>
+                        <input type="text" value="{{ $nasabah->id_nasabah }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
+                    <div class="form-control">
+                        <label>Nama Nasabah</label>
+                        <input type="text" value="{{ $nasabah->nama_nasabah }}" disabled>
+                    </div>
                     <div class="form-control">
                         <label>Nominal</label>
-                        <input type="text" value="20.000.000" disabled>
+                        <input type="text" value="{{ number_format($loan->nominal_pengajuankredit, 0, ',', '.') }}" disabled>
                     </div>
+                </div>
+                <div class="form-group">
                     <div class="form-control">
                         <label>Kategori</label>
-                        <select>
-                            <option value="Cabang" selected>Cabang</option>
-                            <option value="Pusat">Pusat</option>
+                        <select disabled>
+                            <option value="{{ $loan->kategori_pengajuankredit }}" selected>{{ $loan->kategori_pengajuankredit }}</option>
                         </select>
                     </div>
-                </div>
-                <div class="form-group">
                     <div class="form-control">
                         <label>Tanggal Pinjaman</label>
-                        <input type="text" value="25 January 1990" disabled>
-                    </div>
-                    <div class="form-control">
-                        <label>Alamat</label>
-                        <input type="text" value="Tambakbayan" disabled>
+                        <input type="text" value="{{ \Carbon\Carbon::parse($loan->tanggal_pengajuankredit)->format('d-m-Y') }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-control">
-                        <label>Status</label>
-                        <select>
-                            <option value="Pengecekan" selected>Pengecekan</option>
-                            <option value="Disetujui">Disetujui</option>
-                            <option value="Ditolak">Ditolak</option>
-                        </select>
+                        <label>Alamat</label>
+                        <input type="text" value="{{ $nasabah->alamat_nasabah }}" disabled>
                     </div>
                     <div class="form-control">
+                        <label>Status</label>
+                        <select disabled>
+                            <option value="{{ $loan->status_pengajuankredit }}" selected>{{ $loan->status_pengajuankredit }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control">
                         <label>Konfirmasi</label>
-                        <input type="text" value="Zero" disabled>
+                        <input type="text" value="{{ $loan->konfirmasi_pengajuankredit }}" disabled>
                     </div>
                 </div>
             </div>

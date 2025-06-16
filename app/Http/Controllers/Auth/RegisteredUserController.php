@@ -62,7 +62,7 @@ class RegisteredUserController extends Controller
             'tanggal_survei' => ['nullable', 'date'],
 
             //tabel nasabah
-            'nik_nasabah' => ['required', 'string', 'min:16', 'max:16', 'unique:nasabah,nik_nasabah'], 
+            'nik_nasabah' => ['required', 'string', 'min:1', 'max:16', 'unique:nasabah,nik_nasabah'], 
             'tanggallahir_nasabah' => ['required', 'date'],
             'gender_nasabah' => ['required', 'string', 'in:Male,Female'],
             'pekerjaan_nasabah' => ['required', 'string', 'max:255'],

@@ -111,9 +111,62 @@
                     <input name="username_akun" type="text" id="username" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Username" required />
                 </div>
                 <div class="mb-5">
-                    <label for="address" class="block mb-2 text-sm font-normal text-[#13545C]">Address</label>
-                    <input name="alamat_nasabah" type="text" id="address" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Enter as stated on your ID card" required />
+                    <label for="address" class="block mb-2 text-sm font-normal text-[#13545C]">Kecamatan</label>
+                    <select name="alamat_nasabah" id="address" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                        <option value="" disabled selected>Pilih kecamatan sesuai KTP</option>
+
+                        <optgroup label="Cirebon Utara">
+                            <option value="Gunung Jati - Cirebon Utara">Gunung Jati</option>
+                            <option value="Kapetakan - Cirebon Utara">Kapetakan</option>
+                            <option value="Suranenggala - Cirebon Utara">Suranenggala</option>
+                            <option value="Plered - Cirebon Utara">Plered</option>
+                            <option value="Mundu - Cirebon Utara">Mundu</option>
+                            <option value="Astanajapura - Cirebon Utara">Astanajapura</option>
+                            <option value="Gebang - Cirebon Utara">Gebang</option>
+                        </optgroup>
+
+                        <optgroup label="Cirebon Timur">
+                            <option value="Losari - Cirebon Timur">Losari</option>
+                            <option value="Pabedilan - Cirebon Timur">Pabedilan</option>
+                            <option value="Babakan - Cirebon Timur">Babakan</option>
+                            <option value="Waled - Cirebon Timur">Waled</option>
+                            <option value="Ciledug - Cirebon Timur">Ciledug</option>
+                            <option value="Pasaleman - Cirebon Timur">Pasaleman</option>
+                            <option value="Pangenan - Cirebon Timur">Pangenan</option>
+                        </optgroup>
+
+                        <optgroup label="Cirebon Barat">
+                            <option value="Susukan - Cirebon Barat">Susukan</option>
+                            <option value="Gegesik - Cirebon Barat">Gegesik</option>
+                            <option value="Kaliwedi - Cirebon Barat">Kaliwedi</option>
+                            <option value="Arjawinangun - Cirebon Barat">Arjawinangun</option>
+                        </optgroup>
+
+                        <optgroup label="Cirebon Selatan">
+                            <option value="Beber - Cirebon Selatan">Beber</option>
+                            <option value="Greged - Cirebon Selatan">Greged</option>
+                            <option value="Talun - Cirebon Selatan">Talun</option>
+                            <option value="Sumber - Cirebon Selatan">Sumber</option>
+                            <option value="Dukupuntang - Cirebon Selatan">Dukupuntang</option>
+                        </optgroup>
+
+                        <optgroup label="Cirebon Tengah / Sekitar Kota">
+                            <option value="Kedawung - Cirebon Tengah">Kedawung</option>
+                            <option value="Weru - Cirebon Tengah">Weru</option>
+                            <option value="Klangenan - Cirebon Tengah">Klangenan</option>
+                            <option value="Jamblang - Cirebon Tengah">Jamblang</option>
+                        </optgroup>
+
+                        <optgroup label="Kota Cirebon">
+                            <option value="Harjamukti - Kota Cirebon">Harjamukti</option>
+                            <option value="Lemahwungkuk - Kota Cirebon">Lemahwungkuk</option>
+                            <option value="Kejaksan - Kota Cirebon">Kejaksan</option>
+                            <option value="Pekalipan - Kota Cirebon">Pekalipan</option>
+                            <option value="Kesambi - Kota Cirebon">Kesambi</option>
+                        </optgroup>
+                    </select>
                 </div>
+
                 <div class="mb-5">
                     <label for="number" class="block mb-2 text-sm font-normal text-[#13545C]">Phone Number</label>
                     <input name="nohp_nasabah" type="tel" id="address" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="+62xxxxxxxxxxx" required />

@@ -54,6 +54,8 @@ class NasabahController extends Controller{
         'tanggungan_nasabah' => $request->tanggungan_nasabah,
         'nama_nasabah' => $request->nama_nasabah,
 
+
+
     ]);
 
     return redirect()->back()->with('success', 'Data berhasil diperbarui!');
