@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('nohp_nasabah')->unique();
             $table->string('gender_nasabah');
             $table->date('tanggallahir_nasabah');
+            $table->string('kecamatan_nasabah');
             $table->text('alamat_nasabah');
             $table->string('pekerjaan_nasabah');
             $table->string('penghasilan_nasabah');

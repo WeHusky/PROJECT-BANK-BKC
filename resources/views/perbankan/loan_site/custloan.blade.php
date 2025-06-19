@@ -16,9 +16,9 @@
       }
     </style>
 </head>
-<body class="bg-gray-200 font-sans mb-20">
+<body class="bg-white font-sans mb-20">
   <!-- Header -->
-  <div class="flex px-7 py-8 bg-white mb-5 items-center">
+  <div class="flex px-7 py-8 bg-white mb-5 items-center shadow-sm">
     <a class="mr-3" href="{{ route('nasabah.homepage') }}">
         <img src="{{ asset('images/arrowblue.png') }}" alt="">
     </a>
@@ -28,7 +28,7 @@
  <div class="menu px-6">
   <!-- Notification 1 -->
   <a href="{{ route('nasabah.loan.application') }}">
-    <div class="bg-white rounded-[27px] w-full flex items-center py-2 px-6 mb-5">
+    <div class="bg-[#d6faff] rounded-[27px] w-full flex items-center py-2 px-6 mb-5">
       <div class="w-20 h-20 flex items-center mr-6">
           <img src="{{ asset('images/myloans.png') }}" class="w-full" alt="loanapp">
       </div>
@@ -39,7 +39,7 @@
     </div>
   </a>
   <a href="{{ route('nasabah.myloans') }}">
-    <div class="bg-white rounded-[27px] w-full flex items-center py-2 px-6 mb-5">
+    <div class="bg-[#d6faff] rounded-[27px] w-full flex items-center py-2 px-6 mb-5">
       <div class="w-20 h-20 flex items-center mr-6">
           <img src="{{ asset('images/loanapp.png') }}" class="w-full" alt="loanapp">
       </div>

@@ -40,81 +40,9 @@
                     <input name="tanggallahir_nasabah" type="date" id="ttl" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" required />
                 </div>
                 <div class="mb-5">
-                    <label for="gender" class="block mb-2 text-sm font-normal text-[#13545C]">Gender</label>
-                    <select name="gender_nasabah" id="gender" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
-                        <option value="" selected>Pick your gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
-                </div>
-                <div class="mb-5">
-                    <label for="job" class="block mb-2 text-sm font-normal text-[#13545C]">Job</label>
-                    <select name="pekerjaan_nasabah" id="job" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
-                        <option value="Software Engineer">Software Engineer</option>
-                        <option value="Doctor">Doctor</option>
-                        <option value="Teacher">Teacher</option>
-                        <option value="Accountant">Accountant</option>
-                        <option value="Mechanic">Mechanic</option>
-                        <option value="Nurse">Nurse</option>
-                        <option value="Electrician">Electrician</option>
-                        <option value="Plumber">Plumber</option>
-                        <option value="Designer">Designer</option>
-                        <option value="Manager">Manager</option>
-                        <option value="Architect">Architect</option>
-                        <option value="Artist">Artist</option>
-                        <option value="Chef">Chef</option>
-                        <option value="Engineer">Engineer</option>
-                        <option value="Entrepreneur">Entrepreneur</option>
-                        <option value="Lawyer">Lawyer</option>
-                        <option value="Pharmacist">Pharmacist</option>
-                        <option value="Pilot">Pilot</option>
-                        <option value="Scientist">Scientist</option>
-                        <option value="Unemployed" selected>Unemployed</option>
-                    </select>
-                </div>
-                <div class="mb-5">
-                    <label for="income" class="block mb-2 text-sm font-normal text-[#13545C]">Income Range</label>
-                    <select name="penghasilan_nasabah" id="income" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
-                        <option value="<1jt">Less than Rp1 million</option>
-                        <option value="1-3jt">Rp1 million - Rp3 million</option>
-                        <option value="3-5jt">Rp3 million - Rp5 million</option>
-                        <option value="5-10jt">Rp5 million - Rp10 million</option>
-                        <option value="10-20jt">Rp10 million - Rp20 million</option>
-                        <option value="20-50jt">Rp20 million - Rp50 million</option>
-                        <option value=">50jt">More than Rp50 million</option>
-                        <option value="No Income" selected>No income</option>
-                    </select>
-                </div>
-                <div class="mb-5">
-                    <label for="marriage" class="block mb-2 text-sm font-normal text-[#13545C]">Marriage Status</label>
-                    <select name="statuskawin_nasabah" id="marriage" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
-                        <option value="single" selected>Single</option>
-                        <option value="married">Married</option>
-                        <option value="divorced">Divorced</option>
-                        <option value="widowed">Widowed</option>
-                        <option value="separated">Separated</option>
-                        <option value="in-a-relationship">In a Relationship</option>
-                        <option value="engaged">Engaged</option>
-                        <option value="domestic-partnership">Domestic Partnership</option>
-                    </select>
-                </div>
-                <div class="mb-5">
-                    <label for="financialdependents" class="block mb-2 text-sm font-normal text-[#13545C]">Financial Dependents</label>
-                    <input name="tanggungan_nasabah" type="number" id="financialdependents" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" min="0" placeholder="Number of financial dependents" required />
-                </div>
-                <div class="mb-5">
-                    <label for="email" class="block mb-2 text-sm font-normal text-[#13545C]">Email Address</label>
-                    <input name="email_akun" type="email" id="email" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="name@email.com" required />
-                </div>
-                <div class="mb-5">
-                    <label for="username" class="block mb-2 text-sm font-normal text-[#13545C]">Username</label>
-                    <input name="username_akun" type="text" id="username" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Username" required />
-                </div>
-                <div class="mb-5">
-                    <label for="address" class="block mb-2 text-sm font-normal text-[#13545C]">Kecamatan</label>
-                    <select name="alamat_nasabah" id="address" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-                        <option value="" disabled selected>Pilih kecamatan sesuai KTP</option>
-
+                    <label for="kecamatan" class="block mb-2 text-sm font-normal text-[#13545C]">Sub-district</label>
+                    <select name="kecamatan_nasabah" id="kecamatan" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                        <option value="" disabled selected>Enter as stated on your ID card</option>
                         <optgroup label="Cirebon Utara">
                             <option value="Gunung Jati - Cirebon Utara">Gunung Jati</option>
                             <option value="Kapetakan - Cirebon Utara">Kapetakan</option>
@@ -166,10 +94,78 @@
                         </optgroup>
                     </select>
                 </div>
-
+                <div class="mb-5">
+                    <label for="address" class="block mb-2 text-sm font-normal text-[#13545C]">Address</label>
+                    <input name="alamat_nasabah" type="text" id="address" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Enter as stated on your ID card required"/>
+                </div>
+                <div class="mb-5">
+                    <label for="gender" class="block mb-2 text-sm font-normal text-[#13545C]">Gender</label>
+                    <select name="gender_nasabah" id="gender" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
+                        <option value="" selected>Pick your gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="mb-5">
+                    <label for="job" class="block mb-2 text-sm font-normal text-[#13545C]">Job</label>
+                    <select name="pekerjaan_nasabah" id="job" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
+                        <option value="Software Engineer">Software Engineer</option>
+                        <option value="Doctor">Doctor</option>
+                        <option value="Teacher">Teacher</option>
+                        <option value="Accountant">Accountant</option>
+                        <option value="Mechanic">Mechanic</option>
+                        <option value="Nurse">Nurse</option>
+                        <option value="Electrician">Electrician</option>
+                        <option value="Plumber">Plumber</option>
+                        <option value="Designer">Designer</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Architect">Architect</option>
+                        <option value="Artist">Artist</option>
+                        <option value="Chef">Chef</option>
+                        <option value="Engineer">Engineer</option>
+                        <option value="Entrepreneur">Entrepreneur</option>
+                        <option value="Lawyer">Lawyer</option>
+                        <option value="Pharmacist">Pharmacist</option>
+                        <option value="Pilot">Pilot</option>
+                        <option value="Scientist">Scientist</option>
+                        <option value="Unemployed" selected>Unemployed</option>
+                    </select>
+                </div>
+                <div class="mb-5">
+                    <label for="income" class="block mb-2 text-sm font-normal text-[#13545C]">Income Range</label>
+                    <select name="penghasilan_nasabah" id="income" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
+                        <option value="<1jt">Less than Rp1 million</option>
+                        <option value="1-3jt">Rp1 million - Rp3 million</option>
+                        <option value="3-5jt">Rp3 million - Rp5 million</option>
+                        <option value="5-10jt">Rp5 million - Rp10 million</option>
+                        <option value="10-20jt">Rp10 million - Rp20 million</option>
+                        <option value="20-50jt">Rp20 million - Rp50 million</option>
+                        <option value=">50jt">More than Rp50 million</option>
+                        <option value="No Income" selected>No income</option>
+                    </select>
+                </div>
+                <div class="mb-5">
+                    <label for="marriage" class="block mb-2 text-sm font-normal text-[#13545C]">Marriage Status</label>
+                    <select name="statuskawin_nasabah" id="marriage" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
+                        <option value="Single" selected>Single</option>
+                        <option value="Married">Married</option>
+                    </select>
+                </div>
+                <div class="mb-5">
+                    <label for="financialdependents" class="block mb-2 text-sm font-normal text-[#13545C]">Financial Dependents</label>
+                    <input name="tanggungan_nasabah" type="number" id="financialdependents" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" min="0" placeholder="Number of financial dependents" required />
+                </div>
+                <div class="mb-5">
+                    <label for="email" class="block mb-2 text-sm font-normal text-[#13545C]">Email Address</label>
+                    <input name="email_akun" type="email" id="email" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="name@email.com" required />
+                </div>
+                <div class="mb-5">
+                    <label for="username" class="block mb-2 text-sm font-normal text-[#13545C]">Username</label>
+                    <input name="username_akun" type="text" id="username" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="Username" required />
+                </div>
                 <div class="mb-5">
                     <label for="number" class="block mb-2 text-sm font-normal text-[#13545C]">Phone Number</label>
-                    <input name="nohp_nasabah" type="tel" id="address" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="+62xxxxxxxxxxx" required />
+                    <input name="nohp_nasabah" type="tel" id="address" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0" placeholder="08xxxxxxxxxxx" required />
                 </div>
                 <div class="mb-5">
                     <label for="password" class="block mb-2 text-sm font-normal text-[#13545C]">Password</label>

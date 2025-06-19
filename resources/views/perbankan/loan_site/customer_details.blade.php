@@ -108,8 +108,15 @@
       border: 1px solid #ccc;
       border-radius: 6px;
       background: #f0f0f0;
-      pointer-events: none;
+      /* HAPUS BARIS INI: pointer-events: none; */
     }
+
+    /* Tambahkan aturan baru ini untuk elemen yang benar-benar disabled */
+    input[disabled], select[disabled] {
+      pointer-events: none; /* Terapkan hanya untuk elemen dengan atribut 'disabled' */
+      opacity: 0.7; /* Opsional: tambahkan efek visual disabled */
+    }
+
     .full-width {
       width: 100%;
     }
@@ -293,7 +300,7 @@
   background: #ff6b6b;
   color: white;
 }
-    </style>
+</style>
 </head>
 <body>
     <div class="main" style="gap: 20px; flex-direction: column;">
@@ -437,8 +444,11 @@
                     </div>
                     <div class="form-control">
                         <label>Status</label>
-                        <select disabled>
-                            <option value="{{ $loan->status_pengajuankredit }}" selected>{{ $loan->status_pengajuankredit }}</option>
+                        <select>
+                            <option value="Under Review" {{ $loan->status_pengajuankredit == 'Under Review' ? 'selected' : '' }}>Under Review</option>
+                            <option value="Awaiting Date Confirmation" {{ $loan->status_pengajuankredit == 'Awaiting Date Confirmation' ? 'selected' : '' }}>Awaiting Date Confirmation</option>
+                            <option value="Survey Under Review" {{ $loan->status_pengajuankredit == 'Survey Under Review' ? 'selected' : '' }}>Survey Under Review</option>
+                            <option value="Loan Approved" {{ $loan->status_pengajuankredit == 'Loan Approved' ? 'selected' : '' }}>Loan Approved</option>
                         </select>
                     </div>
                 </div>

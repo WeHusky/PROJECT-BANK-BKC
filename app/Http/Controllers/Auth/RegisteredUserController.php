@@ -32,7 +32,7 @@ class RegisteredUserController extends Controller
             }
 
             // Format the account number with spaces every 5 digits
-            $accountNumber = implode(' ', str_split($accountNumber, 5));
+            $accountNumber = implode(' ', str_split($accountNumber, 4));
 
         } while (Nasabah::where('rekening_nasabah', $accountNumber)->exists());
 
@@ -69,6 +69,7 @@ class RegisteredUserController extends Controller
             'penghasilan_nasabah' => ['required', 'string', 'max:50'],
             'statuskawin_nasabah' => ['required', 'string', 'max:50'],
             'tanggungan_nasabah' => ['required', 'integer', 'min:0'],
+            'kecamatan_nasabah' => ['required', 'string', 'max:50'],
             'alamat_nasabah' => ['required', 'string', 'max:500'],
             'nohp_nasabah' => ['required', 'string', 'min:10', 'max:13', 'unique:nasabah,nohp_nasabah'], 
         ]);
@@ -142,6 +143,7 @@ class RegisteredUserController extends Controller
             'penghasilan_nasabah' => session('registration_data.penghasilan_nasabah'),
             'statuskawin_nasabah' => session('registration_data.statuskawin_nasabah'),
             'tanggungan_nasabah' => session('registration_data.tanggungan_nasabah'),
+            'kecamatan_nasabah' => session('registration_data.kecamatan_nasabah'),
             'alamat_nasabah' => session('registration_data.alamat_nasabah'),
             'nohp_nasabah' => session('registration_data.nohp_nasabah'),
         ]);

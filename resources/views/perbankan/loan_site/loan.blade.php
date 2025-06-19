@@ -17,7 +17,7 @@
       }
     </style>
 </head>
-<body class="bg-gray-200 font-sans mb-20">
+<body class="bg-gray-100 font-sans mb-20">
   <!-- Header -->
   <div class="flex px-7 py-8 bg-white items-center">
     <a class="mr-3" href="{{ route('nasabah.myloans') }}">
@@ -38,7 +38,7 @@
     <!--Lower Body-->
     <div class="px-7">
       <h2 class="text-[#29BBCF] font-semibold mb-3">Loan Information</h2>
-      <div class="bg-white flex flex-col border border-[#29BBCF] px-4 py-4 rounded-xl mb-7">
+      <div class="bg-white flex flex-col border border-gray-200 px-4 py-4 rounded-xl mb-7 shadow-sm">
         <div class="flex justify-between mb-3">
           <p>Loan ID</p>
           <p>{{ '#'.$pengajuan_kredit->id_pengajuankredit }}</p>
@@ -53,10 +53,46 @@
         </div>
         <div class="flex justify-between">
           <p>Apply Date</p>
-          <p>{{ $pengajuan_kredit->tanggal_pengajuankredit->format('d-m-Y') }}</p>
+          <p>{{ $pengajuan_kredit->tanggal_pengajuankredit->format('d/m/Y') }}</p>
         </div>
       </div>
-      <button class="text-white bg-[#ff6666] text-center w-full p-3 rounded-xl font-semibold">Cancel Loan Application</a>
+      <form action="{{ route('nasabah.loan.cancel', ['id' => $pengajuan_kredit->id_pengajuankredit]) }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel this loan application?');">
+          @csrf
+          <button type="submit" class="text-white bg-[#ff6666] text-center w-full p-3 rounded-xl font-semibold">
+              Cancel Loan Application
+          </button>
+      </form>
+    </div>    
+  @elseif ($pengajuan_kredit->status_pengajuankredit == 'Cancelled')
+    <!-- Upper Body -->
+    <div class="w-full h-auto bg-[#ff7e6d] flex flex-col px-7 py-8 mb-5">
+      <div class="flex items-center mb-3">
+        <img src="{{ asset('images/loan.png') }}" class="mr-3 h-8 w-10 [filter:brightness(0)_saturate(100%)_invert(44%)_sepia(97%)_saturate(7492%)_hue-rotate(346deg)_brightness(104%)_contrast(104%)]" alt="">
+        <h2 class="font-medium">You have cancelled loan application</h2>
+      </div>
+      <p class="font-extralight text-justify">Your request to cancel the loan application has been processed successfully. No further action is required from you.</p>
+    </div>
+    <!--Lower Body-->
+    <div class="px-7">
+      <h2 class="text-[#29BBCF] font-semibold mb-3">Loan Information</h2>
+      <div class="bg-white flex flex-col border border-gray-200 px-4 py-4 rounded-xl mb-7 shadow-sm">
+        <div class="flex justify-between mb-3">
+          <p>Loan ID</p>
+          <p>{{ '#'.$pengajuan_kredit->id_pengajuankredit }}</p>
+        </div>
+        <div class="flex justify-between mb-3">
+          <p>Loan Amount</p>
+          <p>Rp {{ number_format($pengajuan_kredit->nominal_pengajuankredit, 0, ',','.') }}</p>
+        </div>
+        <div class="flex justify-between mb-3">
+          <p>Loan Period (Month)</p>
+          <p>{{ $pengajuan_kredit->tenor }}</p>
+        </div>
+        <div class="flex justify-between">
+          <p>Apply Date</p>
+          <p>{{ $pengajuan_kredit->tanggal_pengajuankredit->format('d/m/Y') }}</p>
+        </div>
+      </div>
     </div>    
   @elseif ($pengajuan_kredit->status_pengajuankredit == 'Awaiting Date Confirmation')
     <!-- Upper Body -->
@@ -85,7 +121,7 @@
         </div>
         <div class="flex justify-between">
           <p>Apply Date</p>
-          <p>{{ $pengajuan_kredit->tanggal_pengajuankredit->format('d-m-Y') }}</p>
+          <p>{{ $pengajuan_kredit->tanggal_pengajuankredit->format('d/m/Y') }}</p>
         </div>
       </div>
     </div>
@@ -93,11 +129,12 @@
       <h2 class="text-[#29BBCF] font-semibold mb-3">Survey Date</h2>
       <div class="bg-white flex flex-col outline outline-1 outline-[#29BBCF] px-4 py-4 rounded-xl mb-7">
         <div class="flex justify-between">
-          <form action="" class="w-full">
+          <form action="{{ route('nasabah.loan', ['id' => $pengajuan_kredit->id_pengajuankredit]) }}" method="POST" class="w-full">
+            @csrf
             <div class="mb-5">
-              <input placeholder="Select a date for the on-spot survey" type="date" id="surveydate" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
+              <input name="tanggal_survei" placeholder="Select a date for the on-spot survey" type="date" id="surveydate" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
             </div>
-            <button type="button" class=" text-white bg-[#29BBCF] hover:bg-[#1f9cb4] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[13px] text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-colors duration-300">Confirm</button>
+            <button type="submit" class="text-white bg-[#29BBCF] hover:bg-[#1f9cb4] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-[13px] text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-colors duration-300">Confirm</button>
           </form>
         </div>
       </div>
@@ -107,9 +144,9 @@
     <div class="w-full h-auto bg-[#F0FFAD] flex flex-col px-7 py-8 mb-5">
       <div class="flex items-center mb-3">
         <img src="{{ asset('images/loan.png') }}" class="mr-3 h-8 w-10 [filter:brightness(0)_saturate(100%)_invert(85%)_sepia(59%)_saturate(1338%)_hue-rotate(328deg)_brightness(98%)_contrast(106%)]" alt="">
-        <h2 class="font-medium">Survey Completed – Under Review</h2>
+        <h2 class="font-medium">Survey Under Review</h2>
       </div>
-      <p class="font-extralight text-justify">Your survey has been completed. We are now reviewing your loan application.</p>
+      <p class="font-extralight text-justify">We are now reviewing your survey result.</p>
     </div>
     <!--Lower Body-->
     <div class="px-7">
@@ -129,7 +166,7 @@
         </div>
         <div class="flex justify-between mb-3">
           <p>Apply Date</p>
-          <p>{{ $pengajuan_kredit->tanggal_pengajuankredit->format('d-m-Y') }}</p>
+          <p>{{ $pengajuan_kredit->tanggal_pengajuankredit->format('d/m/Y') }}</p>
         </div>
         <div class="flex justify-between mb-3">
           <p>Survey Date</p>
@@ -139,7 +176,7 @@
         <script>
           const viewsurveyresultbutton = document.getElementById('surveyresultbutton');
           viewsurveyresultbutton.addEventListener('click', () => {
-            window.location.href = '{{  route('nasabah.viewsurveyresult') }}';
+            window.location.href = "{{  route('nasabah.viewsurveyresult', ['id' => $nasabah]) }}";
           });
         </script>
       </div>
@@ -171,7 +208,7 @@
         </div>
         <div class="flex justify-between mb-3">
           <p>Apply Date</p>
-          <p>{{ $pengajuan_kredit->tanggal_pengajuankredit->format('d-m-Y') }}</p>
+          <p>{{ $pengajuan_kredit->tanggal_pengajuankredit->format('d/m/Y') }}</p>
         </div>
         <div class="flex justify-between mb-3">
           <p>Survey Date</p>
@@ -181,7 +218,7 @@
         <script>
           const viewsurveyresultbutton = document.getElementById('surveyresultbutton');
           viewsurveyresultbutton.addEventListener('click', () => {
-            window.location.href = '{{  route('nasabah.viewsurveyresult') }}';
+            window.location.href = "{{  route('nasabah.viewsurveyresult', ['id' => $nasabah]) }}";
           });
         </script>
       </div>

@@ -111,7 +111,7 @@
 <div style="display: flex; gap: 20px; margin-bottom: 30px;">
   <div style="display: flex; align-items: center; background: white; padding: 20px 20px; border-radius: 25px;">
     <div style="background-color: #FFE0EB;border-radius: 50%; padding: 10px; margin-right: 16px;">
-    <img src="images/customerloanicon.png" alt="icon" style="width: 30px; height: 30px;">
+    <img src="{{ asset('images/customerloanicon.png')  }}" alt="icon" style="width: 30px; height: 30px;">
     </div>
     <div>
       <div style="font-size: 13px; color: #718EBF;">Customer Loans</div>

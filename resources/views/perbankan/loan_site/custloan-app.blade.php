@@ -76,6 +76,10 @@
                 <input name="tanggungan_nasabah" type="number" id="financialdependents" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" min="0" value="{{ $nasabahData->tanggungan_nasabah ?? '' }}" disabled/>
             </div>
             <div class="mb-5">
+                <label for="kecamatan" class="block mb-2 text-sm font-normal text-[#13545C]">Sub-district</label>
+                <input name="kecamatan_nasabah" type="text" id="kecamatan" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->kecamatan_nasabah ?? ''}}" disabled/>
+            </div>
+            <div class="mb-5">
                 <label for="address" class="block mb-2 text-sm font-normal text-[#13545C]">Address</label>
                 <input name="alamat_nasabah" type="text" id="address" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value="{{ $nasabahData->alamat_nasabah ?? ''}}" disabled/>
             </div>
@@ -139,7 +143,7 @@
     <!-- Dropdown isi -->
     <div x-show="open" x-transition class="absolute z-10 bg-white border border-[#29BBCF] rounded-md w-full mt-1 shadow-md max-h-60 overflow-y-auto">
         <label class="flex items-center px-4 py-2 cursor-pointer hover:bg-[#e6f7fa]">
-            <input type="radio" name="rekening_nasabah" value="{{ $nasabahData->rekening_nasabah }}" x-model="selected" class="form-radio text-[#29BBCF] mr-2">
+            <input type="radio" name="rekening_nasabah" value="{{ $nasabahData->rekening_nasabah }}" x-model="selected" class="form-radio text-[#29BBCF] mr-2" required>
             <span class="text-sm text-gray-800">{{ $nasabahData->rekening_nasabah }}</span>
         </label>
     </div>

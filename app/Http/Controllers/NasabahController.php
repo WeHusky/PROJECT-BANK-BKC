@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nasabah;
+use App\Models\Notifications;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -9,6 +10,11 @@ use Illuminate\Http\Request;
 class NasabahController extends Controller{
     public function showLandingPage()
     {
+        $user = Auth::guard('nasabah')->user();
+        if($user) {
+            // Redirect to homepage if user is already logged in
+            return redirect()->route('nasabah.homepage');
+        }
         return view('auth.landing');
     }
     public function showHomePage()
@@ -19,7 +25,8 @@ class NasabahController extends Controller{
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
         }
         $nasabah = Nasabah::where('id_akun', $user->id_akun)->first();
-        return view('menu.homepage', compact('nasabah'));
+        $notifications = Notifications::where('id_akun', $user->id_akun)->get();
+        return view('menu.homepage', compact('nasabah','notifications'));
     }
     public function showAccountPage()
     {
@@ -37,7 +44,16 @@ class NasabahController extends Controller{
     {
         $user = Auth::guard('nasabah')->user();
         $nasabah = Nasabah::where('id_akun', $user->id_akun)->first();
-        return view('menu.notification', compact('nasabah'));
+        $notifications = Notifications::where('id_akun', $user->id_akun)->get();
+        return view('menu.notification', compact('nasabah','notifications'));
+    }
+    public function markSeen(Request $request)
+    {
+        $notification =  Notifications::findOrFail($request->id_notifikasi);
+        $notification->update([
+            'status_notifikasi' => true,
+        ]);
+        return redirect()->route($notification->link_notifikasi);
     }
 
     public function update(Request $request, $id): RedirectResponse

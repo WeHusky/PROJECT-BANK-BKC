@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Notifications;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 
 class Akun extends Authenticatable
 {
@@ -74,5 +75,9 @@ class Akun extends Authenticatable
 
     public function nasabah(){
         return $this->hasOne(Nasabah::class, 'id_akun', 'id_akun');
+    }
+
+    public function notifikasi(){
+        return $this->hasMany(Notifications::class, 'id_akun', 'id_akun');
     }
 }

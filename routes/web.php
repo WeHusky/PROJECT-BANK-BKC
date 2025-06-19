@@ -57,16 +57,16 @@ Route::middleware(['auth:nasabah'])->group(function () {
     Route::get('/account', [NasabahController::class, 'showAccountPage'])->name('nasabah.account');
     Route::get('/account/settings', [NasabahController::class, 'showAccountSettingsPage'])->name('nasabah.accountsettings');
     Route::get('/notifications', [NasabahController::class, 'showNotificationsPage'])->name('nasabah.notifications');
+    Route::post('/notifications', [NasabahController::class, 'markSeen']);
     Route::get('/loan', [CustomerLoanController::class, 'showCustomerLoansMenu'])->name('nasabah.loans');
     Route::get('/loan/application', [CustomerLoanController::class, 'showCustomerLoanApplication'])->name('nasabah.loan.application');
     Route::post('/loan/application', [CustomerLoanController::class, 'submitLoan']);
     Route::get('/loan/sukses', [CustomerLoanController::class, 'showCustomerLoanSuccess'])->name('nasabah.custloan-sukses');
     Route::get('/loans/myloans', [CustomerLoanController::class, 'showCustomerLoans'])->name('nasabah.myloans');
-    Route::get('/loans/myloans/1', [CustomerLoanController::class, 'showCustomerLoan'])->name('nasabah.loan');
-    Route::get('/loans/myloans/2', [CustomerLoanController::class, 'showCustomerLoan2'])->name('nasabah.loan2');
-    Route::get('/loans/myloans/3', [CustomerLoanController::class, 'showCustomerLoan3'])->name('nasabah.loan3');
-    Route::get('/loans/myloans/4', [CustomerLoanController::class, 'showCustomerLoan4'])->name('nasabah.loan4');
-    Route::get('/loans/myloans/3/surveyresult/', [CustomerLoanController::class, 'showCustomerSurveyResult'])->name('nasabah.viewsurveyresult');
+    Route::get('/loans/myloans/{id}', [CustomerLoanController::class, 'showCustomerLoan'])->name('nasabah.loan');
+    Route::post('/loan/{id}', [CustomerLoanController::class, 'cancelLoan'])->name('nasabah.loan.cancel');
+    Route::post('/loans/myloans/{id}', [CustomerLoanController::class, 'surveyDateConfirmation']);
+    Route::get('/loans/myloans/{id}/surveyresult', [CustomerLoanController::class, 'showCustomerSurveyResult'])->name('nasabah.viewsurveyresult');
     Route::put('/nasabah/{id}', [NasabahController::class, 'update'])->name('nasabah.update');
 });
 
