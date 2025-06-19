@@ -30,23 +30,23 @@
     <div class="bg-white flex flex-col outline outline-1 outline-[#29BBCF] px-4 py-4 rounded-xl mb-7">
       <div class="flex justify-between mb-3">
         <p>Survey Date</p>
-        <p>28/03/2025</p>
+        <p>{{ $survei->tanggal_survei->format('d/m/Y') }}</p>
       </div>
       <div class="flex justify-between mb-3">
         <p>House Condition</p>
-        <a href=""><img class="w-4" src="{{ asset('images/download-button-svgrepo-com.svg') }}" alt=""></a>
+        <a href=""><img class="w-4" alt="" src="{{ asset('images/download-button-svgrepo-com.svg') }}" alt=""></a>
       </div>
       <div class="flex justify-between mb-3">
         <p>Economy Condition</p>
-        <p>Poor</p>
+        <p>{{ $survei->kondisi_ekonomi }}</p>
       </div>
         <div class="flex flex-col justify-between mb-3">
         <p class="mb-2">Reason</p>
         <textarea 
-          name="economycondition" 
+          name="alasan" 
           rows="4"
           class="w-full px-4 py-2 border border-gray-300 rounded-md" disabled
-        >orkay
+        >{{ $survei->alasan_peminjaman }}
         </textarea>
       </div>
     <script>

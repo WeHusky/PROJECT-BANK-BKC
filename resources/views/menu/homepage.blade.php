@@ -63,21 +63,26 @@
     }
   </style>
 </head>
-<body class="bg-gray-200 font-sans mb-20">
+<body class="bg-white font-sans mb-20">
   <!-- Header -->
-  <div class="flex justify-between items-center px-7 py-8 bg-white mb-5">
+  <div class="flex justify-between items-center px-7 py-8 bg-white mb-5 shadow-sm">
     <h1 class="font-extrabold text-3xl text-[#13545C]">Home Page</h1>
     <div class="relative">
       <a href="{{ route('nasabah.notifications') }}">
         <img class="w-6" src="{{ asset('images/bell.png') }}" alt="">
-        <span class="absolute -bottom-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">1</span>
+        @php
+          $hasNotifications = $notifications->where('status_notifikasi', false)->count()
+        @endphp
+        @if ($hasNotifications > 0)
+          <span class="absolute -bottom-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">{{ $hasNotifications }}</span>
+        @endif
       </a>
     </div>
   </div>
 
     <!-- Card -->
     <div class="px-7 w-full md:max-w-sm mx-auto">
-        <div class="bg-white p-4 rounded-[17px] ">
+        <div class="bg-white p-4 rounded-[17px] border-gray-200 border">
         <p class="text-[#13545C] mb-2 font-semibold">My Card</p>
         <div class="creditcard-container">
         <div class="relative rounded-[12px] overflow-hidden w-full h-[170px] text-white font-sans shadow-lg"
@@ -136,18 +141,18 @@
   </div>
 
   <!-- Actions as Buttons -->
-<div class="grid grid-cols-4 gap-2 px-7 py-6 text-center text-sm w-full md:max-w-sm mx-auto">
+<div class="grid grid-cols-4  justify-center gap-2 px-7 py-6 text-center text-sm w-full md:max-w-sm mx-auto">
   <button type="button" class="flex flex-col items-center focus:outline-none">
-    <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
+    <div class="bg-violet-200 p-3 rounded-full w-[75px] h-[75px] flex justify-center items-center">
       <img src="{{ asset('images/balance.png') }}" alt="">
     </div>
-    <span class="mt-2 text-[#13545C] font-medium">Balance</span>
+    <span class="mt-2 text-black font-medium">Balance</span>
   </button>
   <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.loans') }}'" class="flex flex-col items-center focus:outline-none">
-    <div class="bg-white p-3 rounded-xl w-[75px] h-[75px] flex justify-center items-center">
+    <div class="bg-amber-100 p-3 rounded-full w-[75px] h-[75px] flex justify-center items-center">
       <img src="{{ asset('images/loan.png') }}" alt="">
     </div>
-    <span class="mt-2 text-[#13545C] font-medium">Loan</span>
+    <span class="mt-2 text-black font-medium">Loan</span>
   </button>
 </div>
 </body>

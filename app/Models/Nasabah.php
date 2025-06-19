@@ -24,6 +24,7 @@ class Nasabah extends Model
         'penghasilan_nasabah', // <-- Ganti sesuai nama kolom di migrasi
         'statuskawin_nasabah',
         'tanggungan_nasabah',
+        'kecamatan_nasabah',
         'alamat_nasabah',
         'nohp_nasabah',
         'card_type',

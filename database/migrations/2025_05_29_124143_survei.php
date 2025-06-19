@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('Survei', function (Blueprint $table) {
             $table->increments('id_survei');
-            $table->unsignedInteger('id_komite');
-            $table->unsignedInteger('id_nasabah');
-            $table->text('alasan_peminjaman');
-            $table->string('kondisi_rumah');
-            $table->string('kondisi_ekonomi');
-
+            $table->date('tanggal_survei')->nullable();
+            $table->unsignedInteger('id_komite')->nullable();
+            $table->unsignedInteger('id_nasabah')->nullable();
+            $table->text('alasan_peminjaman')->nullable();
+            $table->string('kondisi_rumah')->nullable();
+            $table->string('kondisi_ekonomi')->nullable();
             $table->foreign('id_komite')->references('id_komite')->on('Komite')->onDelete('cascade');
             $table->foreign('id_nasabah')->references('id_nasabah')->on('Nasabah')->onDelete('cascade');
         });//

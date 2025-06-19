@@ -65,11 +65,12 @@
         }
     </style>
 </head>
-<body class="bg-white font-sans mb-20 shadow-sm">
+<body class="bg-white font-sans shadow-sm">
       <!-- Header -->
   <div class="flex justify-between items-center px-7 py-8 bg-white shadow-sm">
     <h1 class="font-extrabold text-3xl text-[#13545C]">Account</h1>
   </div>
+
     <div class="">
         <div class="h-auto flex flex-col">
             <div class="py-8 px-7 flex">
@@ -98,10 +99,7 @@
                 </form>
                 <hr>
             </div>
-
-            </div>
+        </div>
     </div>
-
-
 </body>
 </html>

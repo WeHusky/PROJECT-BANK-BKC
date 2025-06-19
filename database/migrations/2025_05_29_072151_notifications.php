@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('id_akun');
             $table->foreign('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
             $table->timestamps();
+            $table->boolean('status_notifikasi')->default(false);
         });//
     }
 

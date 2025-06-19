@@ -18,7 +18,7 @@
     border-top: 1px solid #29BBCF;
     border-top-left-radius: 2.5rem;
     border-top-right-radius: 2.5rem;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -2px 5px rgb(255, 255, 255);
   }
   .navbar-menu {
     display: flex;
@@ -53,6 +53,7 @@
 
         <!-- Home -->
         <a href="{{ route('nasabah.homepage') }}" class="navbar-item {{ request()->is('homepage') ? 'active' : '' }}">
+      
         <span class="material-symbols-rounded text-xl">home</span>
         <span class="mt-1">Home</span>
         </a>
