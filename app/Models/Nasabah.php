@@ -28,6 +28,7 @@ class Nasabah extends Model
         'alamat_nasabah',
         'nohp_nasabah',
         'card_type',
+        'saldo_nasabah',
     ];
 
     protected $casts = [

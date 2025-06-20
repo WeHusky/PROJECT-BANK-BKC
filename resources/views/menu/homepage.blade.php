@@ -142,7 +142,7 @@
 
   <!-- Actions as Buttons -->
 <div class="grid grid-cols-4  justify-center gap-2 px-7 py-6 text-center text-sm w-full md:max-w-sm mx-auto">
-  <button type="button" class="flex flex-col items-center focus:outline-none">
+  <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.balance') }}'" class="flex flex-col items-center focus:outline-none">
     <div class="bg-violet-200 p-3 rounded-full w-[75px] h-[75px] flex justify-center items-center">
       <img src="{{ asset('images/balance.png') }}" alt="">
     </div>
