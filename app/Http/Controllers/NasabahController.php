@@ -47,13 +47,19 @@ class NasabahController extends Controller{
         $notifications = Notifications::where('id_akun', $user->id_akun)->get();
         return view('menu.notification', compact('nasabah','notifications'));
     }
+    public function showBalancePage()
+    {
+        $akun = Auth::guard('nasabah')->user();
+        $nasabah = Nasabah::where('id_akun', $akun->id_akun)->first();
+        return view('perbankan.loan_site.balance', compact('nasabah'));
+    }
     public function markSeen(Request $request)
     {
         $notification =  Notifications::findOrFail($request->id_notifikasi);
         $notification->update([
             'status_notifikasi' => true,
         ]);
-        return redirect()->route($notification->link_notifikasi);
+        return redirect($notification->link_notifikasi);
     }
 
     public function update(Request $request, $id): RedirectResponse

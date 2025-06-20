@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('penghasilan_nasabah');
             $table->integer('tanggungan_nasabah');
             $table->string('statuskawin_nasabah');
+            $table->integer('saldo_nasabah')->default(0);
 
             $table->foreign('id_akun')->references('id_akun')->on('akun')->onDelete('cascade');
         });//

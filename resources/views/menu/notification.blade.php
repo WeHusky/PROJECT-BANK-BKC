@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bank BKC</title>
+  <title>BKC - Notifications</title>
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   <link rel="stylesheet" href="{{ asset('css/notification.css') }}">
   <script src="//unpkg.com/alpinejs" defer></script>
@@ -31,27 +31,32 @@
         <form action="{{ route('nasabah.notifications') }}" method="POST" id="notificationForm">
           @csrf
           <input type="hidden" name="id_notifikasi" value="{{ $notification->id_notifikasi }}">
-          <a id="notification" href="{{ $notification->link_notifikasi }}" class="mb-5 bg-gray-100 border border-gray-200 rounded-[27px] px-6 flex items-center">
-            <div class="w-20 max-h-20 flex items-center">
+          <div id="notification" 
+          x-data="{ open:false }"
+          class="mb-5 bg-gray-100 border border-gray-200 rounded-[27px] px-6 flex items-center transition-all duration-500 ease-in-out overflow-hidden"
+          x-bind:style="open ? 'max-height: 400px;' : 'max-height: 200px;'">
+            <div class="w-20 h-20 flex items-center">
               <img src="{{ asset('images/loan.png') }}" alt="">
             </div>
             <div class="w-full flex flex-col items-center py-2">
                 <div class="flex">
                   <div class="flex flex-col">
-                    <div class="flex justify-between items-center">
-                      <p class="text-[16px] font-semibold">{{ $notification->jenis_notifikasi }}</p>
-                      <div class="flex items-center justify-end">
-                        <p class="text-right text-[13px]">{{ $notification->formatted_timestamp }}</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" :class="{ 'rotate-90': open }" class="w-5 ml-2 text-gray-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
+                      <div class="flex justify-between items-center">
+                        <p class="text-[16px] font-semibold">{{ $notification->jenis_notifikasi }}</p>
+                        <div class="flex items-center justify-end">
+                            <p class="text-right text-[13px]">{{ $notification->formatted_timestamp }}</p>
+                            <button @click.stop="open = !open" class="active:bg-gray-200 ml-2 rounded-full" id="toggleButton">
+                              <svg xmlns="http://www.w3.org/2000/svg" :class="{ 'rotate-90': open }" class="w-5 text-gray-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                              </svg>
+                            </button>
+                        </div>
                       </div>
-                    </div>
-                    <p class="text-[16px] font-light text-justify">{{ $notification->truncated_pesan }}</p>
+                      <p id="deskripsi_notifikasi" class="text-[16px] font-light text-justify" x-text="open ? @js($notification->deskripsi_notifikasi) : @js($notification->truncated_pesan)">{{ $notification->truncated_pesan }}</p>
                   </div>
                 </div>
             </div>
-          </a>
+          </div>
         </form>
       @endforeach
       @if ($notifications->where('status_notifikasi', true)->isNotEmpty())
@@ -60,7 +65,11 @@
     @endif
     @foreach ($notifications->sortByDesc('created_at')->where('status_notifikasi', true) as $notification)
       <input type="hidden" name="id_notifikasi" value="{{ $notification->id_notifikasi }}">
-      <a id="notification" href="{{ $notification->link_notifikasi }}" class="mb-5 bg-gray-100 border border-gray-200 rounded-[27px] px-6 flex items-center">
+      <div id="notification" 
+      @click="window.location.href='{{ $notification->link_notifikasi }}'" 
+      x-data="{ open:false }"
+      class="mb-5 bg-gray-100 border border-gray-200 rounded-[27px] px-6 flex items-center transition-all duration-500 ease-in-out overflow-hidden"
+      x-bind:style="open ? 'max-height: 400px;' : 'max-height: 200px;'">
         <div class="w-20 h-20 flex items-center">
           <img src="{{ asset('images/loan.png') }}" alt="">
         </div>
@@ -71,18 +80,18 @@
                     <p class="text-[16px] font-semibold">{{ $notification->jenis_notifikasi }}</p>
                     <div class="flex items-center justify-end">
                         <p class="text-right text-[13px]">{{ $notification->formatted_timestamp }}</p>
-                        <button class="active:bg-gray-200 ml-2 rounded-full">
+                        <button @click.stop="open = !open" class="active:bg-gray-200 ml-2 rounded-full" id="toggleButton">
                           <svg xmlns="http://www.w3.org/2000/svg" :class="{ 'rotate-90': open }" class="w-5 text-gray-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                           </svg>
                         </button>
-                      </div>
+                    </div>
                   </div>
                   <p id="deskripsi_notifikasi" class="text-[16px] font-light text-justify" x-text="open ? @js($notification->deskripsi_notifikasi) : @js($notification->truncated_pesan)">{{ $notification->truncated_pesan }}</p>
               </div>
             </div>
         </div>
-      </a>
+      </div>
     @endforeach
   </div>
   <script>
@@ -97,9 +106,17 @@
 
           // Submit form
           Form.submit();
+
+          const toggleButton = document.getElementById('toggleButton');
+          if (toggleButton) {
+              toggleButton.addEventListener('click', function(event) {
+                  event.stopPropagation(); // Stop propagation to prevent notificationDiv's click listener
+                                          // from firing when the toggle button is clicked.
+                  // Alpine.js already handles the 'open' state change.
+              });
+          }
         });
-      }
-    });
+      });
   </script>
 </body>
 </html>

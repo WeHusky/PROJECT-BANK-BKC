@@ -97,7 +97,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]">Address</label>
-                    <input type="text" class="block bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full px-3 py-2" value="{{ $nasabah->alamat_nasabah }}" disabled>
+                    <input name="alamat_nasabah" type="text" class="block bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full px-3 py-2" value="{{ $nasabah->alamat_nasabah }}" disabled>
                 </div>                
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="kecamatann">Sub-district</label>

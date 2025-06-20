@@ -134,13 +134,13 @@
                 <div class="mb-5">
                     <label for="income" class="block mb-2 text-sm font-normal text-[#13545C]">Income Range</label>
                     <select name="penghasilan_nasabah" id="income" class="bg-gray-50 border border-[#29BBCF] text-gray-900 text-sm rounded-[30px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-0">
-                        <option value="<1jt">Less than Rp1 million</option>
-                        <option value="1-3jt">Rp1 million - Rp3 million</option>
-                        <option value="3-5jt">Rp3 million - Rp5 million</option>
-                        <option value="5-10jt">Rp5 million - Rp10 million</option>
-                        <option value="10-20jt">Rp10 million - Rp20 million</option>
-                        <option value="20-50jt">Rp20 million - Rp50 million</option>
-                        <option value=">50jt">More than Rp50 million</option>
+                        <option value="Less than Rp1 million">Less than Rp1 million</option>
+                        <option value="Rp1 million - Rp3 million">Rp1 million - Rp3 million</option>
+                        <option value="Rp3 million - Rp5 million">Rp3 million - Rp5 million</option>
+                        <option value="Rp5 million - Rp10 million">Rp5 million - Rp10 million</option>
+                        <option value="Rp10 million - Rp20 million">Rp10 million - Rp20 million</option>
+                        <option value="Rp20 million - Rp50 million">Rp20 million - Rp50 million</option>
+                        <option value="More than Rp50 million">More than Rp50 million</option>
                         <option value="No Income" selected>No income</option>
                     </select>
                 </div>

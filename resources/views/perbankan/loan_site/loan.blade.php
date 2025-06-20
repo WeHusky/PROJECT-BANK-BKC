@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BKC - My Loans</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="{{ asset('css/myloans.css') }}">
     @vite('resources/css/app.css')
@@ -20,9 +20,9 @@
 <body class="bg-gray-100 font-sans mb-20">
   <!-- Header -->
   <div class="flex px-7 py-8 bg-white items-center">
-    <a class="mr-3" href="{{ route('nasabah.myloans') }}">
+    <button onclick="window.history.back()" class="mr-3" href="{{ route('nasabah.myloans') }}">
         <img src="{{ asset('images/arrowblue.png') }}" alt="">
-    </a>
+    </button>
     <h1 class="font-extrabold text-3xl text-[#13545C]">My Loans</h1>
   </div>
   
