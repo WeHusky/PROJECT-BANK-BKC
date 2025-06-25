@@ -21,11 +21,13 @@ class CustomerLoanController extends Controller
     }
     public function showCustomerLoanApplication()
     {
-        $nasabahData = null;
         $loggedInAkun = Auth::guard('nasabah')->user();
         $nasabahData = Nasabah::where('id_akun', $loggedInAkun->id_akun)->first();
+        $historyPengajuan = Pengajuan_Kredit::where('id_nasabah', $nasabahData->id_nasabah)
+            ->orderBy('tanggal_pengajuankredit', 'desc')
+            ->get();
 
-        return view('perbankan.loan_site.custloan-app', compact('nasabahData'));
+        return view('perbankan.loan_site.custloan-app', compact('nasabahData', 'historyPengajuan'));
     }
     public function submitLoan(Request $request){
         $loggedInAkun = Auth::guard('nasabah')->user();

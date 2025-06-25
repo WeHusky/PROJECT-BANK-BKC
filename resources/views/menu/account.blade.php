@@ -6,100 +6,69 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bank BKC</title>
+    <title>Bank BKC - Account</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link rel="stylesheet" href="{{ asset('css/warna.css') }}">
     @vite('resources/css/app.css')
     <style>
-        .action-btn {
-        z-index: 1;
-        position: relative;
-        font-size: inherit;
-        font-family: inherit;
-        color: white;
-        outline: none;
-        border: none;
-        background: none; /* remove background if hover is only for icon */
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+        .glass {
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            background-color: rgba(255, 255, 255, 0.75);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        /* Style for icon container */
+        .transition-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
         .icon-hover {
-        background-color: white;
-        padding: 1em;
-        border-radius: 0.75rem;
-        width: 75px;
-        height: 75px;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+            transition: all 0.3s ease;
         }
 
-        /* Hover effect only inside the icon */
-        .icon-hover::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        bottom: -50%;
-        width: 1.25em;
-        background-color: hsla(0, 100%, 100%, 9.2);
-        transform: translate3d(-525%, 0, 0) rotate(35deg);
-        z-index: 1;
-        }
-
-        .icon-hover:hover::after {
-        transition: transform 0.45s ease-in-out;
-        transform: translate3d(200%, 0, 0) rotate(35deg);
-        }
-
-        .icon-hover img {
-        position: relative;
-        z-index: 1;
+        .icon-hover:hover {
+            transform: rotate(8deg) scale(1.1);
         }
     </style>
 </head>
-<body class="bg-white font-sans shadow-sm">
-      <!-- Header -->
-  <div class="flex justify-between items-center px-7 py-8 bg-white shadow-sm">
-    <h1 class="font-extrabold text-3xl text-[#13545C]">Account</h1>
-  </div>
+<body class="bg-gradient-to-tr from-[#E0F7FA] to-[#FFFFFF] min-h-screen font-sans text-gray-800">
+    <!-- Header -->
+    <header class="bg-white/80 shadow-sm backdrop-blur sticky top-0 z-10 px-6 py-5 flex justify-between items-center">
+        <h1 class="text-3xl font-extrabold text-[#13545C]">Account</h1>
+    </header>
 
-    <div class="">
-        <div class="h-auto flex flex-col">
-            <div class="py-8 px-7 flex">
-                <div class="bg-[#29BBCF] w-14 h-14 mr-5 rounded-full flex items-center justify-center">
-                    <p class="text-white font-medium text-xl">{{ $nasabah->nama_nasabah[0] }}</p>
-                </div>
-                <div>
-                    <p class="text-xl font-medium">{{ $nasabah->nama_nasabah }}</p>
-                    <p class="text-md font-light">{{'@'.$user->username_akun }}</p>
-                    <p class="text-md font-light">{{ $nasabah->nohp_nasabah }}</p>
-                </div>
+    <!-- Profile Section -->
+    <section class="px-6 py-8">
+        <div class="glass p-6 flex items-center space-x-5 shadow-md transition-card">
+            <div class="bg-[#29BBCF] w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow">
+                {{ $nasabah->nama_nasabah[0] }}
             </div>
-            <div class="rounded-xl">
-                <hr>
-                <a class="bg-white h-auto px-7 py-4 flex" href="{{ route('nasabah.accountsettings') }}">
-                    <img src="{{ asset('images/settings-svgrepo-com.svg')}}" alt="" class="w-5 mr-5">
-                    <p class="font-medium">Account Settings</p>
-                </a>
-                <hr>
-                <form action="{{ route('logout') }}" method="POST" class="mb-0">
-                    @csrf
-                    <button type="submit" class="bg-white h-auto px-7 py-4 flex w-full items-center">
-                        <img src="{{ asset('images/log-out-svgrepo-com.svg') }}" alt="" class="w-5 mr-5 red">
-                        <p class="font-medium">Log Out</p>
-                    </button>
-                </form>
-                <hr>
+            <div>
+                <p class="text-2xl font-semibold text-[#13545C]">{{ $nasabah->nama_nasabah }}</p>
+                <p class="text-sm text-gray-600">{{ '@' . $user->username_akun }}</p>
+                <p class="text-sm text-gray-600">{{ $nasabah->nohp_nasabah }}</p>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="px-6 pb-10">
+        <div class="glass shadow-lg divide-y overflow-hidden">
+            <a href="{{ route('nasabah.accountsettings') }}" class="flex items-center px-6 py-5 hover:bg-white/60 transition-all">
+                <img src="{{ asset('images/settings-svgrepo-com.svg')}}" alt="Settings" class="w-6 h-6 mr-4 icon-hover">
+                <span class="font-medium text-gray-800 text-base">Account Settings</span>
+            </a>
+
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="w-full flex items-center px-6 py-5 text-left hover:bg-white/60 transition-all">
+                    <img src="{{ asset('images/log-out-svgrepo-com.svg') }}" alt="Logout" class="w-6 h-6 mr-4 icon-hover">
+                    <span class="font-medium text-gray-800 text-base">Log Out</span>
+                </button>
+            </form>
+        </div>
+    </section>
 </body>
 </html>
