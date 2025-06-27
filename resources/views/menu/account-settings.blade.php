@@ -8,6 +8,7 @@
     <title>Bank BKC</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="{{ asset('css/warna.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animation.css') }}">
     @vite('resources/css/app.css')
     <style>
         .action-btn {
@@ -64,7 +65,7 @@
 <body class="bg-[#29BCCF] font-sans h-screen">
     <!-- Header -->
     <div class="flex px-7 py-8 bg-white items-center">
-        <button class="mr-3" onclick="window.history.back()">
+        <button class="mr-3 pop" onclick="window.location.href='{{ route('nasabah.account') }}'">
             <img src="{{ asset('images/arrowblue.png') }}" alt="">
         </button>
         <h1 class="font-extrabold text-3xl text-[#13545C]">Account Settings</h1>

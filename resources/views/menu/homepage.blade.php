@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bank BKC</title>
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="{{ asset('css/animation.css') }}">
   @vite('resources/css/app.css')
   <style>
     .action-btn {
@@ -69,7 +70,7 @@
     <h1 class="font-extrabold text-3xl text-[#13545C]">Home Page</h1>
     <div class="relative">
       <a href="{{ route('nasabah.notifications') }}">
-        <img class="w-6" src="{{ asset('images/bell.png') }}" alt="">
+        <img class="w-6 pop" src="{{ asset('images/bell.png') }}" alt="">
         @php
           $hasNotifications = $notifications->where('status_notifikasi', false)->count()
         @endphp

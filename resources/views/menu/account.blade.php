@@ -85,14 +85,14 @@
             </div>
             <div class="rounded-xl">
                 <hr>
-                <a class="bg-white h-auto px-7 py-4 flex" href="{{ route('nasabah.accountsettings') }}">
+                <a class="bg-white h-auto px-7 py-4 flex active:bg-gray-200  transition-all duration-200 ease-in-out" href="{{ route('nasabah.accountsettings') }}">
                     <img src="{{ asset('images/settings-svgrepo-com.svg')}}" alt="" class="w-5 mr-5">
                     <p class="font-medium">Account Settings</p>
                 </a>
                 <hr>
                 <form action="{{ route('logout') }}" method="POST" class="mb-0">
                     @csrf
-                    <button type="submit" class="bg-white h-auto px-7 py-4 flex w-full items-center">
+                    <button type="submit" class="bg-white h-auto px-7 py-4 flex w-full items-center active:bg-gray-200 transition-all duration-200 ease-in-out">
                         <img src="{{ asset('images/log-out-svgrepo-com.svg') }}" alt="" class="w-5 mr-5 red">
                         <p class="font-medium">Log Out</p>
                     </button>

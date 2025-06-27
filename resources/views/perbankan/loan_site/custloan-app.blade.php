@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank BKC - Loan Application</title>
+    <title>BKC - Loan Application</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="{{ asset('css/loanappbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custloanapp.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animation.css') }}">
     <script src="//unpkg.com/alpinejs" defer></script>
     @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-200 font-sans min-h-screen pb-20">
     <!-- Header -->
     <div class="flex px-7 py-8 bg-white mb-5 items-center sticky top-0 z-10 shadow-sm">
-        <button class="mr-3" id="backButton">
+        <button class="mr-3 pop" id="backButton">
             <img src="{{ asset('images/arrowblue.png') }}" alt="">
         </button>
         <h1 class="font-extrabold text-3xl text-[#13545C]">Loan Application</h1>
