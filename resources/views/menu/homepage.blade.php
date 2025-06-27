@@ -64,7 +64,7 @@
     }
   </style>
 </head>
-<body class="bg-white font-sans mb-20">
+<body class="bg-gradient-to-tr from-[#F9FAFB] to-[#E0F2F1] font-sans text-gray-800 mb-20">
   <!-- Header -->
   <div class="flex justify-between items-center px-7 py-8 bg-white mb-5 shadow-sm">
     <h1 class="font-extrabold text-3xl text-[#13545C]">Home Page</h1>
@@ -75,7 +75,7 @@
           $hasNotifications = $notifications->where('status_notifikasi', false)->count()
         @endphp
         @if ($hasNotifications > 0)
-          <span class="absolute -bottom-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">{{ $hasNotifications }}</span>
+          <span id="notif-badge" class="absolute -bottom-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">{{ $hasNotifications }}</span>
         @endif
       </a>
     </div>
@@ -141,20 +141,69 @@
     </div>
   </div>
 
-  <!-- Actions as Buttons -->
-<div class="grid grid-cols-4  justify-center gap-2 px-7 py-6 text-center text-sm w-full md:max-w-sm mx-auto">
-  <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.balance') }}'" class="flex flex-col items-center focus:outline-none">
-    <div class="bg-violet-200 p-3 rounded-full w-[75px] h-[75px] flex justify-center items-center">
-      <img src="{{ asset('images/balance.png') }}" alt="">
-    </div>
-    <span class="mt-2 text-black font-medium">Balance</span>
-  </button>
-  <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.loans') }}'" class="flex flex-col items-center focus:outline-none">
-    <div class="bg-amber-100 p-3 rounded-full w-[75px] h-[75px] flex justify-center items-center">
-      <img src="{{ asset('images/loan.png') }}" alt="">
-    </div>
-    <span class="mt-2 text-black font-medium">Loan</span>
-  </button>
-</div>
+  <!-- Actions -->
+  <div class="grid grid-cols-2 gap-4 px-7 py-6 text-center text-sm w-full md:max-w-sm mx-auto">
+    <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.balance') }}'">
+      <div class="bg-violet-100 p-3 rounded-2xl w-[75px] h-[75px] flex justify-center items-center shadow-sm hover:shadow-md">
+        <img src="{{ asset('images/balance.png') }}" alt="Balance">
+      </div>
+      <span class="mt-2 text-gray-700 font-semibold">Balance</span>
+    </button>
+    <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.loans') }}'">
+      <div class="bg-amber-100 p-3 rounded-2xl w-[75px] h-[75px] flex justify-center items-center shadow-sm hover:shadow-md">
+        <img src="{{ asset('images/loan.png') }}" alt="Loan">
+      </div>
+      <span class="mt-2 text-gray-700 font-semibold">Loan</span>
+    </button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/pusher-js@7.2.0/dist/web/pusher.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/laravel-echo@1.15.0/dist/echo.iife.js"></script>
+  <script>
+    // Ambil userId dari backend (pastikan variabel ini diisi dari controller)
+    const userId = @json($nasabah->id_akun);
+
+    window.Echo = new window.Echo({
+        broadcaster: 'pusher',
+        key: '{{ env('PUSHER_APP_KEY') }}',
+        cluster: '{{ env('PUSHER_APP_CLUSTER') }}',
+        forceTLS: true
+    });
+
+    window.Echo.private('user.' + userId)
+        .listen('NewNotification', (e) => {
+            // Tambah badge notifikasi
+            let badge = document.getElementById('notif-badge');
+            if (badge) {
+                let count = parseInt(badge.innerText) || 0;
+                badge.innerText = count + 1;
+                badge.style.display = 'flex';
+            } else {
+                // Jika badge belum ada, buat baru
+                let notifLink = document.querySelector('a[href*="notifications"]');
+                let span = document.createElement('span');
+                span.id = 'notif-badge';
+                span.className = 'absolute -bottom-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full';
+                span.innerText = 1;
+                notifLink.appendChild(span);
+            }
+            // Optional: tampilkan toast/alert
+            showToast(e.notification.deskripsi_notifikasi);
+        });
+
+    // Toast sederhana
+    function showToast(msg) {
+        let toast = document.getElementById('realtime-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'realtime-toast';
+            toast.className = 'fixed top-5 right-5 bg-[#29BBCF] text-white px-6 py-3 rounded-xl shadow-lg z-50';
+            document.body.appendChild(toast);
+        }
+        toast.innerText = msg;
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 2500);
+    }
+  </script>
 </body>
 </html>
