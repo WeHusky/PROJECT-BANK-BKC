@@ -10,11 +10,11 @@
 </head>
 <body class="bg-[#29BCCF] max-h-screen overflow-hidden">
     <div class="w-full relative">
-        <div class="absolute flex space-x-1 top-10 items-center w-full justify-center">
+        <div class="absolute flex space-x-1 top-3 items-center w-full justify-center">
             <img src="{{ asset('images/image 4.png') }}" alt="">
             <img src="{{ asset('images/image 5.png') }}" alt="">
         </div>
-        <img src="{{ asset('images/welcomepage-01-01-01.png') }}" alt="" class="">
+        <img src="{{ asset('images/welcomepage-01-01-01.png') }}" alt="" class="mt-10">
         <div class="bg-white w-full h-screen transform -translate-y-2 border rounded-tl-[50px] rounded-tr-[50px] flex flex-col items-center p-5 py-10">
             <h2 class="font-bold text-[25px] align-middle text-[#13545C] mb-4">Welcome!</h2>
             <a href="{{  route('nasabah.register') }}" class="rounded-[50px] bg-[#29BCCF] h-[60px] w-full flex items-center justify-between px-7">

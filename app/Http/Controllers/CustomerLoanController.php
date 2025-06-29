@@ -34,6 +34,7 @@ class CustomerLoanController extends Controller
         $request->validate([
             'nominal_pengajuankredit' => ['required', 'numeric', 'min:1000000', 'max:250000000'],
             'tenor' => ['required', 'integer', 'min:2', 'max:18'],
+            'rekening_nasabah' => ['required'],
         ]);
         if($request->nominal_pengajuankredit > 25000000){
             $kategori_pengajuankredit = 'Kewenangan Peminjaman Pusat';
@@ -50,6 +51,7 @@ class CustomerLoanController extends Controller
             'status_pengajuankredit' => 'Under Review',
             'konfirmasi_pengajuankredit' => '0',
             'status_kelayakan' => '0',
+            'rekening_nasabah' => $request->rekening_nasabah,
         ]);
 
         $notifikasi = Notifications::create([

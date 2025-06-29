@@ -6,6 +6,7 @@
     <title>BKC - My Loans</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="{{ asset('css/myloans.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animation.css') }}">
     @vite('resources/css/app.css')
     <style>
       .menu{
@@ -17,10 +18,10 @@
       }
     </style>
 </head>
-<body class="bg-gray-100 font-sans mb-20">
+<body class="bg-gray-50 font-sans mb-20">
   <!-- Header -->
-  <div class="flex px-7 py-8 bg-white items-center">
-    <button onclick="window.history.back()" class="mr-3" href="{{ route('nasabah.myloans') }}">
+  <div class="flex px-7 py-8 bg-white items-center shadow-sm">
+    <button onclick="window.history.back()" class="mr-3 pop" href="{{ route('nasabah.myloans') }}">
         <img src="{{ asset('images/arrowblue.png') }}" alt="">
     </button>
     <h1 class="font-extrabold text-3xl text-[#13545C]">My Loans</h1>
@@ -58,7 +59,7 @@
       </div>
       <form action="{{ route('nasabah.loan.cancel', ['id' => $pengajuan_kredit->id_pengajuankredit]) }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel this loan application?');">
           @csrf
-          <button type="submit" class="text-white bg-[#ff6666] text-center w-full p-3 rounded-xl font-semibold">
+          <button type="submit" class="text-white bg-[#ff6666] text-center w-full p-3 rounded-xl font-semibold active:bg-[#ffa6a6] transition-all duration-200 ease-in-out">
               Cancel Loan Application
           </button>
       </form>

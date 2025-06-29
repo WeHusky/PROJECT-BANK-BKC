@@ -6,13 +6,14 @@
   <title>BKC - Notifications</title>
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
   <link rel="stylesheet" href="{{ asset('css/notification.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/animation.css') }}">
   <script src="//unpkg.com/alpinejs" defer></script>
   @vite('resources/css/app.css')
 </head>
-<body class="bg-white font-sans mb-20">
+<body class="bg-gray-50 font-sans mb-20">
   <!-- Header -->
   <div class="flex px-7 py-8 bg-white mb-5 items-center shadow-sm">
-    <a class="mr-3" href="{{ route('nasabah.homepage') }}">
+    <a class="mr-3 pop" href="{{ route('nasabah.homepage') }}">
         <img src="{{ asset('images/arrowblue.png') }}" alt="">
     </a>
     <h1 class="font-extrabold text-3xl text-[#13545C]">Notifications</h1>
@@ -33,7 +34,7 @@
           <input type="hidden" name="id_notifikasi" value="{{ $notification->id_notifikasi }}">
           <div id="notification" 
           x-data="{ open:false }"
-          class="mb-5 bg-gray-100 border border-gray-200 rounded-[27px] px-6 flex items-center transition-all duration-500 ease-in-out overflow-hidden"
+          class="mb-5 bg-white border border-gray-300 rounded-[27px] px-6 flex items-center transition-all duration-500 ease-in-out overflow-hidden"
           x-bind:style="open ? 'max-height: 400px;' : 'max-height: 200px;'">
             <div class="w-20 h-20 flex items-center">
               <img src="{{ asset('images/loan.png') }}" alt="">

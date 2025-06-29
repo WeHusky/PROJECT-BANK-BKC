@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank BKC - Loan Application</title>
+    <title>BKC - Loan Application</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="{{ asset('css/animation.css') }}">
     <script src="//unpkg.com/alpinejs" defer></script>
     @vite('resources/css/app.css')
     <style>
