@@ -64,45 +64,44 @@
 </head>
 <body class="bg-[#29BCCF] font-sans h-screen">
     <!-- Header -->
-    <div class="flex px-7 py-8 bg-white items-center">
+    <div class="flex px-7 py-8 bg-white items-center shadow-md">
         <button class="mr-3 pop" onclick="window.location.href='{{ route('nasabah.account') }}'">
             <img src="{{ asset('images/arrowblue.png') }}" alt="">
         </button>
         <h1 class="font-extrabold text-3xl text-[#13545C]">Account Settings</h1>
     </div>
     <!-- Main Container -->
-    <img class="w-screen" src="{{ asset('images/city.jpg') }}" alt="">
-    <div class="bg-gray-200 px-4 w-full h-auto">
+    <div class="bg-gray-100 w-full h-auto">
         <!-- Identity Section -->
-        <div class="bg-white rounded-[20px] w-full shadow-sm py-10 transform -translate-y-12 px-7 mb-5">
+        <div class="bg-white w-full py-10 mb-5 px-7">
             <form action="{{ route('nasabah.update', $nasabah->id_nasabah) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="mb-4">
-                    <h1 class="text-md text-black mb-1 font-bold">Identity</h1>
+                    <h1 class="text-md text-gray-800 mb-1 font-medium">Identity</h1>
                     <hr class="rounded bg-gray-400">
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="NIK">NIK</label>
-                    <input name="nik_nasabah" id="NIK" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" type="text" value="{{ $nasabah->nik_nasabah }}" readonly disabled>
+                    <input name="nik_nasabah" id="NIK" class="border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full identity p-0 pb-1" type="text" value="{{ $nasabah->nik_nasabah }}" readonly disabled>
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="fullname">Full Name</label>
-                    <input name="nama_nasabah" id="fullname" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" type="text" value="{{ $nasabah->nama_nasabah }}" required disabled>
+                    <input name="nama_nasabah" id="fullname" class="border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full identity p-0 pb-1" type="text" value="{{ $nasabah->nama_nasabah }}" required disabled>
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]">Birth Date</label>
-                    <span class="block bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full px-3 py-2">
+                    <span class="block border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full identity p-0 pb-1">
                         {{ $nasabah->tanggallahir_nasabah ? $nasabah->tanggallahir_nasabah->format('d F Y') : '' }}
                     </span>
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]">Address</label>
-                    <input name="alamat_nasabah" type="text" class="block bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full px-3 py-2" value="{{ $nasabah->alamat_nasabah }}" disabled>
+                    <input name="alamat_nasabah" type="text" class="block border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full identity p-0 pb-1" value="{{ $nasabah->alamat_nasabah }}" disabled>
                 </div>                
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="kecamatann">Sub-district</label>
-                    <select name="kecamatan_nasabah" id="kecamatan" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" required disabled>
+                    <select name="kecamatan_nasabah" id="kecamatan" class="border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full identity p-0 pb-1" required disabled>
                         <optgroup label="Cirebon Utara">
                             <option value="Gunung Jati - Cirebon Utara" {{ $nasabah->kecamatan_nasabah == 'Gunung Jati - Cirebon Utara' ? 'selected' : '' }}>Gunung Jati</option>
                             <option value="Kapetakan - Cirebon Utara" {{ $nasabah->kecamatan_nasabah == 'Kapetakan - Cirebon Utara' ? 'selected' : '' }}>Kapetakan</option>
@@ -156,14 +155,14 @@
                 </div>
                 <div class="mb-3">
                     <label for="gender" class="block mb-2 text-sm font-normal text-[#13545C]">Gender</label>
-                    <select name="gender_nasabah" id="gender" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" required disabled>
+                    <select name="gender_nasabah" id="gender" class="border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full identity p-0 pb-1" required disabled>
                         <option value="male" {{ $nasabah->gender_nasabah == 'male' ? 'selected' : '' }}>Male</option>
                         <option value="female" {{ $nasabah->gender_nasabah == 'female' ? 'selected' : '' }}>Female</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="marriage" class="block mb-2 text-sm font-normal text-[#13545C]">Marriage</label>
-                    <select name="statuskawin_nasabah" id="marriage" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full identity" required disabled>
+                    <select name="statuskawin_nasabah" id="marriage" class="border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full identity p-0 pb-1" required disabled>
                         <option value="single" {{ $nasabah->statuskawin_nasabah == 'single' ? 'selected' : '' }}>Single</option>
                         <option value="married" {{ $nasabah->statuskawin_nasabah == 'married' ? 'selected' : '' }}>Married</option>
                         <option value="divorced" {{ $nasabah->statuskawin_nasabah == 'divorced' ? 'selected' : '' }}>Divorced</option>
@@ -175,28 +174,28 @@
                     </select>
                 </div>
                 <div class="mb-4 mt-10">
-                    <h1 class="text-md text-black mb-1 font-bold">Security</h1>
+                    <h1 class="text-md text-gray-800 mb-1 font-medium">Security</h1>
                     <hr class="rounded bg-gray-400">
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="Email">Email Address</label>
-                    <input id="email" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full security" type="email" value="{{ $nasabah->akun->email_akun }}"readonly disabled>
+                    <input id="email" class="border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full p-0 pb-1 security" type="email" value="{{ $nasabah->akun->email_akun }}"readonly disabled>
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="number">Phone Number</label>
-                    <input name="nohp_nasabah" id="number" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full security" type="text" value="{{ $nasabah->nohp_nasabah }}" required disabled>
+                    <input name="nohp_nasabah" id="number" class="border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full p-0 pb-1 security" type="text" value="{{ $nasabah->nohp_nasabah }}" required disabled>
                 </div>
                 <div class="mb-3">
                     <label class="block mb-2 text-sm font-normal text-[#13545C]" for="password">Password</label>
-                    <input id="password" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full security" type="password" value="********" readonly disabled>
+                    <input id="password" class="border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full p-0 pb-1 security" type="password" value="********" readonly disabled>
                 </div>
                 <div class="mb-4 mt-10">
-                    <h1 class="text-md text-black mb-1 font-bold">Financial</h1>
+                    <h1 class="text-md text-gray-800 mb-1 font-medium">Financial</h1>
                     <hr class="rounded bg-gray-400">
                 </div>
                 <div class="mb-3">
                     <label for="job" class="block mb-2 text-sm font-normal text-[#13545C]">Job</label>
-                    <select name="pekerjaan_nasabah" id="job" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full financial" required disabled>
+                    <select name="pekerjaan_nasabah" id="job" class="border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full p-0 pb-1 financial" required disabled>
                         <option value="Software Engineer" {{ $nasabah->pekerjaan_nasabah == 'Software Engineer' ? 'selected' : '' }}>Software Engineer</option>
                         <option value="Doctor" {{ $nasabah->pekerjaan_nasabah == 'Doctor' ? 'selected' : '' }}>Doctor</option>
                         <option value="Teacher" {{ $nasabah->pekerjaan_nasabah == 'Teacher' ? 'selected' : '' }}>Teacher</option>
@@ -221,7 +220,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="income" class="block mb-2 text-sm font-normal text-[#13545C]">Income Range</label>
-                    <select name="penghasilan_nasabah" id="income" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full financial" required disabled>
+                    <select name="penghasilan_nasabah" id="income" class="border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full p-0 pb-1 financial" required disabled>
                         <option value="<1jt" {{ $nasabah->penghasilan_nasabah == '<1jt' ? 'selected' : '' }}>Less than Rp1 million</option>
                         <option value="1-3jt" {{ $nasabah->penghasilan_nasabah == '1-3jt' ? 'selected' : '' }}>Rp1 million - Rp3 million</option>
                         <option value="3-5jt" {{ $nasabah->penghasilan_nasabah == '3-5jt' ? 'selected' : '' }}>Rp3 million - Rp5 million</option>
@@ -232,7 +231,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="financialdependents" class="block mb-2 text-sm font-normal text-[#13545C]">Financial Dependents</label>
-                    <input type="number" name="tanggungan_nasabah" value="{{ $nasabah->tanggungan_nasabah }}" id="financialdependents" class="bg-gray-50 border border-[#29BCCF] text-gray-900 text-sm rounded-[30px] w-full financial" min="0" value="1" required disabled>
+                    <input type="number" name="tanggungan_nasabah" value="{{ $nasabah->tanggungan_nasabah }}" id="financialdependents" class="border-0 border-b border-b-[#29BCCF] text-gray-900 text-sm w-full p-0 pb-1 financial" min="0" value="1" required disabled>
                 </div>
                 <div class="flex justify-center mt-8 gap-4">
                     <button type="button" id="editAllBtn" class="bg-[#29BCCF] hover:bg-[#70d6ff] text-white font-semibold py-2 px-6 rounded-xl transition">Edit</button>

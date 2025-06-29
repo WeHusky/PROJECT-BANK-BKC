@@ -39,6 +39,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/regions', [DashboardController::class, 'regions'])->name('regions.index');
     Route::get('/loans', [AdminLoanController::class, 'index'])->name('loans');
     Route::get('/loans/{id}', [AdminLoanController::class, 'show'])->name('loans.show');
+    Route::post('/loans/{id}', [AdminLoanController::class, 'statusUpdate'])->name('loans.statusupdate');
 });
 
 // Nasabah Auth Routes
@@ -65,7 +66,7 @@ Route::middleware(['auth:nasabah'])->group(function () {
     Route::get('/loans/sukses', [CustomerLoanController::class, 'showCustomerLoanSuccess'])->name('nasabah.custloan-sukses');
     Route::get('/loans/myloans', [CustomerLoanController::class, 'showCustomerLoans'])->name('nasabah.myloans');
     Route::get('/loans/myloans/{id}', [CustomerLoanController::class, 'showCustomerLoan'])->name('nasabah.loan');
-    Route::post('/loans/{id}', [CustomerLoanController::class, 'cancelLoan'])->name('nasabah.loan.cancel');
+    Route::post('/loans/myloans/{id}', [CustomerLoanController::class, 'cancelLoan'])->name('nasabah.loan.cancel');
     Route::post('/loans/myloans/{id}', [CustomerLoanController::class, 'surveyDateConfirmation']);
     Route::get('/loans/myloans/{id}/surveyresult', [CustomerLoanController::class, 'showCustomerSurveyResult'])->name('nasabah.viewsurveyresult');
     Route::put('/nasabah/{id}', [NasabahController::class, 'update'])->name('nasabah.update');

@@ -15,8 +15,7 @@ class survei extends Model
 
     protected $fillable = [
         'id_survei',
-        'id_komite',
-        'id_nasabah',
+        'id_pengajuankredit',
         'tanggal_survei',
         'alasan_peminjaman',
         'kondisi_rumah',
@@ -26,4 +25,9 @@ class survei extends Model
     protected $casts = [
         'tanggal_survei' => 'date',
     ];
+
+    public function pengajuan_kredit()
+    {
+        return $this->belongsTo((Pengajuan_Kredit::class), 'id_pengajuankredit', 'id_pengajuankredit');
+    }
 }

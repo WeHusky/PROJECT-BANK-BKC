@@ -1,3 +1,6 @@
 .red{
   filter: brightness(0) saturate(100%) invert(69%) sepia(30%) saturate(4983%) hue-rotate(318deg) brightness(100%) contrast(101%);
 }
+.black{
+  filter: brightness(0) saturate(100%);
+}

@@ -54,6 +54,10 @@ class CustomerLoanController extends Controller
             'rekening_nasabah' => $request->rekening_nasabah,
         ]);
 
+        $survei = Survei::create([
+            'id_pengajuankredit' => $pengajuan_kredit->id_pengajuankredit,
+        ]);
+
         $notifikasi = Notifications::create([
             'jenis_notifikasi' => 'Loan',
             'deskripsi_notifikasi' => 'Your loan application has been submitted successfully and is now under review.',
@@ -80,24 +84,12 @@ class CustomerLoanController extends Controller
     {
         $nasabah = Auth::guard('nasabah')->user()->nasabah->id_nasabah;
         $pengajuan_kredit = Pengajuan_Kredit::where('id_pengajuankredit', $id)->first();
-        return view('perbankan.loan_site.loan', compact('pengajuan_kredit','nasabah'));
-    }
-    #ntar apus aja ini cuman buat template ntar kalo backendnya dah jadi
-    public function showCustomerLoan2()
-    {
-        return view('perbankan.loan_site.loan2');
-    }
-    public function showCustomerLoan3()
-    {
-        return view('perbankan.loan_site.loan3');
-    }
-    public function showCustomerLoan4()
-    {
-        return view('perbankan.loan_site.loan4');
+        $survei = Survei::where('id_pengajuankredit', $id)->first();
+        return view('perbankan.loan_site.loan', compact('pengajuan_kredit','nasabah', 'survei'));
     }
     public function showCustomerSurveyResult($id)
     {
-        $survei = Survei::where('id_nasabah', $id)->first();
+        $survei = Survei::where('id_pengajuankredit', $id)->first();
         return view('perbankan.loan_site.surveyresult', compact('survei'));
     }
     public function surveyDateConfirmation($id, Request $request)
@@ -107,13 +99,12 @@ class CustomerLoanController extends Controller
         ]);
 
         $pengajuan_kredit = Pengajuan_Kredit::where('id_pengajuankredit', $id)->first();
-        $pengajuan_kredit->status_pengajuankredit = 'Survey Under Review';
+        $pengajuan_kredit->status_pengajuankredit = 'Survey Scheduled';
         $pengajuan_kredit->save();
 
-        $survei = Survei::create([
-            'id_nasabah' => Auth::guard('nasabah')->user()->nasabah->id_nasabah,
-            'tanggal_survei' => $request->tanggal_survei,
-        ]);
+        $survei = Survei::where('id_pengajuankredit', $id)->first();
+        $survei->tanggal_survei = $request->tanggal_survei;
+        $survei->save();
 
         $notification = Notifications::create([
             'jenis_notifikasi' => 'Loan',
@@ -132,7 +123,7 @@ class CustomerLoanController extends Controller
     {
         $pengajuan_kredit = Pengajuan_Kredit::findOrFail($id);
         // Optional: cek apakah loan milik user yang login
-        $pengajuan_kredit->status_pengajuankredit = 'Cancelled';
+        $pengajuan_kredit->status_pengajuankredit = 'Loan Cancelled';
         $pengajuan_kredit->save();
 
         // Optional: tambahkan notifikasi pembatalan

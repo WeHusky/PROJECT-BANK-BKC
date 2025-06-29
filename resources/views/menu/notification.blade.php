@@ -29,33 +29,40 @@
           <div class="bg-[rgb(255,76,76)] w-1/2 h-4 rounded-lg flex justify-center items-center text-white font-semibold">NEW</div>
       </div>
       @foreach ($notifications->sortByDesc('created_at')->where('status_notifikasi', false) as $notification)
-        <form action="{{ route('nasabah.notifications') }}" method="POST" id="notificationForm">
+        <form action="{{ route('nasabah.notifications') }}" method="POST" class="notification-form">
           @csrf
           <input type="hidden" name="id_notifikasi" value="{{ $notification->id_notifikasi }}">
-          <div id="notification" 
-          x-data="{ open:false }"
-          class="mb-5 bg-white border border-gray-300 rounded-[27px] px-6 flex items-center transition-all duration-500 ease-in-out overflow-hidden"
-          x-bind:style="open ? 'max-height: 400px;' : 'max-height: 200px;'">
+          <div 
+            x-data="{ open: false }"
+            class="mb-5 bg-white border border-gray-300 rounded-[27px] px-6 flex items-center transition-all duration-500 ease-in-out overflow-hidden cursor-pointer"
+            x-bind:style="open ? 'max-height: 400px;' : 'max-height: 200px;'"
+            @click="$el.closest('form').submit()"
+          >
             <div class="w-20 h-20 flex items-center">
               <img src="{{ asset('images/loan.png') }}" alt="">
             </div>
             <div class="w-full flex flex-col items-center py-2">
-                <div class="flex">
-                  <div class="flex flex-col">
-                      <div class="flex justify-between items-center">
-                        <p class="text-[16px] font-semibold">{{ $notification->jenis_notifikasi }}</p>
-                        <div class="flex items-center justify-end">
-                            <p class="text-right text-[13px]">{{ $notification->formatted_timestamp }}</p>
-                            <button @click.stop="open = !open" class="active:bg-gray-200 ml-2 rounded-full" id="toggleButton">
-                              <svg xmlns="http://www.w3.org/2000/svg" :class="{ 'rotate-90': open }" class="w-5 text-gray-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                              </svg>
-                            </button>
-                        </div>
-                      </div>
-                      <p id="deskripsi_notifikasi" class="text-[16px] font-light text-justify" x-text="open ? @js($notification->deskripsi_notifikasi) : @js($notification->truncated_pesan)">{{ $notification->truncated_pesan }}</p>
+              <div class="flex">
+                <div class="flex flex-col">
+                  <div class="flex justify-between items-center">
+                    <p class="text-[16px] font-semibold">{{ $notification->jenis_notifikasi }}</p>
+                    <div class="flex items-center justify-end">
+                      <p class="text-right text-[13px]">{{ $notification->formatted_timestamp }}</p>
+                      <button type="button"
+                        @click.stop="open = !open"
+                        class="active:bg-gray-200 ml-2 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" :class="{ 'rotate-90': open }" class="w-5 text-gray-400 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
+                  <p class="text-[16px] font-light text-justify"
+                    x-text="open ? @js($notification->deskripsi_notifikasi) : @js($notification->truncated_pesan)">
+                    {{ $notification->truncated_pesan }}
+                  </p>
                 </div>
+              </div>
             </div>
           </div>
         </form>

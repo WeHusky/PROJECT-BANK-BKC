@@ -69,13 +69,13 @@
   <div class="flex justify-between items-center px-7 py-8 bg-white mb-5 shadow-sm">
     <h1 class="font-extrabold text-3xl text-[#13545C]">Home Page</h1>
     <div class="relative">
-      <a href="{{ route('nasabah.notifications') }}">
-        <img class="w-6 pop" src="{{ asset('images/bell.png') }}" alt="">
+      <a href="{{ route('nasabah.notifications') }}" class="">
+        <img class="w-6 pop" src="{{ asset('images/bell.png') }}" alt="" class="active:bg-[#13545c62] rounded-full transition ">
         @php
           $hasNotifications = $notifications->where('status_notifikasi', false)->count()
         @endphp
         @if ($hasNotifications > 0)
-          <span id="notif-badge" class="absolute -bottom-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">{{ $hasNotifications }}</span>
+          <span id="notif-badge" class="pointer-events-none absolute -bottom-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full font-bold">{{ $hasNotifications }}</span>
         @endif
       </a>
     </div>
@@ -83,7 +83,7 @@
 
     <!-- Card -->
     <div class="px-7 w-full md:max-w-sm mx-auto">
-        <div class="bg-white p-4 rounded-[17px] border-gray-200 border">
+        <div class="bg-white p-4 rounded-[17px] border-gray-200 border shadow-lg">
         <p class="text-[#13545C] mb-2 font-semibold">My Card</p>
         <div class="creditcard-container">
         <div class="relative rounded-[12px] overflow-hidden w-full h-[170px] text-white font-sans shadow-lg"
@@ -144,13 +144,13 @@
   <!-- Actions -->
   <div class="grid grid-cols-2 gap-4 px-7 py-6 text-center text-sm w-full md:max-w-sm mx-auto">
     <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.balance') }}'">
-      <div class="bg-violet-100 p-3 rounded-2xl w-[75px] h-[75px] flex justify-center items-center shadow-sm hover:shadow-md">
+      <div class="bg-violet-200 p-3 rounded-full w-[75px] h-[75px] flex justify-center items-center shadow-sm pop">
         <img src="{{ asset('images/balance.png') }}" alt="Balance">
       </div>
       <span class="mt-2 text-gray-700 font-semibold">Balance</span>
     </button>
     <button type="button" class="action-btn" onclick="window.location.href='{{ route('nasabah.loans') }}'">
-      <div class="bg-amber-100 p-3 rounded-2xl w-[75px] h-[75px] flex justify-center items-center shadow-sm hover:shadow-md">
+      <div class="bg-amber-200 p-3 rounded-full w-[75px] h-[75px] flex justify-center items-center shadow-sm pop">
         <img src="{{ asset('images/loan.png') }}" alt="Loan">
       </div>
       <span class="mt-2 text-gray-700 font-semibold">Loan</span>
