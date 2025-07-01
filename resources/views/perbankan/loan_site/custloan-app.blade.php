@@ -51,11 +51,11 @@
 </head>
 <body class="bg-gray-100 min-h-screen pb-32">
     <div id="toast">Proceeding to Step 2</div>
-    <div class="sticky top-0 z-10 bg-white shadow-md px-6 py-4 flex items-center gap-3">
+    <div class="sticky top-0 z-10 bg-white shadow-sm px-7 py-8 flex items-center gap-3">
         <button id="backButton">
-            <img src="{{ asset('images/arrowblue.png') }}" alt="Back" class="h-5 w-5">
+            <img src="{{ asset('images/arrowblue.png') }}" alt="Back" class="pop">
         </button>
-        <h1 class="text-2xl font-bold text-[#13545C]">Loan Application</h1>
+        <h1 class="text-3xl font-extrabold text-[#13545C]">Loan Application</h1>
     </div>
     <div class="text-center mt-6">
         <p id="stepText" class="text-lg text-[#13545C] font-medium">Step 1 of 2</p>
@@ -85,7 +85,10 @@
                 ] as $label => $name)
                     <div class="mb-4">
                         <label for="{{ $name }}" class="block mb-1 text-sm font-medium text-[#13545C]">{{ $label }}</label>
-                        <input type="text" id="{{ $name }}" name="{{ $name }}" class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-xl block w-full p-2.5" value="{{ $nasabahData->$name ?? '' }}" disabled>
+                        <input type="text" id="{{ $name }}" name="{{ $name }}"
+                            class="bg-gray-100 border border-[#29BBCF] text-gray-900 text-sm rounded-xl block w-full p-2.5"
+                            value="@if($name === 'tanggallahir_nasabah' && !empty($nasabahData->$name)){{ \Carbon\Carbon::parse($nasabahData->$name)->format('d/m/Y') }}@else{{ $nasabahData->$name ?? '' }}@endif"
+                            disabled>
                     </div>
                 @endforeach
                 <button type="button" id="nextButton" class="mt-6 w-full bg-[#29BBCF] hover:bg-[#189ab2] text-white font-semibold py-2.5 rounded-xl transition duration-200">Confirm</button>
@@ -148,7 +151,7 @@
                             <span class="{{ $statusColor }} font-medium">{{ $pengajuan->status_pengajuankredit }}</span>
                         </li>
                     @empty
-                        <li class="py-2 text-sm text-gray-400">SEGERA PINJAM DUITT!</li>
+                        <li class="py-2 text-sm text-gray-400">No loan application history available.</li>
                     @endforelse
                 </ul>
             </div>
@@ -156,7 +159,7 @@
                 <div @click="open = !open" class="cursor-pointer bg-white rounded-xl shadow-md p-4 flex justify-between items-center">
                     <div class="flex items-center space-x-3">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard" class="w-8 h-5 object-contain" />
-                        <span x-text="selected ?? 'Pilih Rekening'" class="text-gray-700 font-medium"></span>
+                        <span x-text="selected ?? 'Select Bank Account'" class="text-gray-700 font-medium"></span>
                     </div>
                     <svg :class="{ 'rotate-90': open }" class="h-5 w-5 text-gray-400 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

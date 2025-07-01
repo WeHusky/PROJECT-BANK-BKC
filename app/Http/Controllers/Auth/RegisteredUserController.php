@@ -62,7 +62,7 @@ class RegisteredUserController extends Controller
             'tanggal_survei' => ['nullable', 'date'],
 
             //tabel nasabah
-            'nik_nasabah' => ['required', 'string', 'min:1', 'max:16', 'unique:nasabah,nik_nasabah'], 
+            'nik_nasabah' => ['required', 'string', 'min:16', 'max:16', 'unique:nasabah,nik_nasabah'], 
             'tanggallahir_nasabah' => ['required', 'date'],
             'gender_nasabah' => ['required', 'string', 'in:Male,Female'],
             'pekerjaan_nasabah' => ['required', 'string', 'max:255'],
@@ -127,7 +127,7 @@ class RegisteredUserController extends Controller
         // Create account
         $akun = Akun::create([
             'username_akun' => session('registration_data.username_akun'),
-            'email_akun' => session('registration_data.email_akun'),
+            'email_akun' => strtolower(session('registration_data.email_akun')),
             'password_akun' => Hash::make(session('registration_data.password_akun')),
             'jenis_akun' => 'Nasabah',
         ]);
