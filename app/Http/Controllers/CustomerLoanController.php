@@ -89,8 +89,9 @@ class CustomerLoanController extends Controller
     }
     public function showCustomerSurveyResult($id)
     {
+        $pengajuan_kredit = Pengajuan_Kredit::where('id_pengajuankredit', $id)->first();
         $survei = Survei::where('id_pengajuankredit', $id)->first();
-        return view('perbankan.loan_site.surveyresult', compact('survei'));
+        return view('perbankan.loan_site.surveyresult', compact('survei','pengajuan_kredit'));
     }
     public function surveyDateConfirmation($id, Request $request)
     {
@@ -138,6 +139,30 @@ class CustomerLoanController extends Controller
         ]);
 
         return redirect()->route('nasabah.myloans')->with('success', 'Loan application cancelled.');
+    }
+
+    public function confirmDisbursement($id)
+    {
+        $pengajuan_kredit = Pengajuan_Kredit::findOrFail($id);
+        // Optional: cek apakah loan milik user yang login
+        $pengajuan_kredit->status_pengajuankredit = 'Loan Disbursed';
+        $pengajuan_kredit->save();
+
+        // Optional: tambahkan notifikasi konfirmasi pencairan
+        $notification = Notifications::create([
+            'jenis_notifikasi' => 'Loan',
+            'deskripsi_notifikasi' => 'Your loan has been successfully disbursed. Please check your account for the funds.',
+            'link_notifikasi' => route('nasabah.loan', ['id' => $pengajuan_kredit->id_pengajuankredit]),
+            'id_akun' => Auth::guard('nasabah')->user()->id_akun,
+            'status_notifikasi' => 0,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        $nasabah = Nasabah::findOrFail($pengajuan_kredit->id_nasabah);
+        $nasabah->saldo_nasabah += $pengajuan_kredit->nominal_pengajuankredit;
+        $nasabah->save();
+
+        return redirect()->route('nasabah.loan', ['id' => $id])->with('success', 'Loan disbursement confirmed.');
     }
 }
 

@@ -23,6 +23,11 @@
     @php
       $hasNewNotifications = $notifications->where('status_notifikasi', false)->isNotEmpty();
     @endphp
+    @if($notifications->isEmpty())
+      <div class="flex flex-col items-center justify-center py-10">
+        <img src="{{ asset('images/emptymailbox-01-01.png') }}" alt="No Notifications" class="w-96 mb-4 opacity-50">
+      </div>
+    @endif
     @if ($hasNewNotifications)
       <!-- NEW -->
       <div class="bg-[rgb(255,76,76)] w-full h-1 rounded-sm flex justify-center items-center mb-5">

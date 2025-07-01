@@ -60,11 +60,17 @@
             position: relative;
             z-index: 1;
         }
+        select[disabled],input[disabled] {
+            opacity: 0.5;
+        }
+        span{
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body class="bg-[#29BCCF] font-sans h-screen">
     <!-- Header -->
-    <div class="flex px-7 py-8 bg-white items-center shadow-md">
+    <div class="flex px-7 py-8 bg-white items-center shadow-md z-50">
         <button class="mr-3 pop" onclick="window.location.href='{{ route('nasabah.account') }}'">
             <img src="{{ asset('images/arrowblue.png') }}" alt="">
         </button>

@@ -6,12 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Bank BKC</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="{{ asset('css/animation.css') }}">
     @vite('resources/css/app.css')
 </head>
 <body class="bg-[#EFF1F5] max-h-screen overflow-hidden flex flex-col">
     <div class="w-full ">
         <div class="header flex items-center relative w-full px-7 py-6">
-            <a class="absolute left-4 " href="{{ route('nasabah.landingpage') }}"><img class="w-[31px] h-[31px]" src="{{ asset('images/arrowblue.png') }}" alt=""></a>
+            <a class="absolute left-4 pop" href="{{ route('nasabah.landingpage') }}"><img class="w-[31px] h-[31px]" src="{{ asset('images/arrowblue.png') }}" alt=""></a>
             <h2 class="font-extrabold text-[#13545C] text-[24px] text-center w-full">Sign In</h2>
         </div>
         <div class="body bg-white rounded-tl-[45px] rounded-tr-[45px] w-screen h-screen px-7 flex-grow">

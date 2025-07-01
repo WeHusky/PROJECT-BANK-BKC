@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="{{ asset('css/myloans.css') }}">
     <link rel="stylesheet" href="{{ asset('css/animation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/warna.css') }}">
     @vite('resources/css/app.css')
     <style>
       .menu{
@@ -130,7 +131,7 @@
       <h2 class="text-[#29BBCF] font-semibold mb-3">Survey Date</h2>
       <div class="bg-white flex flex-col border border-gray-200 px-4 py-4 rounded-xl mb-7">
         <div class="flex justify-between">
-          <form action="{{ route('nasabah.loan', ['id' => $pengajuan_kredit->id_pengajuankredit]) }}" method="POST" class="w-full">
+          <form action="{{ route('nasabah.surveydateconfirmation', ['id' => $pengajuan_kredit->id_pengajuankredit]) }}" method="POST" class="w-full">
             @csrf
             <div class="mb-5">
               <input name="tanggal_survei" placeholder="Select a date for the on-spot survey" type="date" id="surveydate" class="bg-gray-50 border border-[#D4D6D9] text-gray-900 text-sm rounded-[13px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required/>
@@ -223,7 +224,7 @@
     <!-- Upper Body -->
     <div class="w-full h-auto bg-[#ADFFBC] flex flex-col px-7 py-8 mb-5">
       <div class="flex items-center mb-3">
-        <img src="{{ asset('images/loan.png') }}" class="mr-3 h-8 w-10 [filter:brightness(0)_saturate(100%)_invert(100%)_sepia(16%)_saturate(7130%)_hue-rotate(57deg)_brightness(92%)_contrast(90%)]" alt="">
+        <img src="{{ asset('images/loan.png') }}" class="mr-3 h-8 w-10 approved" alt="">
         <h2 class="font-medium">Loan Approved</h2>
       </div>
       <p class="font-extralight text-justify">Congratulations! Your loan application has been approved. Please review the loan details below and proceed to confirm the disbursement to receive your funds. Thank you for choosing our service.</p>
@@ -231,7 +232,7 @@
     <!--Lower Body-->
     <div class="px-7">
       <h2 class="text-[#29BBCF] font-semibold mb-3">Loan Information</h2>
-      <div class="bg-white flex flex-col outline outline-1 outline-[#29BBCF] px-4 py-4 rounded-xl mb-7">
+      <div class="bg-white flex flex-col border border-gray-200  px-4 py-4 rounded-xl mb-7">
         <div class="flex justify-between mb-3">
           <p>Loan ID</p>
           <p>{{ '#'.$pengajuan_kredit->id_pengajuankredit }}</p>
@@ -260,7 +261,10 @@
           });
         </script>
       </div>
-      <button class="text-white bg-[#29BBCF] text-center w-full p-3 rounded-xl font-semibold">Confirm Disbursement</a>
+      <form action="{{ route('nasabah.confirmdisbursement', ['id' => $pengajuan_kredit->id_pengajuankredit]) }}" method="POST">
+        @csrf
+        <button type="submit" class="text-white bg-[#29BBCF] text-center w-full p-3 rounded-xl font-semibold">Confirm Disbursement</button>
+      </form>
     </div>
   @elseif ($pengajuan_kredit->status_pengajuankredit == 'Loan Rejected')
     <!-- Upper Body -->
@@ -296,6 +300,50 @@
           <p>{{ $survei->tanggal_survei->format('d/m/Y') }}</p>
         </div>
         <button id="surveyresultbutton" class="text-white bg-[#29BBCF] text-center w-full p-3 rounded-xl font-semibold">View Survey Result</a>
+        <script>
+          const viewsurveyresultbutton = document.getElementById('surveyresultbutton');
+          viewsurveyresultbutton.addEventListener('click', () => {
+            window.location.href = "{{  route('nasabah.viewsurveyresult', ['id' => $pengajuan_kredit->id_pengajuankredit]) }}";
+          });
+        </script>
+      </div>
+    </div>
+  @elseif ($pengajuan_kredit->status_pengajuankredit == 'Loan Disbursed')
+    <!-- Upper Body -->
+    <div class="w-full h-auto bg-[#ADFFBC] flex flex-col px-7 py-8 mb-5">
+      <div class="flex items-center mb-3">
+        <img src="{{ asset('images/loan.png') }}" class="mr-3 h-8 w-10 disbursed" alt="">
+        <h2 class="font-medium">Loan Disbursed</h2>
+      </div>
+      <p class="font-extralight text-justify">
+        Your loan has been successfully disbursed. Please check your account for the funds. Thank you for trusting our service, and we wish you success with your financial goals!
+      </p>
+    </div>
+    <!--Lower Body-->
+    <div class="px-7">
+      <h2 class="text-[#29BBCF] font-semibold mb-3">Loan Information</h2>
+      <div class="bg-white flex flex-col border border-gray-200 px-4 py-4 rounded-xl mb-7">
+        <div class="flex justify-between mb-3">
+          <p>Loan ID</p>
+          <p>{{ '#'.$pengajuan_kredit->id_pengajuankredit }}</p>
+        </div>
+        <div class="flex justify-between mb-3">
+          <p>Loan Amount</p>
+          <p>Rp {{ number_format($pengajuan_kredit->nominal_pengajuankredit, 0, ',','.') }}</p>
+        </div>
+        <div class="flex justify-between mb-3">
+          <p>Loan Period (Month)</p>
+          <p>{{ $pengajuan_kredit->tenor }}</p>
+        </div>
+        <div class="flex justify-between mb-3">
+          <p>Apply Date</p>
+          <p>{{ $pengajuan_kredit->tanggal_pengajuankredit->format('d/m/Y') }}</p>
+        </div>
+        <div class="flex justify-between mb-3">
+          <p>Survey Date</p>
+          <p>{{ $survei->tanggal_survei->format('d/m/Y') }}</p>
+        </div>
+        <button id="surveyresultbutton" class="text-white bg-[#29BBCF] text-center w-full p-3 rounded-xl font-semibold">View Survey Result</button>
         <script>
           const viewsurveyresultbutton = document.getElementById('surveyresultbutton');
           viewsurveyresultbutton.addEventListener('click', () => {

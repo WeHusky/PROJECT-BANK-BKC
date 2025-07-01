@@ -417,7 +417,7 @@
           </div>
           <div class="form-control">
             <label>Nominal</label>
-            <input type="text" class="border-0 border-b border-b-[#29BBCF] p-0 pb-1" value="{{ number_format($loan->nominal_pengajuankredit, 0, ',', '.') }}" disabled>
+            <input type="text" class="border-0 border-b border-b-[#29BBCF] p-0 pb-1" value="Rp {{ number_format($loan->nominal_pengajuankredit, 0, ',', '.') }}" disabled>
           </div>
         </div>
         <div class="form-group">
@@ -462,67 +462,52 @@
       <!-- Konten Survey -->
       <div id="survey" class="tab-content">
         <!-- isi form Survey di sini -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- ID Survey -->
-          <div class="flex flex-col">
-            <label>Survey ID</label>
-            <input type="text" value="{{ $survei->id_survei }}" disabled class="border-0 border-b border-b-[#29BBCF] p-0 pb-1"/>
+        <form action="{{ route('loans.surveyupdate', ['id' => $loan->id_pengajuankredit]) }}" method="POST" enctype="multipart/form-data">
+          @csrf
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- ID Survey -->
+            <div class="flex flex-col">
+              <label>Survey ID</label>
+              <input name="id_survei" type="text" value="{{ $survei->id_survei }}" disabled class="border-0 border-b border-b-[#29BBCF] p-0 pb-1"/>
+            </div>
+            <!-- ID Nasabah -->
+            <div class="flex flex-col">
+              <label>Loan Application ID</label>
+              <input name="id_pengajuankredit" type="text" value="{{ $loan->id_pengajuankredit }}" disabled class="border-0 border-b border-b-[#29BBCF] p-0 pb-1"/>
+            </div>
+            <!-- Kondisi Rumah -->
+            <div class="flex flex-col">
+              <label class="flex justify-between">House Condition @if($survei->kondisi_rumah)<a href="{{ asset('storage/' . $survei->kondisi_rumah) }}" class="text-blue-700" download>Download</a>@endif</label>
+              <input name="kondisi_rumah" type="file" class="flex items-center justify-between border border-[#29BBCF] px-4 py-2 focus:outline-none rounded-3xl bg-transparent">
+            </div>
+            <!-- Kondisi Ekonomi -->
+            <div class="flex flex-col">
+              <label>Financial Condition</label>
+              <select
+                name="kondisi_ekonomi"
+                class="border border-[#29BBCF] px-4 py-3 focus:outline-none rounded-3xl bg-transparent">
+                <option>Choose Financial Condition</option>
+                <option value="Stable" {{ $survei->kondisi_ekonomi == 'Stable' ? 'selected' : '' }}>Stable</option>
+                <option value="Growing" {{ $survei->kondisi_ekonomi == 'Growing' ? 'selected' : '' }}>Growing</option>
+                <option value="Declining" {{ $survei->kondisi_ekonomi == 'Declining' ? 'selected' : '' }}>Declining</option>
+                <option value="Unpredictable" {{ $survei->kondisi_ekonomi == 'Unpredictable' ? 'selected' : '' }}>Unpredictable</option>
+                <option value="Critical" {{ $survei->kondisi_ekonomi == 'Critical' ? 'selected' : '' }}>Critical</option>
+              </select>
+            </div>
+            <!-- Alasan Peminjaman (textarea) -->
+            <div class="flex flex-col col-span-1 md:col-span-2">
+              <label>Reason for Loan Application</label>
+              <textarea rows="4"
+                name="alasan_peminjaman"
+                placeholder="Enter the reason for the loan application"
+                class="border border-[#29BBCF] rounded-xl p-2">@if ($survei->alasan_peminjaman){{$survei->alasan_peminjaman}}@endif</textarea>
+            </div>
           </div>
-          <!-- ID Nasabah -->
-          <div class="flex flex-col">
-            <label>Customer ID</label>
-            <input type="text" value="{{ $nasabah->id_nasabah }}" disabled class="border-0 border-b border-b-[#29BBCF] p-0 pb-1"/>
+          <div class="flex justify-end" style="margin-top: 20px;">
+            <button type="submit" class="border border-[#29BBCF] bg-transparent hover:bg-[#29BBCF] rounded-3xl text-[#29BBCF] hover:text-white font-semibold py-2 px-5 shadow transition-colors duration-200">Upload</button>
           </div>
-          <!-- Kondisi Rumah -->
-          <div class="flex flex-col">
-            <label>House Condition</label>
-            <button type="button" class="flex items-center justify-between border border-[#29BBCF] px-4 py-3 focus:outline-none rounded-3xl bg-transparent">
-              Select a File
-              <span class="material-icons text-gray-400">chevron_right</span>
-            </button>
-          </div>
-          <!-- Kondisi Ekonomi -->
-          <div class="flex flex-col">
-            <label>Financial Condition</label>
-            <select
-              class="border border-[#29BBCF] px-4 py-3 focus:outline-none rounded-3xl bg-transparent">
-              <option selected>Choose Financial Condition</option>
-              <option value="stable">Stable</option>
-              <option value="growing">Growing</option>
-              <option value="declining">Declining</option>
-              <option value="unpredictable">Unpredictable</option>
-              <option value="critical">Critical</option>
-            </select>
-          </div>
-          <!-- Alasan Peminjaman (textarea) -->
-          <div class="flex flex-col col-span-1 md:col-span-2">
-            <label>Reason for Loan Application</label>
-            <textarea rows="4"
-              class="border border-[#29BBCF] rounded-xl p-2"></textarea>
-          </div>
-        </div>
+        </form>
       </div>
-    </div>
-
-    <!-- Loan Approval Card -->
-    <div class="loan-approval-card shadow-sm" style="background: #fff; padding: 20px; border-radius: 10px; margin-top: 20px;">
-      <h3>Loan Approval</h3>
-      <p style="background-color: #ffeb3b; padding: 10px; border-radius: 5px;">
-        Are you sure you want to approve this loan? Once approved, the loan will be processed and cannot be undone. Please confirm your decision.
-      </p>
-      <div style="margin-top: 10px;">
-        <input type="checkbox" id="confirmApproval">
-        <label for="confirmApproval">I confirm the loan approval</label>
-      </div>
-      <div style="margin-top: 20px;">
-        <button class="confirm" id="confirmLoanApproval" style="background-color: #6c63ff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Approve Loan</button>
-        <button class="cancel" id="cancelLoanApproval" style="background-color: #ccc; color: black; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Cancel</button>
-      </div>
-    </div>
-    <div class="button-group" style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
-      <a href="{{ route('loans') }}" class="back-button">
-        <i class="material-icons">arrow_back</i> Kembali
-      </a>
     </div>
   </div>
   <!-- Modal -->

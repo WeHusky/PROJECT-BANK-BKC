@@ -57,14 +57,14 @@
     <!-- Menu Section -->
     <section class="px-6 pb-10">
         <div class="glass shadow-lg divide-y overflow-hidden">
-            <a href="{{ route('nasabah.accountsettings') }}" class="flex items-center px-6 py-5 transition-all active:bg-gray-100">
+            <a href="{{ route('nasabah.accountsettings') }}" class="flex items-center px-6 py-5 transition-all active:bg-gray-200">
                 <img src="{{ asset('images/settings-svgrepo-com.svg')}}" alt="Settings" class="w-6 h-6 mr-4 black stroke-[5] stroke-black">
                 <span class="font-medium text-gray-800 text-base">Account Settings</span>
             </a>
 
             <form action="{{ route('logout') }}" method="POST" class="mb-0">
                 @csrf
-                <button type="submit" class="w-full flex items-center px-6 py-5 text-left transition-all active:bg-gray-100">
+                <button type="submit" class="w-full flex items-center px-6 py-5 text-left transition-all active:bg-gray-200">
                     <img src="{{ asset('images/log-out-svgrepo-com.svg') }}" alt="Logout" class="w-6 h-6 mr-4 black">
                     <span class="font-medium text-gray-800 text-base">Log Out</span>
                 </button>

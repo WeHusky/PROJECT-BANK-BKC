@@ -10,7 +10,7 @@
 </head>
 <body class="bg-[#29BCCF] min-h-screen flex flex-col">
     <div class="w-full relative flex-1 flex flex-col">
-        <div class="absolute flex space-x-1 top-6 items-center w-full justify-center">
+        <div class="absolute flex space-x-1 top-6 items-center w-full justify-center z-50">
             <img src="{{ asset('images/image 4.png') }}" alt="">
             <img src="{{ asset('images/image 5.png') }}" alt="">
         </div>

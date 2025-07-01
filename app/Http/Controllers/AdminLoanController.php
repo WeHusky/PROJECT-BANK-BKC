@@ -85,4 +85,26 @@ class AdminLoanController extends Controller
 
         return redirect()->route('loans.show', ['id' => $id])->with('success', 'Loan status updated successfully.');    
     }
+
+    public function surveyUpdate(Request $request, $id){
+        $request->validate([
+            'kondisi_rumah' => ['file','max:5000']
+        ]);
+
+        $survei = Survei::where('id_pengajuankredit', $id)->first();
+
+        if ($request->hasFile('kondisi_rumah')){
+            $file = $request->file('kondisi_rumah');
+            $filename = 'survey_' . $id . '_' . now()->format('dmY') . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('survei', $filename, 'public');
+            $survei->kondisi_rumah = $path;
+            $survei->save();
+        }
+
+        $survei->kondisi_ekonomi = $request->input('kondisi_ekonomi');
+        $survei->alasan_peminjaman = $request->input('alasan_peminjaman');
+        $survei->save();
+
+        return redirect()->route('loans.show', ['id' => $id])->with('success', 'Loan survey updated successfully.');
+    }
 }

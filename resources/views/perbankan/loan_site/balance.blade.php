@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="{{ asset('css/animation.css') }}">
     @vite('resources/css/app.css')
     <style>
       .menu{
@@ -19,7 +20,7 @@
 <body class="bg-white-100 font-sans mb-20">
   <!-- Header -->
   <div class="flex px-7 py-8 bg-white items-center mb-5 shadow-sm">
-    <button class="mr-3" onclick="window.history.back()">
+    <button class="mr-3 pop" onclick="window.history.back()">
         <img src="{{ asset('images/arrowblue.png') }}" alt="">
     </button>
     <h1 class="font-extrabold text-3xl text-[#13545C]">Balance</h1>
