@@ -7,14 +7,6 @@ use App\Models\Nasabah;
 use Illuminate\Http\Request;
 use App\Models\Notifications;
 use App\Models\Pengajuan_Kredit;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
-class Controller extends BaseController
-{
-    use AuthorizesRequests, ValidatesRequests;
-}
 
 class AdminLoanController extends Controller
 {
@@ -83,7 +75,7 @@ class AdminLoanController extends Controller
             ]);
         }
 
-        return redirect()->route('loans.show', ['id' => $id])->with('success', 'Loan status updated successfully.');    
+        return redirect()->route('loans.show', ['id' => $id])->with('success', 'Loan status updated successfully.');
     }
 
     public function surveyUpdate(Request $request, $id){

@@ -33,14 +33,13 @@ Route::post('admin/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Admin Protected Routes
 Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/regions', [DashboardController::class, 'regions'])->name('regions.index');
     Route::get('/loans', [AdminLoanController::class, 'index'])->name('loans');
     Route::get('/loans/{id}', [AdminLoanController::class, 'show'])->name('loans.show');
     Route::post('/loans/{id}/status-update', [AdminLoanController::class, 'statusUpdate'])->name('loans.statusupdate');
     Route::post('/loans/{id}/survey-update', [AdminLoanController::class, 'surveyUpdate'])->name('loans.surveyupdate');
+    Route::get('/search', [DashboardController::class, 'search'])->name('dashboard.search');
 });
 
 // Nasabah Auth Routes
