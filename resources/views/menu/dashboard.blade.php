@@ -49,6 +49,8 @@
         margin-bottom: 30px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.2);
+        position: relative;
+        z-index: 1000;
     }
 
     .header-content {
@@ -476,7 +478,7 @@
                     <div class="search-container">
                         <input type="text" id="searchInput" class="search-input" placeholder="Cari pinjaman, nasabah, atau status..." autocomplete="off">
                         <i class="fas fa-search search-icon"></i>
-                        <div id="searchResults" class="search-results" style="z-index: 99;"></div>
+                         <div id="searchResults" class="search-results"></div>
                     </div>
                     <button class="add-button" onclick="openAddPendaftaranModal()">
                         <i class="fas fa-plus"></i> Tambah Data
